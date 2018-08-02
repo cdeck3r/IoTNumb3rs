@@ -20,7 +20,7 @@ aus IoT Infografiken mit quantitativen Methoden.
 
 ## Inhalte
 
-[IoTNumb3rs Wiki](wiki)
+[IoTNumb3rs Wiki](https://github.com/cdeck3r/IoTNumb3rs/wiki)
 
 ## Teilnehmer
 
@@ -37,7 +37,7 @@ an der Hochschule Reutlingen.
 
 ## Kollaboration
 
-* [IoTNumb3rs on Github](/cdeck3r/IoTNumb3rs)
+* [IoTNumb3rs on Github](https://github.com/cdeck3r/IoTNumb3rs)
 * [IoTNumb3rs Slack Channel](https://iotnumb3rs.slack.com)
 * Dropbox, Trello, Ethercalc, ...
 
