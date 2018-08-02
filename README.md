@@ -7,7 +7,7 @@ aus IoT Infografiken mit quantitativen Methoden.
 
 **Ziel:** Zahlenmaterial besser verstehen und qualitativ einschätzen zu können.
 
-**Erwartete Ergebnisse:***
+**Erwartete Ergebnisse:**
 
 * Datenbank mit Zahlenmaterial über Geräteanzahlen und Kennzahlen des IoT Markts
 * Quantitative Auswertungen 
