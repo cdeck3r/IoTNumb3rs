@@ -1,4 +1,5 @@
 # Table of contents
 
-* [Initial page](README.md)
+* [Synopsis](README.md)
+* [Kickoff und Initialer Sprint](kickoff-und-initialer-sprint.md)
 

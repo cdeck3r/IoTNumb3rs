@@ -1,9 +1,6 @@
 # Synopsis
 
-IoT Infografiken enthalten Prognosen und Zahlenmaterial über das Potential und Entwicklung des Internet of Things (IoT). 
-Die Darstellungen sind jedoch oftmals extrem verkürzt. Quellenangaben fehlen häufig.
-Nachvollziehbarkeit oder Plausibilität sind schwierig herzustellen. Das Projekt erfasst und untersucht das Zahlenmaterial 
-aus IoT Infografiken mit quantitativen Methoden. 
+IoT Infografiken enthalten Prognosen und Zahlenmaterial über das Potential und Entwicklung des Internet of Things \(IoT\). Die Darstellungen sind jedoch oftmals extrem verkürzt. Quellenangaben fehlen häufig. Nachvollziehbarkeit oder Plausibilität sind schwierig herzustellen. Das Projekt erfasst und untersucht das Zahlenmaterial aus IoT Infografiken mit quantitativen Methoden.
 
 **Ziel:** Zahlenmaterial besser verstehen und qualitativ einschätzen zu können.
 
@@ -24,10 +21,9 @@ aus IoT Infografiken mit quantitativen Methoden.
 
 ## Teilnehmer
 
-Dies ist Projekt im [Bachelor Wirtschaftsinformatik (WIB)](http://www.inf.reutlingen-university.de/studium/bachelor/wirtschaftsinformatik/)
-an der Hochschule Reutlingen.
+Dies ist Projekt im [Bachelor Wirtschaftsinformatik \(WIB\)](http://www.inf.reutlingen-university.de/studium/bachelor/wirtschaftsinformatik/) an der Hochschule Reutlingen.
 
-**Betreuer:** Christian Decker ([@cdeck3r](https://twitter.com/cdeck3r), [@RTWIB_Decker](https://twitter.com/rtwib_decker))
+**Betreuer:** Christian Decker \([@cdeck3r](https://twitter.com/cdeck3r), [@RTWIB\_Decker](https://twitter.com/rtwib_decker)\)
 
 **Projektteam:**
 
