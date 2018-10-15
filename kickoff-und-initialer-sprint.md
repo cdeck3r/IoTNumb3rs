@@ -26,7 +26,7 @@ Jedes Teammitglied analysiert mind. 3 IoT Infografiken.
 
 Die Dropbox Freigabe ist schwierig. Ursprünglich war geplant, dass jedes Teammitglied einen Folder über Dropbox freigegeben bekommt. Darüber wird mit der numb3rspipeline interagiert. Es kann jedoch kein Folder unterhalb des Apps Folders zum gemeinsamen Austausch freigegeben werden. Der Apps Folder wurde vom Dropbox API angelegt. Die File Interaktionen via des Dropbox API sind auf diesen Folder beschränkt. Eine weitere Konsequenz ist, dass man keinen Subfolder des Apps Folder  für gemeinsamen Arbeiten mit anderen Dropbox Nutzern freigeben kann. Daher folgendes Vorgehen:
 
-1. Funktion "Dateien anfordern": Dropbox erstellt einen Link über den Dateien in entsprechenden Folder von Users gelegt werden können. Hierbei können Folder unterhalb des Apps Folders angegeben werden. Das ist **Upload-Link**.
+1. Funktion "Dateien anfordern": Dropbox erstellt einen Link über den Dateien in entsprechenden Folder von Users gelegt werden können. Hierbei können Folder unterhalb des Apps Folders angegeben werden. Das ist der **Upload-Link**.
 2. Funktion "Ordner freigeben": Dropbox erstellt einen Link, der ansehen und runterladen erlaubt. Das ist der **Download-Link**.
 
 #### Vorgehen im Sprint
