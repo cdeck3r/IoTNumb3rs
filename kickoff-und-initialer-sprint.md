@@ -6,6 +6,8 @@ description: Kickoff des Projekts und zum ersten Mal mit der numb3spipeline arbe
 
 ## Kickoff
 
+Datum: 11.10.2018
+
 * Erläuterung des Projektumfelds
 * Projektrollen und -steuerung
 * Tools und Services
@@ -20,7 +22,7 @@ description: Kickoff des Projekts und zum ersten Mal mit der numb3spipeline arbe
 
 #### Ziel
 
-Jedes Teammitglied analysiert mind. 3 IoT Infografiken.
+Bis zum 18.10.2018 analysiert jedes Teammitglied mind. 3 IoT Infografiken.
 
 #### Umgang mit Dropbox
 
