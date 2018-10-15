@@ -24,18 +24,18 @@ Jedes Teammitglied analysiert mind. 3 IoT Infografiken.
 
 #### Umgang mit Dropbox
 
-Die Dropbox Freigabe ist schwierig. Ursprünglich war geplant, dass jedes Teammitglied einen Folder über Dropbox freigegeben bekommt. Darüber wird mit der numb3rspipeline interagiert. Es kann jedoch kein Folder unterhalb des Apps Folders zum gemeinsamen Austausch freigegeben werden. Der Apps Folder wurde vom Dropbox API angelegt. Die File Interaktionen via des Dropbox API sind auf diesen Folder beschränkt. Eine weitere Konsequenz ist, dass man keinen Subfolder des Apps Folder  für gemeinsamen Arbeiten mit anderen Dropbox Nutzern freigeben kann. Daher folgendes Vorgehen
+Die Dropbox Freigabe ist schwierig. Ursprünglich war geplant, dass jedes Teammitglied einen Folder über Dropbox freigegeben bekommt. Darüber wird mit der numb3rspipeline interagiert. Es kann jedoch kein Folder unterhalb des Apps Folders zum gemeinsamen Austausch freigegeben werden. Der Apps Folder wurde vom Dropbox API angelegt. Die File Interaktionen via des Dropbox API sind auf diesen Folder beschränkt. Eine weitere Konsequenz ist, dass man keinen Subfolder des Apps Folder  für gemeinsamen Arbeiten mit anderen Dropbox Nutzern freigeben kann. Daher folgendes Vorgehen:
 
 1. Funktion "Dateien anfordern": Dropbox erstellt einen Link über den Dateien in entsprechenden Folder von Users gelegt werden können. Hierbei können Folder unterhalb des Apps Folders angegeben werden. Das ist **Upload-Link**.
 2. Funktion "Ordner freigeben": Dropbox erstellt einen Link, der ansehen und runterladen erlaubt. Das ist der **Download-Link**.
 
-#### Vorgehen
+#### Vorgehen im Sprint
 
 1. IoT Infografiken mit Google Bildersuche finden
 2. URLs der **Bilddateien** speichern in Datei `url_list.txt`
-3. **\[DROPBOX\]** `url_list.txt` auf Dropbox kopieren. Link zum Hochladen in separater Mail erhalten.
+3. **\[DROPBOX, Upload-Link\]** `url_list.txt` auf Dropbox kopieren. Link zum Hochladen in separater Mail erhalten.
 4. _... numb3rspipeline läuft..._ nichts zu tun, warten.
-5. **\[DROPBOX\]** Für jede URL aus url\_list.txt wurde nun eine Bild- und Textdatei angelegt 
+5. **\[DROPBOX, Download-Link\]** Für jede URL aus url\_list.txt wurde nun eine Bild- und Textdatei angelegt. Dateien können über den Download-Link  zugegriffen werden.
    1. `file<n>_<bildname>`
    2. `file<n>_<bildname>.txt`
 6. Keyword-Suche in Textdatei `file<n>_<bildname>.txt`
@@ -47,7 +47,19 @@ Die Dropbox Freigabe ist schwierig. Ursprünglich war geplant, dass jedes Teammi
 
 ## Ergebnisse & Lessons learnt
 
-In diesem Sprint sollte die 
+In diesem Sprint sollte die Praxistauglichkeit der numb3rspipeline getestet werden.
+
+#### numb3rspipeline: Probleme und Lösungen
+
+* Beim Hochladen der Datei `url_list.txt` wird der Datei der Username vorangestellt. numb3rspipeline wurde angepasst, und kann nun mit dem veränderten usernamen umgehen.
+* Die URLs enthalten jeweils ein `<CR>` Zeichen am Ende der Zeile. Das verursacht Fehler beim Runterladen der Bilder via `curl`. Das URL parsing wurde angepasst. 
+* Leerzeilen in der `url_list.txt` werden als leere URLs interpretiert. Es wird kein File erzeugt, aber der file counter `<n>` weitergezählt. Wird nicht behandelt. Verhalten der numb3rspipeline bleibt bestehen.
+
+#### Empfehlungen ans Team
+
+* URLs in `url_list.txt`, die nicht auf einen Filenamen enden, können nicht verarbeitet werden. Wird nicht behandelt. Verhalten der numb3rspipeline bleibt bestehen.  Empfehlung: URLs verwenden, die auf Dateinamen enden.
+* Bilder, die aus der Vorschau der Google Bildersuche entnommen werden, haben einen schlechte Qualität für die Texterkennung.  Empfehlung: Bild der Originalseite angeben.
+* URLs, die nicht in einer Datei `url_list.txt` stehen, können nicht verarbeitet werden. Empfehlung: URLs immer nur in `url_list.txt` speichern.
 
 #### Erzielter Wert
 
