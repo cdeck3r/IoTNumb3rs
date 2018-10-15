@@ -10,14 +10,31 @@ description: Kickoff des Projekts und zum ersten Mal mit der numb3spipeline arbe
 * Projektrollen und -steuerung
 * Tools und Services
 
-## Sprint
+## Initialer Sprint
 
-Ziel: Jedes Teammitglied analysiert mind. 3 IoT Infografiken.
+#### Nutzen
+
+* Der Sprint soll die Funktion der numb3rspipeline unter Realbedingungen des Projekts testen.
+* Die Teammitglieder sollen mit der beschriebenen Vorgehensweise vertraut werden.
+* Probleme im Zusammenspiel zwischen Team und numb3rspipeline sowie Verbesserungen sollen identifiziert werden.
+
+#### Ziel
+
+Jedes Teammitglied analysiert mind. 3 IoT Infografiken.
+
+#### Umgang mit Dropbox
+
+Die Dropbox Freigabe ist schwierig. Ursprünglich war geplant, dass jedes Teammitglied einen Folder über Dropbox freigegeben bekommt. Darüber wird mit der numb3rspipeline interagiert. Es kann jedoch kein Folder unterhalb des Apps Folders zum gemeinsamen Austausch freigegeben werden. Der Apps Folder wurde vom Dropbox API angelegt. Die File Interaktionen via des Dropbox API sind auf diesen Folder beschränkt. Eine weitere Konsequenz ist, dass man keinen Subfolder des Apps Folder  für gemeinsamen Arbeiten mit anderen Dropbox Nutzern freigeben kann. Daher folgendes Vorgehen
+
+1. Funktion "Dateien anfordern": Dropbox erstellt einen Link über den Dateien in entsprechenden Folder von Users gelegt werden können. Hierbei können Folder unterhalb des Apps Folders angegeben werden. Das ist **Upload-Link**.
+2. Funktion "Ordner freigeben": Dropbox erstellt einen Link, der ansehen und runterladen erlaubt. Das ist der **Download-Link**.
+
+#### Vorgehen
 
 1. IoT Infografiken mit Google Bildersuche finden
 2. URLs der **Bilddateien** speichern in Datei `url_list.txt`
 3. **\[DROPBOX\]** `url_list.txt` auf Dropbox kopieren. Link zum Hochladen in separater Mail erhalten.
-4. numb3rspipeline läuft... nichts zu tun, warten.
+4. _... numb3rspipeline läuft..._ nichts zu tun, warten.
 5. **\[DROPBOX\]** Für jede URL aus url\_list.txt wurde nun eine Bild- und Textdatei angelegt 
    1. `file<n>_<bildname>`
    2. `file<n>_<bildname>.txt`
@@ -29,4 +46,19 @@ Ziel: Jedes Teammitglied analysiert mind. 3 IoT Infografiken.
 8. Ethercalc URL kopieren und über Teamleiter gesammelt an C. Decker schicken
 
 ## Ergebnisse & Lessons learnt
+
+In diesem Sprint sollte die 
+
+#### Erzielter Wert
+
+numb3rspipeline kann mit vom Team erstellen `url_list.txt` Dateien umgehen.
+
+#### Nächste Schritte
+
+Folgende Verbesserungen der numb3rspipeline sind vorgesehen.
+
+* numb3rspipeline integriert Keyword Suche
+* automatische Erstellung des ethercalc Spreadsheet durch numb3rspipeline
+
+
 
