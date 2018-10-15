@@ -27,9 +27,10 @@ Dies ist Projekt im [Bachelor Wirtschaftsinformatik \(WIB\)](http://www.inf.reut
 
 **Projektteam:**
 
-* einen Namen  
-* ...
-* ...
+* Marielle Demuth
+* Patrick Bousrez
+* Maria Margaritidou
+* Jinlin Shen
 
 ## Kollaboration
 
