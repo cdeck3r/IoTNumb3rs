@@ -17,7 +17,7 @@ IoT Infografiken enthalten Prognosen und Zahlenmaterial über das Potential und 
 
 ## Inhalte
 
-[IoTNumb3rs Wiki](https://github.com/cdeck3r/IoTNumb3rs/wiki)
+[IoTNumb3rs Gitbook](https://cdeck3r-docs.gitbook.io/iotnumb3rs/)
 
 ## Teilnehmer
 
