@@ -36,5 +36,6 @@ Dies ist Projekt im [Bachelor Wirtschaftsinformatik \(WIB\)](http://www.inf.reut
 
 * [IoTNumb3rs on Github](https://github.com/cdeck3r/IoTNumb3rs)
 * [IoTNumb3rs Slack Channel](https://iotnumb3rs.slack.com)
-* Dropbox, Trello, Ethercalc, ...
+* [Trello board](https://trello.com/b/n18A4ThF)
+* Dropbox, Ethercalc, ...
 
