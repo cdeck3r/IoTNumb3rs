@@ -7,14 +7,20 @@ The pipeline downloads the infographic and performs an OCR. As a result, it crea
 
 Finally, the user may search through the text files for specific key words of interest in this project. If the search hits these keywords, it also identifies the files for manual inspection and data extraction.
 
-## Terms
+## Getting Started
+
+### Install
+
+tbd
+
+### Terms
 
 * run: a single run of the pipeline. Within a run, the pipeline processes all given URLs referencing IoT infographics. 
 * batch: all URLs referencing IoT infographics from a single run
 * user folder: a _user-specific_ DropBox folder, e.g. named after the user
 * OCR text: the extracted text as the result of OCR processing of the infographic
 
-## Input
+### Input
 
 Users create a text file containing URLs referencing IoT infographics.
 Afterwards, this file is placed into a user folder accessible for the pipeline.
@@ -34,14 +40,12 @@ Format of `url_list.txt`:
 ...
 ```
 
-## Output
+### Output
 
 The numb3rspipeline stores the result in a folder indicating date and time as nomenclature.
 Each run has its own result directory containing the batch results. The result directory is placed together with the `url_list.txt` file in the user folder. The `url_list.txt` file is deleted from its original place in the user folder making the numb3rspipeline essentially ready for the next run of a URL batch.
 
-### Result directory
-
-**Result directory name:** `yyyyMMdd-HHMM/`
+#### Result directory name: `yyyyMMdd-HHMM/`
 
 Content of `yyyyMMdd-HHMM/`:
 ``` 
@@ -58,7 +62,7 @@ url_filelist.csv
 url_list.txt
 ```
 
-### Detailed Description of Pipeline Output 
+#### Detailed Description of Pipeline Output 
 
 `file<n>_<name of graphics file>` 
 
@@ -95,3 +99,22 @@ url;filename
 <URL from url_list.txt>;file<n>_<name of graphics file>
 ...
 ```
+
+## Contributing
+
+The public [Trello board](https://trello.com/b/n18A4ThF) contains the current dev tasks.
+If you like to contribute to the project, just submit a pull requests.
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/cdeck3r/IoTNumb3rs/tags).
+
+## Authors
+
+* Christian Decker - *Initial work*
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+
+
