@@ -37,7 +37,7 @@ Die Dropbox Freigabe ist schwierig. Ursprünglich war geplant, dass jedes Teammi
 2. URLs der **Bilddateien** speichern in Datei `url_list.txt`
 3. **\[DROPBOX, Upload-Link\]** `url_list.txt` auf Dropbox kopieren. Link zum Hochladen in separater Mail erhalten.
 4. _... numb3rspipeline läuft..._ nichts zu tun, warten.
-5. **\[DROPBOX, Download-Link\]** Für jede URL aus url\_list.txt wurde nun eine Bild- und Textdatei angelegt. Dateien können über den Download-Link  zugegriffen werden.
+5. **\[DROPBOX, Download-Link\]** Ein neues Verzeichnis in dem Format `[yyyymmdd-hhmm]` wurde angelegt. Für jede URL aus `url_list.txt` liegt in diesem Verzeichnis nun eine Bild- und Textdatei. Dateien können über den Download-Link  zugegriffen werden.
    1. `file<n>_<bildname>`
    2. `file<n>_<bildname>.txt`
 6. Keyword-Suche in Textdatei `file<n>_<bildname>.txt`
