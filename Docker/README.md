@@ -10,12 +10,12 @@ Calling the script creates the `iotnumb3rs:latest` iamge.
 ./build.sh
 ```
 
-## Run Container and Install Software
+## Run Container
 
 Set the `HOST_DIR` variable to specify the host's directory mapped to the container's home directory.
 
 ```
-export HOST_DIR=
+export HOST_DIR=<host dir to map>
 ```
 
 Afterwards, spin up the container.
