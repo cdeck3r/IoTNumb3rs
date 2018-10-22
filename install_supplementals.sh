@@ -7,8 +7,8 @@
 git clone https://github.com/a-sync/slackr.git
 cd slackr && chmod +x slackr
 
-# back to hime
-cd
+# back
+cd ..
 
 #
 #
@@ -19,3 +19,4 @@ cd
 git clone https://github.com/andreafabrizi/Dropbox-Uploader.git
 cd Dropbox-Uploader
 chmod +x dropbox_uploader.sh
+cd ..
