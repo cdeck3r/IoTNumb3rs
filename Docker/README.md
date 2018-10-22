@@ -4,7 +4,7 @@ The Dockerfile creates an image for IoTNumb3rs development.
 
 ## Create image
 
-Calling the script creates the `iotnumb3rs:latest` iamge.
+Calling the script creates the `iotnumb3rs:latest` image.
 
 ```
 ./build.sh
