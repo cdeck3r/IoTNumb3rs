@@ -60,9 +60,15 @@ SLACKR='../slackr/slackr'
 for USERDIR in "${DROPBOX_USERDIR[@]}"
 do
 	"$PIPELINE" "$DATAROOT"/$USERDIR $USERDIR
-    if [[ $? -ne 0 ]]; then
-        "$SLACKR" -r random -n $USERDIR -c danger -i :zap: "numb3rspipeline FAILED to process user: $USERDIR"
-    else
+	ERR_CODE=$?
+    if [ $ERR_CODE -eq 10 ]; then
+        "$SLACKR" -r random -n $USERDIR -c warning -i :warning: "numb3rspipeline could not find url_list.txt file for user: $USERDIR"
+		continue
+	elif [ $ERR_CODE -ne 0 ]; then
+		"$SLACKR" -r random -n $USERDIR -c danger -i :zap: "numb3rspipeline FAILED to process user: $USERDIR"
+	else
         "$SLACKR" -r random -n $USERDIR -c good -i :heavy_check_mark: "numb3rspipeline successfully processed user: $USERDIR"
     fi
+
+
 done

@@ -13,6 +13,11 @@
 # Ex.
 # numb3rspipeline.sh /home/iot/testdata testuser
 #
+# exit codes:
+# 0 - no error
+# 1 - general errors
+# 10 - url_list.txt file not found
+#
 
 # this directory is the script directory
 SCRIPT_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
@@ -77,7 +82,7 @@ else
     # log string
     TS=$(date '+%Y-%m-%d %H:%M:%S,%s')
     echo "$TS - $SCRIPT_NAME - ERROR - url_list.txt filename for $DROPBOX_USERDIR not found."
-    exit 1
+    exit 10
 fi
 
 
