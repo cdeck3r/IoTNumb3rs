@@ -20,13 +20,22 @@ cd "$DOWNLOAD_DIR"
 URL_FILELIST='./url_filelist.csv'
 
 # initially create the URL_FILELIST
-echo "url"\;"filename" > "$URL_FILELIST"
+echo "url"\;"filename"\;"home_url" > "$URL_FILELIST"
 
 FILE_CNT=0
 # loop through all lines of $URL_LIST
 # 1. Download $URL
 # 2. rename downloaded files by prefixing $FILE_CNT
-while IFS='' read -r URL || [[ -n "$URL" ]]; do
+while IFS='' read -r URL_STR || [[ -n "$URL_STR" ]]; do
+
+    #### parse url_list.txt file
+    URL=$(echo $URL_STR | cut -d ';' -f 1)
+    HOME_URL=$(echo $URL_STR | cut -d ';' -f 2)
+
+    # compatibility with preious format, when no home_url is provided
+    if [ "$HOME_URL" == "$URL" ]; then
+        HOME_URL=
+    fi
 
     #### time snapshot using aux file 'start' before download
     start_date=$(date '+%Y%m%d%H%M.%S')
@@ -53,11 +62,12 @@ while IFS='' read -r URL || [[ -n "$URL" ]]; do
     # write the url_filelist
     (
     export URL
+    export HOME_URL
     export FILE_CNT
     export URL_FILELIST
     find "." -type f -name '*.*' ! -name '*.csv' ! -name '*.txt' \
         -newer start \
-        -exec sh -c 'echo "$URL"\;"$(basename "{}")" >> "$URL_FILELIST"' \;
+        -exec sh -c 'echo "$URL"\;"$(basename "{}")"\;"$HOME_URL" >> "$URL_FILELIST"' \;
     )
     # remove aux 'start' file
     rm -rf ./start

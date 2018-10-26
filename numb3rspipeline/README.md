@@ -13,6 +13,83 @@ Finally, the user may search through the text files for specific key words of in
 
 tbd
 
+**Updating from github**
+
+Call a script with the following content.
+
+```bash
+cd "$HOME"/IoTNumb3rs && \
+    git reset --hard HEAD && \
+    git pull && \
+    find . -type f -name '*.sh' | xargs chmod +x
+```
+
+
+### Run Pipeline
+
+First, create a python virtualenv.
+```bash
+make venv
+```
+
+The pipeline interacts with Dropbox fetching and placing data in `<userdir>` on the Dropbox.
+```bash
+./numb3rspipeline.sh <dataroot dir> <dropbox userdir>
+```
+
+**Use in Production**
+
+The following scripts call the pipeline and interact with [Slack](https://slack.com) notfiying users on the pipeline's processing. The testrun script calls the pipeline in production and will place the data into `/tmp/testdata` for the user `testuser`.
+```bash
+cd numb3rspipeline
+./testrun.sh
+```
+
+The regular run in production for a specfic user.
+```bash
+./run4all.sh <dataroot dir> <dropbox userdir>
+```
+
+The regular run in production for the list of default users.
+```bash
+./run4all.sh <dataroot dir> 
+```
+
+### Run Pipeline as cronjob
+
+Add the following `cron_numb3rspipeline.sh` into a user's home directory.
+
+```bash
+#!/bin/bash
+
+#
+# The numb3rspipeline cronjob
+# will run this script
+#
+
+# the IoTNumb3rs directory
+cd "$HOME"/IoTNumb3rs
+
+# activate virtualenv
+source venv/bin/activate
+
+# here are the scripts
+cd numb3rspipeline
+# configure and fire up the pipeline
+DATADIR="$HOME"/iotdata
+mkdir -p "$DATADIR"
+./run4all.sh "$DATADIR" >> "$HOME"/numb3rspipeline.log
+
+# deactivate virtualenv
+deactivate
+```
+
+Add the following line into a user's crontab via `crontab -e` to run the pipeline every 3 hours.
+```
+0 */3 * * * "$HOME"/cron_numb3rspipeline.sh >/dev/null 2>&1 
+```
+
+
 ### Terms
 
 * run: a single run of the pipeline. Within a run, the pipeline processes all given URLs referencing IoT infographics. 

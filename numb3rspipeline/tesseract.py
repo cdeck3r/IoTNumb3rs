@@ -41,11 +41,12 @@ def tesseract(fpath):
 
     return text_org, text_enh
 
-def write_txtfile(fpath, url, text_org, text_enh):
+def write_txtfile(fpath, url, home_url, text_org, text_enh):
     """ Writes the OCR text into file.
 
     :param fpath: the complete name of the OCR txt file
     :param url: the url where fpath's file originates from
+    :param home_url: website url where the img originates from
     :param text_org: OCR text from the original image
     :param text_org: OCR text from the enhanced image
 
@@ -57,6 +58,7 @@ def write_txtfile(fpath, url, text_org, text_enh):
         try:
             txtfile.write('##################################\n')
             txtfile.write('Infographic URL: %s\n' % url)
+            txtfile.write('Infographic homepage: %s\n' % home_url)
             txtfile.write('Infographic file: %s\n' %  os.path.split(fpath)[1] )
             txtfile.write('##################################\n')
             txtfile.write('\n')
@@ -92,7 +94,13 @@ def main(input_dir, urlfilelist):
         reader = csv.DictReader(csvfile, delimiter = ';')
         for row in reader:
             filename = row['filename']
-            url = row['url']
+            url = row['url'] # image URL
+            try:
+                home_url = row['home_url'] # website where the img originates from
+            except KeyError:
+                logger.warn('No home_url attribute found in file: %s', urlfilelist)
+                home_url = ''
+
             # loop for each file
             try:
                 ## reading image file and perform OCR
@@ -108,7 +116,7 @@ def main(input_dir, urlfilelist):
                 txt_filepath = file + '.txt' # img_filepath.txt
                 txtfile_dir, txtfile_name = os.path.split(txt_filepath)
                 logger.info('Writing text file: %s', txtfile_name)
-                write_txtfile(txt_filepath, url, text_org, text_enh)
+                write_txtfile(txt_filepath, url, home_url, text_org, text_enh)
             except:
                 # log error handling
                 logger.error('Error performing OCR on file: %s', filename)
