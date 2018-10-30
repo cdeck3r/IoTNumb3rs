@@ -67,7 +67,7 @@ for LIST_ELEMENT in "${DIRLIST[@]}"
 do
     # empty var
     URL_LIST_NAME=
-    URL_LIST_NAME=$(echo "${LIST_ELEMENT}" | egrep -o '([[:space:][:alpha:]]+ - )?url_list.txt$' | awk '{$1=$1}1')
+    URL_LIST_NAME=$(echo "${LIST_ELEMENT}" | egrep -o '([[:space:][:alpha:]]+ - )?url_list.txt$' | sed -e 's/^[[:space:]]*//')
     if [ -n "$URL_LIST_NAME" ]; then
         break
     fi
