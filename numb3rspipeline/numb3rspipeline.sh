@@ -50,16 +50,25 @@ FILL_ETHERCALC='./fill_ethercalc.sh'
 DATAPATH="$DATAROOT"/"$DATADIR"
 mkdir -p "$DATAPATH"
 
+#
+# logging on stdout
+# Param #1: log level, e.g. INFO, WARN, ERROR
+# Param #2: log message
+log_echo () {
+    LOG_LEVEL=$1
+    LOG_MSG=$2
+    TS=$(date '+%Y-%m-%d %H:%M:%S,%s')
+    echo "$TS - $SCRIPT_NAME - $LOG_LEVEL - $LOG_MSG"
+}
+
 # log string
-TS=$(date '+%Y-%m-%d %H:%M:%S,%s')
-echo "$TS - $SCRIPT_NAME - INFO - Run numb3rspipeline for $DROPBOX_USERDIR"
+log_echo "INFO" "Run numb3rspipeline for $DROPBOX_USERDIR"
 
 # 0.
 # [name of url_list] = dropbox list [userdir]
 #
 # log string
-TS=$(date '+%Y-%m-%d %H:%M:%S,%s')
-echo "$TS - $SCRIPT_NAME - INFO - Detect url_list.txt filename for $DROPBOX_USERDIR"
+log_echo "INFO" "Detect url_list.txt filename for $DROPBOX_USERDIR"
 
 # dropbox list [userdir]
 #"$DB_UPLOADER" list "$DROPBOX_USERDIR"
@@ -78,12 +87,10 @@ done
 # report about the result
 if [ -n "$URL_LIST_NAME" ]; then
     # log string
-    TS=$(date '+%Y-%m-%d %H:%M:%S,%s')
-    echo "$TS - $SCRIPT_NAME - INFO - url_list.txt filename for $DROPBOX_USERDIR: $URL_LIST_NAME"
+    log_echo "INFO" "url_list.txt filename for $DROPBOX_USERDIR: $URL_LIST_NAME"
 else
     # log string
-    TS=$(date '+%Y-%m-%d %H:%M:%S,%s')
-    echo "$TS - $SCRIPT_NAME - ERROR - url_list.txt filename for $DROPBOX_USERDIR not found."
+    log_echo "ERROR" "url_list.txt filename for $DROPBOX_USERDIR not found."
     exit 10
 fi
 
@@ -92,13 +99,11 @@ fi
 # url_list = dropbox download [userdir]
 #
 # log string and download file
-TS=$(date '+%Y-%m-%d %H:%M:%S,%s')
-echo "$TS - $SCRIPT_NAME - INFO - Download url_list.txt from $DROPBOX_USERDIR"
+log_echo "INFO" "Download url_list.txt from $DROPBOX_USERDIR"
 "$DB_UPLOADER" download /"$DROPBOX_USERDIR"/"$URL_LIST_NAME" "$DATAPATH"/url_list.txt
 # error reporting
 if [[ $? -ne 0 ]]; then
-    TS=$(date '+%Y-%m-%d %H:%M:%S,%s')
-    echo "$TS - $SCRIPT_NAME - ERROR - Error downloading url_list.txt from $DROPBOX_USERDIR"
+    log_echo "ERROR" "Error downloading url_list.txt from $DROPBOX_USERDIR"
     exit 1
 fi
 
@@ -121,28 +126,32 @@ python "$TESSERACT" "$DATAPATH"
 # 4.
 # setup_ethercalc [template, url_filelist.csv]
 "$SETUP_ETHERCALC" "$SCRIPT_DIR"/numb3rs_template.csv "$DATAPATH"/url_filelist.csv
+if [[ $? -ne 0 ]]; then
+    # record the result for slack
+    log_echo "ERROR" "Fatal error when setup Ethercalc for $DROPBOX_USERDIR. Abort."
+    exit 1
+fi
 
 # 5.
 # fill_ethercalc [template, url_filelist.csv]
 "$FILL_ETHERCALC" "$SCRIPT_DIR"/numb3rs_template.csv "$DATAPATH"/url_filelist.csv
-#if [[ $? -ne 0 ]]; then
-#    # record the result for slack
-#fi
+if [[ $? -ne 0 ]]; then
+    # record the result for slack
+    log_echo "ERROR" "Fatal error when fill Ethercalc for $DROPBOX_USERDIR. Abort."
+    exit 1
+fi
 
 # 6.
 # dropbox upload [yyyymmdd-HHMM]
 # dropbox delete [url_list.txt]
 # logging
-TS=$(date '+%Y-%m-%d %H:%M:%S,%s')
-echo "$TS - $SCRIPT_NAME - INFO - Upload $DATAPATH to $DROPBOX_USERDIR"
+log_echo "INFO" "Upload $DATAPATH to $DROPBOX_USERDIR"
 # dropload upload
 "$DB_UPLOADER" upload "$DATAPATH" /"$DROPBOX_USERDIR"
 if [[ $? -ne 0 ]]; then
-    TS=$(date '+%Y-%m-%d %H:%M:%S,%s')
-    echo "$TS - $SCRIPT_NAME - ERROR - Error uploading $DATAPATH to $DROPBOX_USERDIR"
+    log_echo "ERROR" "Error uploading $DATAPATH to $DROPBOX_USERDIR. Abort."
     exit 1
 fi
 # logging
-TS=$(date '+%Y-%m-%d %H:%M:%S,%s')
-echo "$TS - $SCRIPT_NAME - INFO - Delete /"$DROPBOX_USERDIR"/url_list.txt"
+log_echo "INFO" "Delete /"$DROPBOX_USERDIR"/url_list.txt"
 "$DB_UPLOADER" delete /"$DROPBOX_USERDIR"/"$URL_LIST_NAME"

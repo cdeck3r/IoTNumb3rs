@@ -11,7 +11,7 @@
 #    adds data to the Ethercalc page URL
 #
 # Input: csv template, url_filelist.csv
-# Output: url_filelist.csv with links to default Ethercalc pages (default=template)
+# Output: Ethercalc pages are filled with data
 #
 
 # this directory is the script directory
