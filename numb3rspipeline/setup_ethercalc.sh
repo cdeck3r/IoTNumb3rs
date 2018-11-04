@@ -172,13 +172,3 @@ done < "$URL_FILELIST"
 # do not forget -e to let the echo behave correctly on \n
 echo -e "$NEW_URL_FILELIST" > "$URL_FILELIST"
 log_echo "INFO" "Updated url_filelist.csv: $URL_FILELIST"
-
-exit 0
-
-read -r -d '' CURL_EC_OVERWRITE << EOM
-echo "one, two, three" ",,five" | cat "$CSV_TEMPLATE" -| \
-curl --include \
-     --request PUT \
-     --header "Content-Type: text/csv" \
-     --data-binary @- 'https://www.ethercalc.org/_/id'
-EOM
