@@ -51,6 +51,11 @@ SLACK_MSG_EC_URL='./slack_ethercalc_urllist.sh'
 DATAPATH="$DATAROOT"/"$DATADIR"
 mkdir -p "$DATAPATH"
 
+# slack error file
+SLACK_MSG_ERRFILE="$DATAROOT"/slack_msg_errors.txt
+echo > "$SLACK_MSG_ERRFILE"
+SLACK_MSG=
+
 #
 # logging on stdout
 # Param #1: log level, e.g. INFO, WARN, ERROR
@@ -61,6 +66,19 @@ log_echo () {
     TS=$(date '+%Y-%m-%d %H:%M:%S,%s')
     echo "$TS - $SCRIPT_NAME - $LOG_LEVEL - $LOG_MSG"
 }
+
+#
+# logging into slack msg file
+# Param #1: log level, e.g. INFO, WARN, ERROR
+# Param #2: log message
+log_slack () {
+    LOG_LEVEL=$1
+    LOG_MSG=$2
+    TS=$(date '+%Y-%m-%d %H:%M:%S,%s')
+    SLACK_MSG=""$SLACK_MSG"\n"$TS - $SCRIPT_NAME - $LOG_LEVEL - $LOG_MSG""
+    echo -e "$SLACK_MSG" > "$SLACK_MSG_ERRFILE"
+}
+
 
 # log string
 log_echo "INFO" "Run numb3rspipeline for $DROPBOX_USERDIR"
@@ -105,6 +123,7 @@ log_echo "INFO" "Download url_list.txt from $DROPBOX_USERDIR"
 # error reporting
 if [[ $? -ne 0 ]]; then
     log_echo "ERROR" "Error downloading url_list.txt from $DROPBOX_USERDIR"
+    log_slack "ERROR" "Error downloading url_list.txt from $DROPBOX_USERDIR"
     exit 1
 fi
 
@@ -130,6 +149,7 @@ python "$TESSERACT" "$DATAPATH"
 if [[ $? -ne 0 ]]; then
     # record the result for slack
     log_echo "ERROR" "Fatal error when setup Ethercalc for $DROPBOX_USERDIR. Abort."
+    log_slack "ERROR" "Fatal error when setup Ethercalc for $DROPBOX_USERDIR. Abort."
     exit 1
 fi
 
@@ -139,6 +159,7 @@ fi
 if [[ $? -ne 0 ]]; then
     # record the result for slack
     log_echo "ERROR" "Fatal error when fill Ethercalc for $DROPBOX_USERDIR. Abort."
+    log_slack "ERROR" "Fatal error when fill Ethercalc for $DROPBOX_USERDIR. Abort."
     exit 1
 fi
 
@@ -155,6 +176,7 @@ log_echo "INFO" "Upload $DATAPATH to $DROPBOX_USERDIR"
 "$DB_UPLOADER" upload "$DATAPATH" /"$DROPBOX_USERDIR"
 if [[ $? -ne 0 ]]; then
     log_echo "ERROR" "Error uploading $DATAPATH to $DROPBOX_USERDIR. Abort."
+    log_slack "ERROR" "Error uploading $DATAPATH to $DROPBOX_USERDIR. Abort."
     exit 1
 fi
 # logging

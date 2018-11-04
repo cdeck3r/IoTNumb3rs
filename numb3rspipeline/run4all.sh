@@ -65,11 +65,12 @@ do
         "$SLACKR" -r random -n $USERDIR -c warning -i :warning: "numb3rspipeline could not find url_list.txt file for user: $USERDIR"
 		continue
 	elif [ $ERR_CODE -ne 0 ]; then
+		# load slack message file
+		# SLACK_MSG_FILE=""$DATAROOT"/"$USERDIR"/slack_msg_errors.txt"
 		"$SLACKR" -r random -n $USERDIR -c danger -i :zap: "numb3rspipeline FAILED to process user: $USERDIR"
 	else
+		# load slack message file
 		SLACK_MSG_FILE=""$DATAROOT"/"$USERDIR"/slack_msg_ethercalc.txt"
         echo "numb3rspipeline successfully processed user: $USERDIR" | cat - "$SLACK_MSG_FILE" | "$SLACKR" -r random -n $USERDIR -c good -i :heavy_check_mark:
     fi
-
-
 done

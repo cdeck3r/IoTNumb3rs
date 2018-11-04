@@ -27,7 +27,7 @@ SCRIPT_NAME=$0
 URL_FILELIST=$1
 
 # for testing only
-URL_FILELIST="${SCRIPT_DIR}/../testdata/testuser/url_filelist.csv"
+#URL_FILELIST="${SCRIPT_DIR}/../testdata/testuser/url_filelist.csv"
 
 #
 # logging on stdout
@@ -48,6 +48,7 @@ log_echo () {
 log_echo "INFO" "Reading url_filelist: "$URL_FILELIST""
 # stores slack msg file in the directory of url_filelist.csv
 SLACK_MSG_FILE="$(dirname "$URL_FILELIST")/../slack_msg_ethercalc.txt"
+echo > "$SLACK_MSG_FILE"
 # message
 SLACK_MSG="Ethercalc URLs:"
 LINE_CNT=0 # run variable
