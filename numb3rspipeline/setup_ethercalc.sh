@@ -26,9 +26,20 @@ SCRIPT_NAME=$0
 CSV_TEMPLATE=$1
 URL_FILELIST=$2
 
+#
+# logging on stdout
+# Param #1: log level, e.g. INFO, WARN, ERROR
+# Param #2: log message
+log_echo () {
+    LOG_LEVEL=$1
+    LOG_MSG=$2
+    TS=$(date '+%Y-%m-%d %H:%M:%S,%s')
+    echo "$TS - $SCRIPT_NAME - $LOG_LEVEL - $LOG_MSG"
+}
 
-CSV_TEMPLATE="./numb3rs_template.csv"
-URL_FILELIST="/home/iot/numb3rspipeline/../testdata/testuser/url_filelist.csv"
+# for testing only
+CSV_TEMPLATE="${SCRIPT_DIR}/numb3rs_template.csv"
+URL_FILELIST="${SCRIPT_DIR}/../testdata/testuser/url_filelist.csv"
 
 
 # HTTP/1.1 201 Created
@@ -62,8 +73,7 @@ Location: /_/g76iwlq96nvo
 Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
 EOM
 
-echo RETURN: "$CURL_RET"
-exit 0
+#echo RETURN: "$CURL_RET"
 
 # possible return
 # HTTP/1.1 201 Created
@@ -82,6 +92,7 @@ exit 0
 
 # loop through all lines returned from $EC_CREATE
 EC_LOCATION=
+EC_URL=
 CURL_OK_STR="HTTP/1.1 201 Created"
 CURL_LOCATION_SUBSTR="Location:"
 CURL_OK=0
@@ -91,28 +102,32 @@ while IFS='' read -r CURL_RET_STR || [[ -n "$CURL_RET_STR" ]]; do
     # simple state machine
     # CURL_OK=0 -> CURL_OK=1 ->
     # -> CURL_LOCATION_FOUND=0 -> CURL_LOCATION_FOUND=1
-    if [ "$CURL_OK" -eq 0 ] && [ "$CURL_RET_STR" == "$CURL_OK_STR" ]; do
+    if [ "$CURL_OK" -eq 0 ] && [ "$CURL_RET_STR" == "$CURL_OK_STR" ]; then
         CURL_OK=1
     fi
 
-    if [ "$CURL_OK" -eq 1 ] &&  [[ "$CURL_RET_STR" == *"$CURL_LOCATION_SUBSTR"* ]]; do
+    if [ "$CURL_OK" -eq 1 ] &&  [[ "$CURL_RET_STR" == *"$CURL_LOCATION_SUBSTR"* ]]; then
         CURL_LOCATION_FOUND=1
-        EC_LOCATION="$CURL_RET_STR"
+        EC_LOCATION=$(echo "$CURL_RET_STR" | cut -d ' ' -f2)
     fi
-
-done < "$CURL_RET"
+done <<< "$CURL_RET"
 
 # EC_LOCATION contains the doc path to the newly created Ethercalc page
 # if not, something went wrong and we print out the CURL return data
-if [[ ! -z "$EC_LOCATION" ]]; do
+if [[ ! -z "$EC_LOCATION" ]]; then
+    # create final URL
+    EC_URL="https://www.ethercalc.org/"$(echo "$EC_LOCATION" | cut -d '/' -f3)
     # log string
-    TS=$(date '+%Y-%m-%d %H:%M:%S,%s')
-    echo "$TS - $SCRIPT_NAME - INFO - Sucessfully created Ethercalc page: $EC_LOCATION"
+    log_echo "INFO" "Sucessfully created Ethercalc page at: $EC_URL"
 else
-    TS=$(date '+%Y-%m-%d %H:%M:%S,%s')
-    echo "$TS - $SCRIPT_NAME - ERROR - Could not create Ethercalc page."
+    log_echo "ERROR" "Could not create Ethercalc page."
     echo "$CURL_RET"
 fi
+
+exit 0
+# Modify the url_filelist.csv
+
+
 
 exit 0
 
