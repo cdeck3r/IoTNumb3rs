@@ -40,8 +40,8 @@ log_echo () {
 }
 
 # for testing only
-CSV_TEMPLATE="${SCRIPT_DIR}/numb3rs_template.csv"
-URL_FILELIST="${SCRIPT_DIR}/../testdata/testuser/url_filelist.csv"
+#CSV_TEMPLATE="${SCRIPT_DIR}/numb3rs_template.csv"
+#URL_FILELIST="${SCRIPT_DIR}/../testdata/testuser/url_filelist.csv"
 
 DATA_LINE=
 EC_URL=
@@ -50,6 +50,7 @@ EC_URL=
 #    extracts the Ethercalc page URL
 #    adds data to the Ethercalc page URL
 #
+log_echo "INFO" "Reading url_filelist: "$URL_FILELIST""
 LINE_CNT=0 # run variable
 while IFS='' read -r URL_STR || [[ -n "$URL_STR" ]]; do
 
@@ -72,6 +73,7 @@ while IFS='' read -r URL_STR || [[ -n "$URL_STR" ]]; do
             log_echo "INFO" "File format of url_filelist.csv is OK."
         else
             log_echo "ERROR" "Unexpected file format in url_filelist.csv: "$URL_FILELIST""
+            exit 1
         fi
         # proceed with next line
         continue
@@ -106,6 +108,10 @@ EOM
 
     # run Ethercalc cmd to overwrite the page's content
     CURL_RET="$(eval "$CURL_EC_OVERWRITE")"
+    if [[ $? -ne 0 ]]; then
+        log_echo "ERROR" "Error running cURL cmd: "$CURL_EC_OVERWRITE""
+        continue
+    fi
 
     # parse returned data
     # test string issuing a state transition

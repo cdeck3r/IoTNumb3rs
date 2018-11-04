@@ -30,8 +30,8 @@ CSV_TEMPLATE=$1
 URL_FILELIST=$2
 
 # for testing only
-CSV_TEMPLATE="${SCRIPT_DIR}/numb3rs_template.csv"
-URL_FILELIST="${SCRIPT_DIR}/../testdata/testuser/url_filelist.csv"
+#CSV_TEMPLATE="${SCRIPT_DIR}/numb3rs_template.csv"
+#URL_FILELIST="${SCRIPT_DIR}/../testdata/testuser/url_filelist.csv"
 
 #
 # logging on stdout
@@ -94,6 +94,7 @@ EOM
 # 2. for each other URL_STR create a new ethercalc page and add EC_URL
 #
 # Finally, after the loop, stores the content of the modified url_filelist.csv
+log_echo "INFO" "Reading url_filelist: "$URL_FILELIST""
 NEW_URL_FILELIST=
 LINE_CNT=0 # run variable
 while IFS='' read -r URL_STR || [[ -n "$URL_STR" ]]; do
@@ -115,6 +116,13 @@ while IFS='' read -r URL_STR || [[ -n "$URL_STR" ]]; do
 
     # create new Ethercalc page
     CURL_RET="$(eval "$CURL_EC_CREATE")"
+    if [[ $? -ne 0 ]]; then
+        log_echo "ERROR" "Error running cURL cmd: "$CURL_EC_CREATE""
+        # add empty URL to new url_filelist.csv
+        EC_URL=
+        NEW_URL_FILELIST=""$NEW_URL_FILELIST"\n"$URL_STR";"$EC_URL""
+        continue
+    fi
 
     # parse the result in CURL_RET
 
@@ -155,7 +163,7 @@ while IFS='' read -r URL_STR || [[ -n "$URL_STR" ]]; do
         # create final URL
         EC_URL="https://www.ethercalc.org/"$(echo "$EC_LOCATION" | cut -d '/' -f3)
         # log string
-        log_echo "INFO" "Sucessfully created Ethercalc page at: $EC_URL"
+        log_echo "INFO" "Successfully created Ethercalc page at: $EC_URL"
     else
         # EC_URL stays empty, too
         log_echo "ERROR" "Could not create Ethercalc page."

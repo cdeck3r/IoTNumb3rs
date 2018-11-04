@@ -43,6 +43,8 @@ DATADIR=$(date '+%Y%m%d-%H%M')
 DB_UPLOADER='../Dropbox-Uploader/dropbox_uploader.sh'
 TESSERACT='./tesseract.py'
 IMG_DOWNLOAD='./img_download.sh'
+SETUP_ETHERCALC='./setup_ethercalc.sh'
+FILL_ETHERCALC='./fill_ethercalc.sh'
 
 # datapath
 DATAPATH="$DATAROOT"/"$DATADIR"
@@ -117,6 +119,17 @@ fi
 python "$TESSERACT" "$DATAPATH"
 
 # 4.
+# setup_ethercalc [template, url_filelist.csv]
+"$SETUP_ETHERCALC" "$SCRIPT_DIR"/numb3rs_template.csv "$DATAPATH"/url_filelist.csv
+
+# 5.
+# fill_ethercalc [template, url_filelist.csv]
+"$FILL_ETHERCALC" "$SCRIPT_DIR"/numb3rs_template.csv "$DATAPATH"/url_filelist.csv
+#if [[ $? -ne 0 ]]; then
+#    # record the result for slack
+#fi
+
+# 6.
 # dropbox upload [yyyymmdd-HHMM]
 # dropbox delete [url_list.txt]
 # logging
