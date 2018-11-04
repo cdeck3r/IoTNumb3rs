@@ -67,7 +67,8 @@ do
 	elif [ $ERR_CODE -ne 0 ]; then
 		"$SLACKR" -r random -n $USERDIR -c danger -i :zap: "numb3rspipeline FAILED to process user: $USERDIR"
 	else
-        "$SLACKR" -r random -n $USERDIR -c good -i :heavy_check_mark: "numb3rspipeline successfully processed user: $USERDIR"
+		SLACK_MSG_FILE=""$DATAROOT"/"$USERDIR"/slack_msg_ethercalc.txt"
+        echo "numb3rspipeline successfully processed user: $USERDIR" | cat - "$SLACK_MSG_FILE" | "$SLACKR" -r random -n $USERDIR -c good -i :heavy_check_mark:
     fi
 
 

@@ -47,7 +47,7 @@ log_echo () {
 #
 log_echo "INFO" "Reading url_filelist: "$URL_FILELIST""
 # stores slack msg file in the directory of url_filelist.csv
-SLACK_MSG_FILE=$(dirname "$URL_FILELIST")/slack_msg_ethercalc.txt
+SLACK_MSG_FILE="$(dirname "$URL_FILELIST")/../slack_msg_ethercalc.txt"
 # message
 SLACK_MSG="Ethercalc URLs:"
 LINE_CNT=0 # run variable

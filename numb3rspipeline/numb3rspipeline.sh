@@ -45,6 +45,7 @@ TESSERACT='./tesseract.py'
 IMG_DOWNLOAD='./img_download.sh'
 SETUP_ETHERCALC='./setup_ethercalc.sh'
 FILL_ETHERCALC='./fill_ethercalc.sh'
+SLACK_MSG_EC_URL='./slack_ethercalc_urllist.sh'
 
 # datapath
 DATAPATH="$DATAROOT"/"$DATADIR"
@@ -142,6 +143,10 @@ if [[ $? -ne 0 ]]; then
 fi
 
 # 6.
+# Report Ethercalc URLs
+"$SLACK_MSG_EC_URL" "$DATAPATH"/url_filelist.csv
+
+# 7.
 # dropbox upload [yyyymmdd-HHMM]
 # dropbox delete [url_list.txt]
 # logging
