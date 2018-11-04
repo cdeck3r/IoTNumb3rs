@@ -51,7 +51,12 @@ SLACK_MSG_EC_URL='./slack_ethercalc_urllist.sh'
 DATAPATH="$DATAROOT"/"$DATADIR"
 mkdir -p "$DATAPATH"
 
-# slack error file
+# Slack Ethercalc URL file
+SLACK_MSG_ECFILE="$DATAROOT"/slack_msg_ethercalc.txt
+echo > "$SLACK_MSG_ECFILE"
+SLACK_MSG=
+
+# Slack error file
 SLACK_MSG_ERRFILE="$DATAROOT"/slack_msg_errors.txt
 echo > "$SLACK_MSG_ERRFILE"
 SLACK_MSG=
