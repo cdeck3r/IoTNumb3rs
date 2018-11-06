@@ -16,15 +16,20 @@ cd $SCRIPT_DIR
 
 # the script's name
 SCRIPT_NAME=$0
-# this directory stores result of all runs
+# this directory stores result of all runs, e.g. /tmp/iotdata
 DATAROOT=$1
 # the name of the dropbox directory where the url_list is found
 DROPBOX_USERDIR=$2
 
+# for testing only
+DATAROOT=/tmp/iotdata
+DROPBOX_USERDIR=testuser
+
 #
 # tools
 #
-
+GIT='git'
+DB_UPLOADER='../Dropbox-Uploader/dropbox_uploader.sh'
 
 #
 # logging on stdout
@@ -37,33 +42,77 @@ log_echo () {
     echo "$TS - $SCRIPT_NAME - $LOG_LEVEL - $LOG_MSG"
 }
 
-exit 0
-
 ##################################
 # 0. prep
 # check DATAROOT for git
+
+########
+# Create an orphan branch "iotdata"
+# cd /tmp
+# git clone https://github.com/cdeck3r/IoTNumb3rs.git iotdata
+# cd iotdata/
+# git checkout --orphan iotdata
+# git rm -rf .
+# echo "# IoTNumb3rs Data Backup" > README.md
+# git add *
+# git config user.name "Christian Decker"
+# git config user.email "cdecker@outlook.de"
+# git commit -m "Initial commit with README.md"
+# git push --set-upstream origin iotdata
+########
+
 mkdir -p "$DATAROOT"
 cd "$DATAROOT"
-git status
-if [[ $? -ne 0 ]]; then
+$GIT status
+if [[ $? -eq 128 ]]; then
     log_echo "WARN" "Data directory is not in git: "$DATAROOT""
-    git checkout
-    log_echo "INFO" "Checkout"
+    log_echo "INFO" "Clone branch <iotdata> in "$DATAROOT""
+    # one dir up, e.g. /tmp
+    cd "$(dirname "$DATAROOT")"
+    # ... and clone branch iodata into ./iotdata
+    $GIT clone https://github.com/cdeck3r/IoTNumb3rs.git \
+    --branch iotdata \
+    --single-branch \
+    $(basename "$DATAROOT")
 fi
+
+# Update DATAROOT directory
+cd "$DATAROOT"
+log_echo "INFO" "Switch directory to branch <iotdata> and pull into: "$DATAROOT""
+$GIT branch --set-upstream-to origin/iotdata iotdata
+$GIT reset --hard
+$GIT checkout iotdata
+$GIT pull origin iotdata
 
 cd "$SCRIPT_DIR"
 
-# create & goto into DATAPATH
+# prep done.
+
+##################################
+
+# create & goto into DATAPATH (= user specific dir)
 DATAPATH="$DATAROOT"/"$DROPBOX_USERDIR"
 mkdir -p "$DATAPATH"
-# git init
-
-
+log_echo "INFO" "Create user data directory: "$DATAPATH""
 
 ##################################
 
 # 1.
 # Search for user's url_filelist.csv
+mapfile -t FILELIST < <( "$DB_UPLOADER" search url_filelist.csv )
 
+# loop through each element of list
+ALL_URL_FILELIST=()
+for LIST_ELEMENT in "${FILELIST[@]}"
+do
+    URL_FILELIST=
+    #URL_FILELIST==$(echo "${LIST_ELEMENT}" | egrep -o '/"$DROPBOX_USERDIR"/[[:digit:]]{8}-[[:digit:]]{4}/url_filelist.csv$' )
+    URL_FILELIST=$(echo "${LIST_ELEMENT}" | egrep -o "/$DROPBOX_USERDIR"'/[[:digit:]]{8}-[[:digit:]]{4}/url_filelist.csv$' )
+
+    if [ -n "$URL_FILELIST" ]; then
+        ALL_URL_FILELIST+=( "$URL_FILELIST" )
+    fi
+done
+echo "${ALL_URL_FILELIST[@]}"
 
 # 2.
