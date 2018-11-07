@@ -10,6 +10,9 @@
 SCRIPT_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
 cd $SCRIPT_DIR
 
+# include common funcs
+source ./funcs.sh
+
 #
 # vars and params
 #
@@ -31,16 +34,7 @@ DROPBOX_USERDIR=testuser
 GIT='git'
 DB_UPLOADER='../Dropbox-Uploader/dropbox_uploader.sh'
 
-#
-# logging on stdout
-# Param #1: log level, e.g. INFO, WARN, ERROR
-# Param #2: log message
-log_echo () {
-    LOG_LEVEL=$1
-    LOG_MSG=$2
-    TS=$(date '+%Y-%m-%d %H:%M:%S,%s')
-    echo "$TS - $SCRIPT_NAME - $LOG_LEVEL - $LOG_MSG"
-}
+
 
 ##################################
 # 0. prep
@@ -74,17 +68,42 @@ if [[ $? -eq 128 ]]; then
     --branch iotdata \
     --single-branch \
     $(basename "$DATAROOT")
+    if [[ $? -ne 0 ]]; then
+        log_echo "ERROR" "GIT does not work. Abort."
+        exit 1
+    fi
 fi
 
 # Update DATAROOT directory
 cd "$DATAROOT"
 log_echo "INFO" "Switch directory to branch <iotdata> and pull into: "$DATAROOT""
 $GIT branch --set-upstream-to origin/iotdata iotdata
-$GIT reset --hard
+$GIT reset --hard # throw away all uncommited changes
 $GIT checkout iotdata
 $GIT pull origin iotdata
 
+GIT_STATUS="$(git status --branch --short)"
+log_echo "INFO" "Branch <iotdata> status is: "$GIT_STATUS""
+
+# set remote url containing token var
+# each time git is used, the var should be replaced by its current value
+$GIT remote set-url --push origin https://${GITHUB_OAUTH_ACCESS_TOKEN}@github.com/cdeck3r/IoTNumb3rs.git
+$GIT config user.name "Christian Decker"
+$GIT config user.email "cdecker@outlook.de"
+
+log_echo "INFO" "All preps done for branch <iotdata> in directory: "$DATAROOT""
+
+# test push using github token
+echo "Date: $(date '+%Y-%m-%d %H:%M:%S,%s')" >> README.md
+$GIT add *
+$GIT commit -m "Testing push using github personal access token"
+$GIT push
+$GIT remote set-url --push origin "https://github.com/cdeck3r/IoTNumb3rs.git"
+
+
 cd "$SCRIPT_DIR"
+
+exit 0
 
 # prep done.
 
@@ -116,3 +135,5 @@ done
 echo "${ALL_URL_FILELIST[@]}"
 
 # 2.
+# loop through the Ethercalc URLs of each url_filelist.csv
+# ...
