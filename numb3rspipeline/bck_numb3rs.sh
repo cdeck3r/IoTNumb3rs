@@ -10,23 +10,6 @@
 SCRIPT_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
 cd $SCRIPT_DIR
 
-# specific parsing func
-# called by ./funcs.sh/parse_urlfilelist()
-#
-# Param #1: data line from url_filelist.csv
-RET_PARSE_URLFILELIST=()
-parse_urlstr() {
-    URL_STR=$1
-    if [ -n "$URL_STR" ]; then
-        ethercalc_url=$(echo "$URL_STR" | cut -d ';' -f4)
-        RET_PARSE_URLFILELIST+=( "$ethercalc_url" )
-    fi
-}
-
-# include common funcs
-source ./funcs.sh
-
-
 #
 # vars and params
 #
@@ -47,12 +30,27 @@ DROPBOX_USERDIR=testuser
 #
 GIT='git'
 DB_UPLOADER='../Dropbox-Uploader/dropbox_uploader.sh'
+CURL='curl'
 
+# specific parsing func
+# called by ./funcs.sh/parse_urlfilelist()
+#
+# Param #1: data line from url_filelist.csv
+RET_PARSE_URLFILELIST=()
+parse_urlstr() {
+    URL_STR=$1
+    if [ -n "$URL_STR" ]; then
+        ethercalc_url=$(echo "$URL_STR" | cut -d ';' -f4)
+        RET_PARSE_URLFILELIST+=( "$ethercalc_url" )
+    fi
+}
 
+# include common funcs
+source ./funcs.sh
 
 ##################################
 # 0. prep
-# check DATAROOT for git
+# check and prepare DATAROOT for git
 
 ########
 # Create an orphan branch "iotdata"
@@ -97,16 +95,17 @@ $GIT checkout iotdata
 $GIT pull origin iotdata
 
 GIT_STATUS="$(git status --branch --short)"
-log_echo "INFO" "Branch <iotdata> status is: "$GIT_STATUS""
+log_echo "INFO" "Git status for "$DATAROOT" is: "$GIT_STATUS""
 
 # set remote url containing token var
 # each time git is used, the var should be replaced by its current value
 $GIT remote set-url --push origin https://${GITHUB_OAUTH_ACCESS_TOKEN}@github.com/cdeck3r/IoTNumb3rs.git
 $GIT config user.name "Christian Decker"
-$GIT config user.email "cdecker@outlook.de"
+$GIT config user.email "christian.decker@reutlingen-university.de"
 
 log_echo "INFO" "All preps done for branch <iotdata> in directory: "$DATAROOT""
 
+# back to where you come from
 cd "$SCRIPT_DIR"
 
 # prep done.
@@ -137,6 +136,7 @@ do
     fi
 done
 #echo "${ALL_URL_FILELIST[@]}"
+
 # 2.
 # loop through the Ethercalc URLs of each url_filelist.csv
 # ...
@@ -164,9 +164,9 @@ do
     # # backup each ethercalc documents in various formats
     for EC_URL in "${RET_PARSE_URLFILELIST[@]}"
     do
-        curl -L -k -J -On "$EC_URL.csv"
-        curl -L -k -J -On "$EC_URL.xlxs"
-        curl -L -k -J -On "$EC_URL.md"
+        "$CURL" -L -k -J -On "$EC_URL.csv" > "$DATAPATH"/$(basename "$EC_URL.csv")
+        "$CURL" -L -k -J -On "$EC_URL.xlxs" > "$DATAPATH"/$(basename "$EC_URL.csv")
+        "$CURL" -L -k -J -On "$EC_URL.md" > "$DATAPATH"/$(basename "$EC_URL.csv")
     done
     # clear DATAPATH dir from url_filelist.csv
     rm -rf "$DATAPATH"/url_filelist.csv
@@ -175,14 +175,40 @@ done
 # clear DATAPATH dir from leftovers
 rm -rf "$DATAPATH"/url_filelist.csv
 
-# push using github token
-echo " " >> "$DATAROOT"/README.md
-echo "Date: $(date '+%Y-%m-%d %H:%M:%S,%s');" \
-    "User: $DROPBOX_USERDIR;" \
-    "Files: $(ls -l $DATAPATH | wc -l )" >> "$DATAROOT"/README.md
+# 3.
+# transfer the backup files into the branch <iotdata> the github repo
+#
+
+# need to switch to DATAROOT to add / commit / push all data
 cd "$DATAROOT"
+GIT_STATUS="$(git status --branch --short)"
+log_echo "INFO" "Git status for "$DATAROOT" is: "$GIT_STATUS""
+# update README.md, if necessary
+GIT_FILES=
+GIT_FILES="$(git status --short)"
+if [[ -z $GIT_FILES ]]; then
+    log_echo "INFO" "No new files to be added for git."
+else
+    echo " " >> "$DATAROOT"/README.md
+    echo "Date: $(date '+%Y-%m-%d %H:%M:%S,%s');" \
+        "User: $DROPBOX_USERDIR;" \
+        "Files: $(ls -l $DATAPATH | wc -l )" >> "$DATAROOT"/README.md
+fi
+# add everything into repo
+# push using github token
 $GIT add *
-$GIT commit -m "Testing push using github personal access token"
+$GIT commit -m "Backup IoTNumb3rs data for user "$DROPBOX_USERDIR""
 $GIT push
+# Final error / info logging
+if [[ $? -ne 0 ]]; then
+    log_echo "ERROR" "Error pushing data into branch <iotdata> on Github."
+else
+    log_echo "INFO" "Successfully pushed data into branch <iotdata> on Github."
+fi
 # revert to original URL in order to avoid token to be stored
 $GIT remote set-url --push origin "https://github.com/cdeck3r/IoTNumb3rs.git"
+
+# return to where you come from
+cd "$SCRIPT_DIR"
+
+# done done
