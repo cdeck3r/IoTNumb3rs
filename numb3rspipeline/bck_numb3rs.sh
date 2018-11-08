@@ -141,9 +141,11 @@ done
 # loop through the Ethercalc URLs of each url_filelist.csv
 # ...
 SORTED_FILELIST=()
-SORTED_FILELIST="$(echo "${ALL_URL_FILELIST[@]}" | sort)"
+# sorted in reverse order
+# => youngest file is on first pos
+SORTED_FILELIST=($(echo "${ALL_URL_FILELIST[@]}" | sort -r))
 #echo "${SORTED_FILELIST[@]}"
-for LIST_ELEMENT in "${ALL_URL_FILELIST[@]}"
+for LIST_ELEMENT in "${SORTED_FILELIST[@]}"
 do
     URL_FILELIST="$LIST_ELEMENT"
 
@@ -164,9 +166,10 @@ do
     # # backup each ethercalc documents in various formats
     for EC_URL in "${RET_PARSE_URLFILELIST[@]}"
     do
-        "$CURL" -L -k -J -On "$EC_URL.csv" > "$DATAPATH"/$(basename "$EC_URL.csv")
-        "$CURL" -L -k -J -On "$EC_URL.xlxs" > "$DATAPATH"/$(basename "$EC_URL.csv")
-        "$CURL" -L -k -J -On "$EC_URL.md" > "$DATAPATH"/$(basename "$EC_URL.csv")
+        log_echo "INFO" "Download ethercalc "$EC_URL""
+        "$CURL" -s -S -L -k -J -On "$EC_URL.csv" > "$DATAPATH"/$(basename "$EC_URL.csv")
+        "$CURL" -s -S -L -k -J -On "$EC_URL.xlxs" > "$DATAPATH"/$(basename "$EC_URL.csv")
+        "$CURL" -s -S -L -k -J -On "$EC_URL.md" > "$DATAPATH"/$(basename "$EC_URL.csv")
     done
     # clear DATAPATH dir from url_filelist.csv
     rm -rf "$DATAPATH"/url_filelist.csv
