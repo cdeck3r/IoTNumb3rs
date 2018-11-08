@@ -5,6 +5,20 @@
 # from the numb3rspipeline Ethercalc docs
 #
 
+# usage
+#
+# bck_numb3rs.sh <full path local data dir> <dropbox dir name>
+#
+# Ex.
+# bck_numb3rs.sh /home/iot/iotdata_bck testuser
+#
+#
+# exit codes:
+# 0 - no error
+# 1 - general (fatal) error
+# 10 - no compatible url_filelist.csv file not found
+# 20 - no new data
+#
 
 # this directory is the script directory
 SCRIPT_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
@@ -20,6 +34,9 @@ SCRIPT_NAME=$0
 DATAROOT=$1
 # the name of the dropbox directory where the url_list is found
 DROPBOX_USERDIR=$2
+
+# error record
+BCK_ERROR=0
 
 # for testing only
 DATAROOT=/tmp/iotdata
@@ -82,6 +99,7 @@ if [[ $? -eq 128 ]]; then
     $(basename "$DATAROOT")
     if [[ $? -ne 0 ]]; then
         log_echo "ERROR" "GIT does not work. Abort."
+        BCK_ERROR=1
         exit 1
     fi
 fi
@@ -159,6 +177,7 @@ do
     #URL_FILELIST_HEADER="url;filename;home_url;ethercalc_url"
     parse_urlfilelist "${DATAPATH}/url_filelist.csv" "url;filename;home_url;ethercalc_url"
     if [ "${RET_PARSE_URLFILELIST[0]}" == "ERROR" ]; then
+        BCK_ERROR=10
         # next file
         continue
     fi
@@ -173,6 +192,7 @@ do
     done
     # clear DATAPATH dir from url_filelist.csv
     rm -rf "$DATAPATH"/url_filelist.csv
+    BCK_ERROR=0
 done
 
 # clear DATAPATH dir from leftovers
@@ -191,6 +211,7 @@ GIT_FILES=
 GIT_FILES="$(git status --short)"
 if [[ -z $GIT_FILES ]]; then
     log_echo "INFO" "No new files to be added for git."
+    BCK_ERROR=20
 else
     echo " " >> "$DATAROOT"/README.md
     echo "Date: $(date '+%Y-%m-%d %H:%M:%S,%s');" \
@@ -205,6 +226,7 @@ $GIT push
 # Final error / info logging
 if [[ $? -ne 0 ]]; then
     log_echo "ERROR" "Error pushing data into branch <iotdata> on Github."
+    BCK_ERROR=1
 else
     log_echo "INFO" "Successfully pushed data into branch <iotdata> on Github."
 fi
@@ -215,3 +237,4 @@ $GIT remote set-url --push origin "https://github.com/cdeck3r/IoTNumb3rs.git"
 cd "$SCRIPT_DIR"
 
 # done done
+exit $BCK_ERROR
