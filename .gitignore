@@ -5,6 +5,7 @@ slackr/
 
 # test data
 testdata/
+_test*
 
 #
 .*

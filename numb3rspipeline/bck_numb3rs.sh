@@ -38,10 +38,6 @@ DROPBOX_USERDIR=$2
 # error record
 BCK_ERROR=0
 
-# for testing only
-DATAROOT=/tmp/iotdata
-DROPBOX_USERDIR=testuser
-
 #
 # tools
 #
@@ -186,9 +182,9 @@ do
     for EC_URL in "${RET_PARSE_URLFILELIST[@]}"
     do
         log_echo "INFO" "Download ethercalc "$EC_URL""
-        "$CURL" -s -S -L -k -J -On "$EC_URL.csv" > "$DATAPATH"/$(basename "$EC_URL.csv")
-        "$CURL" -s -S -L -k -J -On "$EC_URL.xlxs" > "$DATAPATH"/$(basename "$EC_URL.csv")
-        "$CURL" -s -S -L -k -J -On "$EC_URL.md" > "$DATAPATH"/$(basename "$EC_URL.csv")
+        "$CURL" -s -S -L -k -O "$EC_URL.csv" # > "$DATAPATH"/$(basename "$EC_URL.csv")
+        "$CURL" -s -S -L -k -O "$EC_URL.xlxs" # > "$DATAPATH"/$(basename "$EC_URL.csv")
+        "$CURL" -s -S -L -k -O "$EC_URL.md"  # > "$DATAPATH"/$(basename "$EC_URL.csv")
     done
     # clear DATAPATH dir from url_filelist.csv
     rm -rf "$DATAPATH"/url_filelist.csv

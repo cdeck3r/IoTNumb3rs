@@ -45,7 +45,7 @@ fi
 #
 if [ -z "$DROPBOX_USERDIR" ]; then
 	# set default value
-	DROPBOX_USERDIR=( "JinlinHolic" "MariaMarg" "marielledemuth" "Pattoho")
+	DROPBOX_USERDIR=( "JinlinHolic" "MariaMarg" "marielledemuth" "Pattoho" "ManualUser")
 fi
 # log string
 log_echo "INFO" "numb3rs backup configured for user(s): "${DROPBOX_USERDIR[@]}""
@@ -72,6 +72,6 @@ do
 		# SLACK_MSG_FILE=""$DATAROOT"/"$USERDIR"/slack_msg_errors.txt"
 		"$SLACKR" -r random -n $USERDIR -c danger -i :heavy_exclamation_mark: "Data backup FAILED for user: $USERDIR"
 	else
-		"$SLACKR" -r random -n $USERDIR -c good -i :floppy_disc: "Data backup successfully run for user: $USERDIR"
+		"$SLACKR" -r random -n $USERDIR -c good -i :floppy_disk: "Successful data backup for user: $USERDIR"
     fi
 done
