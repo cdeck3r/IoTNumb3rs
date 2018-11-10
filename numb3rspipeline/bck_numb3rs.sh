@@ -96,7 +96,7 @@ if [[ $? -eq 128 ]]; then
     if [[ $? -ne 0 ]]; then
         log_echo "ERROR" "GIT does not work. Abort."
         BCK_ERROR=1
-        exit 1
+        exit $BCK_ERROR
     fi
 fi
 
@@ -173,7 +173,11 @@ do
     #URL_FILELIST_HEADER="url;filename;home_url;ethercalc_url"
     parse_urlfilelist "${DATAPATH}/url_filelist.csv" "url;filename;home_url;ethercalc_url"
     if [ "${RET_PARSE_URLFILELIST[0]}" == "ERROR" ]; then
-        BCK_ERROR=10
+        # only set if previously
+        ### TODO: fix handling
+        if [[ $BCK_ERROR -ne 0 ]]; then
+            BCK_ERROR=10
+        fi
         # next file
         continue
     fi
