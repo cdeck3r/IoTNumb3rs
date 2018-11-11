@@ -22,8 +22,10 @@ DROPBOX_USERDIR=$2
 
 # for testing only
 DATAROOT=/tmp/iotdata_bck
-DROPBOX_USERDIR=ManualUser
+DROPBOX_USERDIR=testuser
 
+# stats output file
+STATS_FILE="$DATAROOT/stats.csv"
 
 #
 # tools
@@ -74,16 +76,15 @@ log_echo "INFO" "Git status for "$DATAROOT" is: "$GIT_STATUS""
 
 # go into user dir
 cd "$DATAROOT"/"$DROPBOX_USERDIR"
-# find header line
-DATA_FILE="1rzk2v1ywjdy.csv"
 DATA_FILES=( $(ls *.csv) )
+URL_LST=()
 
 for DATA_FILE in ${DATA_FILES[@]}
 do
-
     HDR_MATCH="URL,*" # pattern to match
     LINE_CNT=0
     HEADER_LINE=
+    # find header line
     while IFS='' read -r HDR_STR || [[ -n "$HDR_STR" ]]; do
         # some preps; removes newline
         HDR_STR=$(echo "$HDR_STR" | tr -d '\n' | tr -d '\r')
@@ -106,7 +107,6 @@ do
 
     FIRST_DATA_LINE=$((HEADER_LINE + 1))
     readarray DATA_ROWS <<< $(tail +${FIRST_DATA_LINE} "$DATA_FILE")
-    URL_LST=()
     for ROW in ${DATA_ROWS[@]}
     do
         if [[ $ROW == "http"* ]]; then
@@ -114,19 +114,26 @@ do
         fi
     done
 
-    URL_CNT="${#URL_LST[@]}"
+    URL_TOTAL_CNT="${#URL_LST[@]}"
     IFS=$'\n'
     UNIQ_URL_LIST=($(sort -u <<<"${URL_LST[*]}"))
     unset IFS
     #UNIQ_URL_LIST=( $(echo "${URL_LST[@]}" | sort | uniq )  )
-    UNIQ_URL_CNT="${#UNIQ_URL_LIST[@]}"
-    DUP_URL=$(($URL_CNT-$UNIQ_URL_CNT))
-
-    echo "============ Stats results ============"
-    echo User: $DROPBOX_USERDIR
-    echo Data file: $DATA_FILE
-    echo Total data rows: $URL_CNT
-    echo Distinct Infographics: $UNIQ_URL_CNT
-    #echo DUP_URL: $DUP_URL
-    echo "======================================="
+    UNIQ_URL_TOTAL_CNT="${#UNIQ_URL_LIST[@]}"
+    #DUP_URL=$(($URL_CNT-$UNIQ_URL_CNT))
 done
+
+echo "============ Stats results ============"
+echo User: $DROPBOX_USERDIR
+#echo Data file: $DATA_FILE
+echo Total data rows: $URL_TOTAL_CNT
+echo Distinct Infographics: $UNIQ_URL_TOTAL_CNT
+#echo DUP_URL: $DUP_URL
+echo "======================================="
+
+# Write stats file; create header first, if file does not exist
+if [ ! -f "$STATS_FILE" ]; then
+    echo "datetime;user;total_rows;distinct_infographics" > "$STATS_FILE"
+fi
+DT=$(date '+%Y-%m-%d %H:%M:%S')
+echo "$DT;$DROPBOX_USERDIR;$URL_TOTAL_CNT;$UNIQ_URL_TOTAL_CNT" >> "$STATS_FILE"
