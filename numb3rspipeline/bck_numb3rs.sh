@@ -218,6 +218,11 @@ else
         "User: $DROPBOX_USERDIR;" \
         "Files: $(ls -l $DATAPATH | wc -l )" >> "$DATAROOT"/README.md
 fi
+
+### TODO add call to stats computation
+# creates / updates stats.csv
+#"$SCRIPT_DIR/stats_numb3rs.sh"
+
 # add everything into repo
 # push using github token
 $GIT add *
