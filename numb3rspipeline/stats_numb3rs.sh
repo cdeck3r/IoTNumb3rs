@@ -115,8 +115,10 @@ do
     done
 
     URL_CNT="${#URL_LST[@]}"
-    ### FIXME Sorting of array
-    UNIQ_URL_LIST=( $(echo "${URL_LST[@]}" | sort | uniq )  )
+    IFS=$'\n'
+    UNIQ_URL_LIST=($(sort -u <<<"${URL_LST[*]}"))
+    unset IFS
+    #UNIQ_URL_LIST=( $(echo "${URL_LST[@]}" | sort | uniq )  )
     UNIQ_URL_CNT="${#UNIQ_URL_LIST[@]}"
     DUP_URL=$(($URL_CNT-$UNIQ_URL_CNT))
 
