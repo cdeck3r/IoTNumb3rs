@@ -41,52 +41,53 @@ source ./funcs.sh
 CALLER_SCRIPT=( $(ps -o comm= $PPID) )
 CALLER_SCRIPT=${CALLER_SCRIPT[1]}
 
-NO_GIT=0
+GIT_ACTION_REQUIRED=0 # better safe than sorry
 if [[ "bck_numb3rs.sh" == "$CALLER_SCRIPT"* ]]; then
     # called from within the backup script
     # no git action necessary
     log_echo "INFO" "Called from backup script: "$CALLER_SCRIPT""
-    NO_GIT=1
+    GIT_ACTION_REQUIRED=0
 else
     log_echo "INFO" "Called from within shell"
-    NO_GIT=0 # just to be sure
+    GIT_ACTION_REQUIRED=1 # just to be sure
 fi
 
 exit 0
 
-
-# prep dir
-mkdir -p "$DATAROOT"
-cd "$DATAROOT"
-$GIT status
-if [[ $? -eq 128 ]]; then
-    log_echo "WARN" "Data directory is not in git: "$DATAROOT""
-    log_echo "INFO" "Clone branch <iotdata> in "$DATAROOT""
-    # one dir up, e.g. /tmp
-    cd "$(dirname "$DATAROOT")"
-    # ... and clone branch iodata into ./iotdata
-    $GIT clone https://github.com/cdeck3r/IoTNumb3rs.git \
-    --branch iotdata \
-    --single-branch \
-    $(basename "$DATAROOT")
-    if [[ $? -ne 0 ]]; then
-        log_echo "ERROR" "GIT does not work. Abort."
-        BCK_ERROR=1
-        exit $BCK_ERROR
+if [[ $GIT_ACTION_REQUIRED -eq 1 ]]; then
+    # prep dir
+    mkdir -p "$DATAROOT"
+    cd "$DATAROOT"
+    $GIT status
+    if [[ $? -eq 128 ]]; then
+        log_echo "WARN" "Data directory is not in git: "$DATAROOT""
+        log_echo "INFO" "Clone branch <iotdata> in "$DATAROOT""
+        # one dir up, e.g. /tmp
+        cd "$(dirname "$DATAROOT")"
+        # ... and clone branch iodata into ./iotdata
+        $GIT clone https://github.com/cdeck3r/IoTNumb3rs.git \
+        --branch iotdata \
+        --single-branch \
+        $(basename "$DATAROOT")
+        if [[ $? -ne 0 ]]; then
+            log_echo "ERROR" "GIT does not work. Abort."
+            ERR_CODE=1
+            exit $ERR_CODE
+        fi
     fi
+
+    # Update DATAROOT directory
+    cd "$DATAROOT"
+    log_echo "INFO" "Switch directory to branch <iotdata> and pull into: "$DATAROOT""
+    $GIT branch --set-upstream-to origin/iotdata iotdata
+    $GIT reset --hard # throw away all uncommited changes
+    $GIT checkout iotdata
+    $GIT pull origin iotdata
+
+    cd "$DATAROOT"
+    GIT_STATUS="$(git status --branch --short)"
+    log_echo "INFO" "Git status for "$DATAROOT" is: "$GIT_STATUS""
 fi
-
-# Update DATAROOT directory
-cd "$DATAROOT"
-log_echo "INFO" "Switch directory to branch <iotdata> and pull into: "$DATAROOT""
-$GIT branch --set-upstream-to origin/iotdata iotdata
-$GIT reset --hard # throw away all uncommited changes
-$GIT checkout iotdata
-$GIT pull origin iotdata
-
-GIT_STATUS="$(git status --branch --short)"
-log_echo "INFO" "Git status for "$DATAROOT" is: "$GIT_STATUS""
-
 
 # prep done.
 
@@ -97,6 +98,7 @@ cd "$DATAROOT"/"$DROPBOX_USERDIR"
 DATA_FILES=( $(ls *.csv) )
 URL_LST=()
 
+ERR_CODE=1 # we start with error which needs to be reset after 1st succ. run
 for DATA_FILE in ${DATA_FILES[@]}
 do
     HDR_MATCH="URL,*" # pattern to match
@@ -120,7 +122,13 @@ do
 
     if [[ -z $HEADER_LINE ]]; then
         log_echo "ERROR" "Header line not found in data file: "$DATA_FILE""
-        exit 1
+        # ERR_CODE &= ERR_CODE
+        if [[ $ERR_CODE -eq 0 ]]; then
+            ERR_CODE=0
+        else
+            ERR_CODE=1
+        fi
+        continue # next DATA_FILE
     fi
 
     FIRST_DATA_LINE=$((HEADER_LINE + 1))
@@ -136,17 +144,22 @@ do
     IFS=$'\n'
     UNIQ_URL_LIST=($(sort -u <<<"${URL_LST[*]}"))
     unset IFS
-    #UNIQ_URL_LIST=( $(echo "${URL_LST[@]}" | sort | uniq )  )
     UNIQ_URL_TOTAL_CNT="${#UNIQ_URL_LIST[@]}"
-    #DUP_URL=$(($URL_CNT-$UNIQ_URL_CNT))
+
+    ERR_CODE=0
 done
+
+# fatal failure: no stats data at all
+if [[ $ERR_CODE -eq 1 ]]; then
+    log_echo "ERROR" "Could not compute stats data for user: "$DROPBOX_USERDIR""
+    exit $ERR_CODE
+fi
 
 echo "============ Stats results ============"
 echo User: $DROPBOX_USERDIR
 #echo Data file: $DATA_FILE
 echo Total data rows: $URL_TOTAL_CNT
 echo Distinct Infographics: $UNIQ_URL_TOTAL_CNT
-#echo DUP_URL: $DUP_URL
 echo "======================================="
 
 # Write stats file; create header first, if file does not exist
@@ -155,3 +168,36 @@ if [ ! -f "$STATS_FILE" ]; then
 fi
 DT=$(date '+%Y-%m-%d %H:%M:%S')
 echo "$DT;$DROPBOX_USERDIR;$URL_TOTAL_CNT;$UNIQ_URL_TOTAL_CNT" >> "$STATS_FILE"
+ERR_CODE=0
+
+# only step into "if", if git action is required
+if [[ $GIT_ACTION_REQUIRED -eq 1 ]]; then
+    # add STATS_FILE to repo
+    cd "$DATAROOT"
+    GIT_STATUS="$(git status --branch --short)"
+    log_echo "INFO" "Git status for "$DATAROOT" is: "$GIT_STATUS""
+
+    # set remote url containing token var
+    # each time git is used, the var should be replaced by its current value
+    $GIT remote set-url --push origin https://${GITHUB_OAUTH_ACCESS_TOKEN}@github.com/cdeck3r/IoTNumb3rs.git
+    $GIT config user.name "Christian Decker"
+    $GIT config user.email "christian.decker@reutlingen-university.de"
+
+    # add everything into repo
+    # push using github token
+    $GIT add $(basename $STATS_FILE)
+    $GIT commit -m "Update statistics for user "$DROPBOX_USERDIR""
+    $GIT push
+    # Final error / info logging
+    if [[ $? -ne 0 ]]; then
+        log_echo "ERROR" "Error pushing data into branch <iotdata> on Github."
+        ERR_CODE=1
+    else
+        log_echo "INFO" "Successfully pushed data into branch <iotdata> on Github."
+    fi
+    # revert to original URL in order to avoid token to be stored
+    $GIT remote set-url --push origin "https://github.com/cdeck3r/IoTNumb3rs.git"
+
+fi
+
+exit $ERR_CODE
