@@ -222,7 +222,11 @@ fi
 ### OPTION: add call to stats computation
 # creates / updates stats.csv
 # Option 1:
-# "$SCRIPT_DIR/stats_numb3rs.sh" "$DATAROOT" "$DROPBOX_USERDIR"
+# stats output file
+"$SCRIPT_DIR/stats_numb3rs.sh" "$DATAROOT" "$DROPBOX_USERDIR"
+STATS_FILE="$DATAROOT/stats.csv"
+$GIT add $(basename $STATS_FILE)
+$GIT commit -m "Update statistics for user "$DROPBOX_USERDIR"" $(basename $STATS_FILE)
 # Option 1:
 # add cronjob for stats_allusers.sh
 ###
@@ -231,7 +235,7 @@ fi
 # push using github token
 $GIT add *
 $GIT commit -m "Backup IoTNumb3rs data for user "$DROPBOX_USERDIR""
-$GIT push
+#$GIT push
 # Final error / info logging
 if [[ $? -ne 0 ]]; then
     log_echo "ERROR" "Error pushing data into branch <iotdata> on Github."

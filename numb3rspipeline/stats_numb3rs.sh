@@ -42,6 +42,7 @@ if [[ "bck_numb3rs.sh" == "$CALLER_SCRIPT"* ]]; then
     # called from within the backup script
     # no git action necessary
     log_echo "INFO" "Script called from backup script: "$CALLER_SCRIPT""
+    # all git operations in caller script
     GIT_ACTION_REQUIRED=0
 else
     log_echo "INFO" "Script called from within shell"
@@ -183,7 +184,7 @@ if [[ $GIT_ACTION_REQUIRED -eq 1 ]]; then
     # add everything into repo
     # push using github token
     $GIT add $(basename $STATS_FILE)
-    $GIT commit -m "Update statistics for user "$DROPBOX_USERDIR""
+    $GIT commit -m "Update statistics for user "$DROPBOX_USERDIR"" $(basename $STATS_FILE)
     #$GIT push
     # Final error / info logging
     if [[ $? -ne 0 ]]; then
@@ -194,7 +195,6 @@ if [[ $GIT_ACTION_REQUIRED -eq 1 ]]; then
     fi
     # revert to original URL in order to avoid token to be stored
     $GIT remote set-url --push origin "https://github.com/cdeck3r/IoTNumb3rs.git"
-
 fi
 
 exit $ERR_CODE
