@@ -37,6 +37,24 @@ CURL='curl'
 # include common funcs
 source ./funcs.sh
 
+# determine who called you
+CALLER_SCRIPT=( $(ps -o comm= $PPID) )
+CALLER_SCRIPT=${CALLER_SCRIPT[1]}
+
+NO_GIT=0
+if [[ "bck_numb3rs.sh" == "$CALLER_SCRIPT"* ]]; then
+    # called from within the backup script
+    # no git action necessary
+    log_echo "INFO" "Called from backup script: "$CALLER_SCRIPT""
+    NO_GIT=1
+else
+    log_echo "INFO" "Called from within shell"
+    NO_GIT=0 # just to be sure
+fi
+
+exit 0
+
+
 # prep dir
 mkdir -p "$DATAROOT"
 cd "$DATAROOT"
