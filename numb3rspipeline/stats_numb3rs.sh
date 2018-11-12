@@ -21,8 +21,8 @@ DATAROOT=$1
 DROPBOX_USERDIR=$2
 
 # for testing only
-DATAROOT=/tmp/iotdata_bck
-DROPBOX_USERDIR=testuser
+#DATAROOT=/tmp/iotdata_bck
+#DROPBOX_USERDIR=testuser
 
 # stats output file
 STATS_FILE="$DATAROOT/stats.csv"
@@ -45,14 +45,12 @@ GIT_ACTION_REQUIRED=0 # better safe than sorry
 if [[ "bck_numb3rs.sh" == "$CALLER_SCRIPT"* ]]; then
     # called from within the backup script
     # no git action necessary
-    log_echo "INFO" "Called from backup script: "$CALLER_SCRIPT""
+    log_echo "INFO" "Script called from backup script: "$CALLER_SCRIPT""
     GIT_ACTION_REQUIRED=0
 else
-    log_echo "INFO" "Called from within shell"
+    log_echo "INFO" "Script called from within shell"
     GIT_ACTION_REQUIRED=1 # just to be sure
 fi
-
-exit 0
 
 if [[ $GIT_ACTION_REQUIRED -eq 1 ]]; then
     # prep dir
@@ -86,7 +84,7 @@ if [[ $GIT_ACTION_REQUIRED -eq 1 ]]; then
 
     cd "$DATAROOT"
     GIT_STATUS="$(git status --branch --short)"
-    log_echo "INFO" "Git status for "$DATAROOT" is: "$GIT_STATUS""
+    log_echo "INFO" "Git status for "$DATAROOT" is: ${GIT_STATUS}"
 fi
 
 # prep done.
@@ -98,7 +96,9 @@ cd "$DATAROOT"/"$DROPBOX_USERDIR"
 DATA_FILES=( $(ls *.csv) )
 URL_LST=()
 
-ERR_CODE=1 # we start with error which needs to be reset after 1st succ. run
+# we start with error,
+# which needs to be reset after the 1st Successful run
+ERR_CODE=1
 for DATA_FILE in ${DATA_FILES[@]}
 do
     HDR_MATCH="URL,*" # pattern to match
@@ -122,7 +122,8 @@ do
 
     if [[ -z $HEADER_LINE ]]; then
         log_echo "ERROR" "Header line not found in data file: "$DATA_FILE""
-        # ERR_CODE &= ERR_CODE
+        # implements ERR_CODE &= ERR_CODE
+        # ERR_CODE remains 1 iff it was never 0
         if [[ $ERR_CODE -eq 0 ]]; then
             ERR_CODE=0
         else
@@ -187,7 +188,7 @@ if [[ $GIT_ACTION_REQUIRED -eq 1 ]]; then
     # push using github token
     $GIT add $(basename $STATS_FILE)
     $GIT commit -m "Update statistics for user "$DROPBOX_USERDIR""
-    $GIT push
+    #$GIT push
     # Final error / info logging
     if [[ $? -ne 0 ]]; then
         log_echo "ERROR" "Error pushing data into branch <iotdata> on Github."
