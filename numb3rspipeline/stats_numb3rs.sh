@@ -20,10 +20,6 @@ DATAROOT=$1
 # the name of the dropbox directory where the url_list is found
 DROPBOX_USERDIR=$2
 
-# for testing only
-#DATAROOT=/tmp/iotdata_bck
-#DROPBOX_USERDIR=testuser
-
 # stats output file
 STATS_FILE="$DATAROOT/stats.csv"
 

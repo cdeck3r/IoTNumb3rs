@@ -28,10 +28,6 @@ DROPBOX_USERDIR=$2
 # include common funcs
 source ./funcs.sh
 
-# for testing
-DATAROOT="/tmp/iotdata_bck"
-
-
 ## var test; set default values
 if [ -z "$DATAROOT" ]; then
 	# set default value

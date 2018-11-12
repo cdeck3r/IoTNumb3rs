@@ -174,7 +174,7 @@ do
     parse_urlfilelist "${DATAPATH}/url_filelist.csv" "url;filename;home_url;ethercalc_url"
     if [ "${RET_PARSE_URLFILELIST[0]}" == "ERROR" ]; then
         # only set if previously
-        ### TODO: fix handling
+        ### FIXME: BCK_ERROR&=BCK_ERROR
         if [[ $BCK_ERROR -ne 0 ]]; then
             BCK_ERROR=10
         fi
@@ -219,9 +219,13 @@ else
         "Files: $(ls -l $DATAPATH | wc -l )" >> "$DATAROOT"/README.md
 fi
 
-### TODO add call to stats computation
+### OPTION: add call to stats computation
 # creates / updates stats.csv
-#"$SCRIPT_DIR/stats_numb3rs.sh"
+# Option 1:
+# "$SCRIPT_DIR/stats_numb3rs.sh" "$DATAROOT" "$DROPBOX_USERDIR"
+# Option 1:
+# add cronjob for stats_allusers.sh
+###
 
 # add everything into repo
 # push using github token
