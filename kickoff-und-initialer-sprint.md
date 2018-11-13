@@ -1,7 +1,3 @@
----
-description: Kickoff des Projekts und zum ersten Mal mit der numb3spipeline arbeiten.
----
-
 # Kickoff und Initialer Sprint
 
 ## Kickoff
