@@ -223,7 +223,7 @@ fi
 # push using github token
 $GIT add *
 $GIT commit -m "Backup IoTNumb3rs data for user "$DROPBOX_USERDIR""
-#$GIT push
+$GIT push
 # Final error / info logging
 if [[ $? -ne 0 ]]; then
     log_echo "ERROR" "Error pushing data into branch <iotdata> on Github."
