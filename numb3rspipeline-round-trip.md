@@ -1,18 +1,20 @@
 ---
-description: numb3rspipeline wurde weiterentwickelt und um weitere Funktionen ergänzt.
+description: >-
+  numb3rspipeline ist ein Instrument für die Erfassung von Daten aus IoT
+  Infografiken
 ---
 
-# numb3rspipeline: round trip
+# Sprint: numb3rspipeline
 
 ## Neue Funktionen der numb3rspipeline
 
-Nach den Erfahrungen im initialen Sprint wurde die numb3rspipeline um neue Funktionen ergänzt.
+numb3rspipeline ist ein Instrument für die Erfassung von Daten aus IoT Infografiken. Nach den Erfahrungen im initialen Sprint wurde die numb3rspipeline um neue Funktionen ergänzt.
 
 * **Homepage URL:** um den Kontext der IoT Inforgraphik zu erfassen, wird zusätzlich die Webseite, von der die Infographik kommt, erfasst. Die URL wird in der Datei 
 
   `url_filelist.csv`zur jeweiligen Infograpfik URL erfasst.
 
-* **Erstellung von Ethercalc Dokumenten:** Nach der Vorverarbeitung der Infografik, werden die Basisdaten, z.B. URL, filename, homepage URL, Nutzer, in einem automatisch generierten [Ethercalc Dokument](https://www.ethercalc.org/) persistiert.
+* **Automatishce Erstellung von Ethercalc Dokumenten:** Nach der Vorverarbeitung der Infografik, werden die Basisdaten, z.B. URL, filename, homepage URL, Nutzer, in einem automatisch generierten [Ethercalc Dokument](https://www.ethercalc.org/) persistiert.
 * **Ethercalc URLs:** 
   * Die URLs zu den generierten Ethercalc Dokumenten werden in der Datei `url_filelist.csv` abgespeichert.
   * Zusätzlich werden die URLs im Slack Channel publiziert.
@@ -28,26 +30,31 @@ Nach den Erfahrungen im initialen Sprint wurde die numb3rspipeline um neue Funkt
   * 3, 6 Uhr: Backup der Daten und Berechnung der Performance Statistik
 * **Bugfixing:** verschiedene kleinere Fehler
 
-## Vorgehen und Nutzung
+## Nutzung der numb3rspipeline
 
 Mit den neuen Funktionen hat sich Nutzung vereinfacht.
 
-1. IoT Infografiken mit Google Bildersuche finden
+1. **\[Bildersuche\]** IoT Infografiken mit Google Bildersuche finden
 2. URLs der **Bilddateien** und URLs der Homepage, von der die Bilddatei stammt, speichern in Datei `url_list.txt`
 
    Format: `<url>;<homepage_url>`
 
-3. **\[DROPBOX, Upload-Link\]** `url_list.txt` auf Dropbox kopieren. Link zum Hochladen in separater Mail erhalten.
-4. **\[Durchlauf numb3rspipeline\]** _... pipeline läuft..._ nichts zu tun ... warten.
+3. **\[DROPBOX, Upload-Link\]** `url_list.txt` auf Dropbox kopieren. Link zum Hochladen in separater Mail zu Beginn des Projektes mitgeteilt.
+4. **\[Analyselauf numb3rspipeline\]** _... pipeline läuft..._ nichts zu tun ... warten.
+   1. Status des Analyselaufs wird in Slack gepostet
+   2. Für jede Infografik URL wird eine Ethercalc URL in Slack gepostet
 5. **\[DROPBOX, Download-Link\]** Ein neues Verzeichnis in dem Format `[yyyymmdd-hhmm]` wurde angelegt. Für jede URL aus `url_list.txt` liegt in diesem Verzeichnis nun eine Bild- und Textdatei. Dateien können über den Download-Link  zugegriffen werden.
+
    1. `file<n>_<bildname>`
    2. `file<n>_<bildname>.txt`
    3. `url_filelist.csv`
-6. Die Datei `url_filelist.csv` enthält nach dem Durchlauf sind für alle URLs aus `url_list.txt` die Homepage URL und die Ethercalc URL für das generierte Dokument zur Datenerfassung 
-7. Keyword-Suche in Textdatei `file<n>_<bildname>.txt`
-8. Erfassung der Daten in Ethercalc
-   1. Vorlage: [https://ethercalc.org/llbkbe1n62vh](https://ethercalc.org/llbkbe1n62vh)
-   2. Neues ethercalc erstellen: [https://ethercalc.org/](https://ethercalc.org/) --&gt; Create Spreadsheet
-   3. Daten aus Bilddatei `file<n>_<bildname>`manuell extrahieren und gemäß Vorlage in neues ethercalc Spreadsheet eintragen
-9. Ethercalc URL kopieren und über Teamleiter gesammelt an C. Decker schicken
+
+   Die Datei `url_filelist.csv` enthält nach dem Analyselauf für alle URLs aus der `url_list.txt` die Homepage URL und die Ethercalc URL für das generierte Dokument zur Datenerfassung.
+
+6. **\[Erfassung der Daten mit Ethercalc\]** Nach dem Analyselauf wird für jede Infografik ein Ethercalc Dokument erzeugt. Darin sind die Grunddaten wie Infografik URL, filename, homepage\_url in einer Standardmaske für die Datenerfassung enthalten. Die URLs sind in `url_filelist.csv`enthalten und werden nach jedem Analyselauf in Slack  gepostet. **Für die Erfassung soll für jede Infografik das jeweils erzeugte Ethercalc Dokument verwendet werden.**
+   1. Daten aus Bilddatei `file<n>_<bildname>`_\(URL zur Infografik in Ethercalc Dokument enthalten\)_ manuell extrahieren und gemäß Vorlage in das entsprechend generierte Ethercalc Dokument eintragen
+   2. _Optional:_ Keyword-Suche in Textdatei `file<n>_<bildname>.txt`
+7. **\[Automatisches Backup und Statistik\]** Die erfassten Daten in den Ethercalc Dokumenten werden regelmäßig gesichert. Für den Nutzer nichts zu tun.  
+   1. Daten: [https://github.com/cdeck3r/IoTNumb3rs/tree/iotdata](https://github.com/cdeck3r/IoTNumb3rs/tree/iotdata)
+   2. `stats.csv`: Statistik Informationen über die bisher erfassten Daten für jeden Nutzer
 
