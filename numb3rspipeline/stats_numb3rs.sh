@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #
-# Scripts computes the stats
-# about the students' performance for the pipeline
+# Scripts computes stats from the backup data
+# to reason about the students' performance when using the pipeline
 #
 
 # this directory is the script directory
@@ -33,56 +33,38 @@ CURL='curl'
 # include common funcs
 source ./funcs.sh
 
-# determine who called you
-CALLER_SCRIPT=( $(ps -o comm= $PPID) )
-CALLER_SCRIPT=${CALLER_SCRIPT[1]}
-
-GIT_ACTION_REQUIRED=0 # better safe than sorry
-if [[ "bck_numb3rs.sh" == "$CALLER_SCRIPT"* ]]; then
-    # called from within the backup script
-    # no git action necessary
-    log_echo "INFO" "Script called from backup script: "$CALLER_SCRIPT""
-    # all git operations in caller script
-    GIT_ACTION_REQUIRED=0
-else
-    log_echo "INFO" "Script called from within shell"
-    GIT_ACTION_REQUIRED=1 # just to be sure
-fi
-
-if [[ $GIT_ACTION_REQUIRED -eq 1 ]]; then
-    # prep dir
-    mkdir -p "$DATAROOT"
-    cd "$DATAROOT"
-    $GIT status
-    if [[ $? -eq 128 ]]; then
-        log_echo "WARN" "Data directory is not in git: "$DATAROOT""
-        log_echo "INFO" "Clone branch <iotdata> in "$DATAROOT""
-        # one dir up, e.g. /tmp
-        cd "$(dirname "$DATAROOT")"
-        # ... and clone branch iodata into ./iotdata
-        $GIT clone https://github.com/cdeck3r/IoTNumb3rs.git \
-        --branch iotdata \
-        --single-branch \
-        $(basename "$DATAROOT")
-        if [[ $? -ne 0 ]]; then
-            log_echo "ERROR" "GIT does not work. Abort."
-            ERR_CODE=1
-            exit $ERR_CODE
-        fi
+# prep dir
+mkdir -p "$DATAROOT"
+cd "$DATAROOT"
+$GIT status
+if [[ $? -eq 128 ]]; then
+    log_echo "WARN" "Data directory is not in git: "$DATAROOT""
+    log_echo "INFO" "Clone branch <iotdata> in "$DATAROOT""
+    # one dir up, e.g. /tmp
+    cd "$(dirname "$DATAROOT")"
+    # ... and clone branch iodata into ./iotdata
+    $GIT clone https://github.com/cdeck3r/IoTNumb3rs.git \
+    --branch iotdata \
+    --single-branch \
+    $(basename "$DATAROOT")
+    if [[ $? -ne 0 ]]; then
+        log_echo "ERROR" "GIT does not work. Abort."
+        ERR_CODE=1
+        exit $ERR_CODE
     fi
-
-    # Update DATAROOT directory
-    cd "$DATAROOT"
-    log_echo "INFO" "Switch directory to branch <iotdata> and pull into: "$DATAROOT""
-    $GIT branch --set-upstream-to origin/iotdata iotdata
-    $GIT reset --hard # throw away all uncommited changes
-    $GIT checkout iotdata
-    $GIT pull origin iotdata
-
-    cd "$DATAROOT"
-    GIT_STATUS="$(git status --branch --short)"
-    log_echo "INFO" "Git status for "$DATAROOT" is: ${GIT_STATUS}"
 fi
+
+# Update DATAROOT directory
+cd "$DATAROOT"
+log_echo "INFO" "Switch directory to branch <iotdata> and pull into: "$DATAROOT""
+$GIT branch --set-upstream-to origin/iotdata iotdata
+$GIT reset --hard # throw away all uncommited changes
+$GIT checkout iotdata
+$GIT pull origin iotdata
+
+cd "$DATAROOT"
+GIT_STATUS="$(git status --branch --short)"
+log_echo "INFO" "Git status for "$DATAROOT" is: ${GIT_STATUS}"
 
 # prep done.
 
@@ -168,33 +150,30 @@ DT=$(date '+%Y-%m-%d %H:%M:%S')
 echo "$DT;$DROPBOX_USERDIR;$URL_TOTAL_CNT;$UNIQ_URL_TOTAL_CNT" >> "$STATS_FILE"
 ERR_CODE=0
 
-# only step into "if", if git action is required
-if [[ $GIT_ACTION_REQUIRED -eq 1 ]]; then
-    # add STATS_FILE to repo
-    cd "$DATAROOT"
-    GIT_STATUS="$(git status --branch --short)"
-    log_echo "INFO" "Git status for "$DATAROOT" is: "$GIT_STATUS""
+# add STATS_FILE to repo
+cd "$DATAROOT"
+GIT_STATUS="$(git status --branch --short)"
+log_echo "INFO" "Git status for "$DATAROOT" is: "$GIT_STATUS""
 
-    # set remote url containing token var
-    # each time git is used, the var should be replaced by its current value
-    $GIT remote set-url --push origin https://${GITHUB_OAUTH_ACCESS_TOKEN}@github.com/cdeck3r/IoTNumb3rs.git
-    $GIT config user.name "Christian Decker"
-    $GIT config user.email "christian.decker@reutlingen-university.de"
+# set remote url containing token var
+# each time git is used, the var should be replaced by its current value
+$GIT remote set-url --push origin https://${GITHUB_OAUTH_ACCESS_TOKEN}@github.com/cdeck3r/IoTNumb3rs.git
+$GIT config user.name "Christian Decker"
+$GIT config user.email "christian.decker@reutlingen-university.de"
 
-    # add everything into repo
-    # push using github token
-    $GIT add $(basename $STATS_FILE)
-    $GIT commit -m "Update statistics for user "$DROPBOX_USERDIR"" $(basename $STATS_FILE)
-    #$GIT push
-    # Final error / info logging
-    if [[ $? -ne 0 ]]; then
-        log_echo "ERROR" "Error pushing data into branch <iotdata> on Github."
-        ERR_CODE=1
-    else
-        log_echo "INFO" "Successfully pushed data into branch <iotdata> on Github."
-    fi
-    # revert to original URL in order to avoid token to be stored
-    $GIT remote set-url --push origin "https://github.com/cdeck3r/IoTNumb3rs.git"
+# add everything into repo
+# push using github token
+$GIT add $(basename $STATS_FILE)
+$GIT commit -m "Update statistics for user "$DROPBOX_USERDIR"" $(basename $STATS_FILE)
+$GIT push
+# Final error / info logging
+if [[ $? -ne 0 ]]; then
+    log_echo "ERROR" "Error pushing data into branch <iotdata> on Github."
+    ERR_CODE=1
+else
+    log_echo "INFO" "Successfully pushed data into branch <iotdata> on Github."
 fi
+# revert to original URL in order to avoid token to be stored
+$GIT remote set-url --push origin "https://github.com/cdeck3r/IoTNumb3rs.git"
 
 exit $ERR_CODE

@@ -219,18 +219,6 @@ else
         "Files: $(ls -l $DATAPATH | wc -l )" >> "$DATAROOT"/README.md
 fi
 
-### OPTION: add call to stats computation
-# creates / updates stats.csv
-# Option 1:
-# stats output file
-"$SCRIPT_DIR/stats_numb3rs.sh" "$DATAROOT" "$DROPBOX_USERDIR"
-STATS_FILE="$DATAROOT/stats.csv"
-$GIT add $(basename $STATS_FILE)
-$GIT commit -m "Update statistics for user "$DROPBOX_USERDIR"" $(basename $STATS_FILE)
-# Option 1:
-# add cronjob for stats_allusers.sh
-###
-
 # add everything into repo
 # push using github token
 $GIT add *
