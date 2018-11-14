@@ -13,12 +13,12 @@ Die neuen Funktionen der numb3rspipeline sollen die Datenerfassung beschleunigen
 * Jeder Nutzer erfasst 4 Tage lang, jeden Tag 5 verschiedene Infografiken. 
 * Am Ende des Sprints sollen insgesamt, d.h. über alle Nutzer zusammen, mindestens 80 neue Datensätze hinzugekommen sein.
 
-### Sprintdauer
+#### Sprintdauer
 
 Start: 14.11.2018  
 Ende: 18.11.2018
 
-### Fortschrittsverfolgung
+#### Fortschrittsverfolgung
 
 Daten: [https://github.com/cdeck3r/IoTNumb3rs/blob/iotdata/stats.csv](https://github.com/cdeck3r/IoTNumb3rs/blob/iotdata/stats.csv)
 
