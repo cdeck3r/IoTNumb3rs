@@ -29,7 +29,7 @@ Am Ende der Woche werden die erfassten Daten analysiert und mit dem Stand vom St
 ### Stand 14.11.2018
 
 | User | Total data rows | Distinct infographics |
-| :--- | :--- | :--- |
+| :--- | :---: | :---: |
 | JinlinHolic | 21 | 13 |
 | MariaMarg | 13 | 8 |
 | marielledemuth | 36 | 35 |
