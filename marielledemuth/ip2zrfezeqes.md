@@ -2,4 +2,8 @@
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 ||||||||||||
 |URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
-|https://iot.telefonica.com/sites/default/files/cybersecurity_eng_960.png|https://iot.telefonica.com/blog/infographic-the-challenge-of-cybersecurity-in-the-iot|file1_cybersecurity_eng_960.png||||||||marielledemuth/20181113-0000|
+|https://iot.telefonica.com/sites/default/files/cybersecurity_eng_960.png|https://iot.telefonica.com/blog/infographic-the-challenge-of-cybersecurity-in-the-iot|file1_cybersecurity_eng_960.png|||cybercrime jobs|3500000|2021|2017|company|marielledemuth/20181113-0000|
+||||||spending on cyber security|1E+12|2021|2017|company|marielledemuth/20181113-0000|
+||||generic IoT|30700000000|||2020|2017|company|marielledemuth/20181113-0000|
+||||generic IoT|75400000000|||2025|2017|company|marielledemuth/20181113-0000|
+||||wearables|600000000|||not indicated|2017|company|marielledemuth/20181113-0000|

@@ -2,4 +2,4 @@
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 ||||||||||||
 |URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
-|http://mb.cision.com/Public/6166/2219996/92836bacb76b1d15_800x800ar.png|http://news.cision.com/uros-ltd/i/roaming-iot-survey-2017-infographic|c2102827|file3_92836bacb76b1d15_800x800ar.png||roaming revenue|20-30%|2020|2017|blogger|marielledemuth/20181113-0000|
+|http://engineeringatsea.skf.com/wp-content/uploads/sites/2/2018/10/iot-infographic.png|http://engineeringatsea.skf.com/shipping-connected/iot-infographic/|file1_iot-infographic.png||||||||marielledemuth/20181113-1800|
