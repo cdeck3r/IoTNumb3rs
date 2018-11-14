@@ -10,10 +10,10 @@ Die neuen Funktionen der numb3rspipeline sollen die Datenerfassung beschleunigen
 
 ## Messbare Resultate
 
-* Jeder Nutzer erfasst pro Tag 5 verschiedene Infografiken
-* Am Ende der Woche sollen mindestens 80 neue Datensätze 
+* Jeder Nutzer erfasst 4 Tage lang, jeden Tag 5 verschiedene Infografiken. 
+* Am Ende des Sprints sollen insgesamt, d.h. über alle Nutzer zusammen, mindestens 80 neue Datensätze hinzugekommen sein.
 
-### Zeitrahmen
+### Sprintdauer
 
 Start: 14.11.2018  
 Ende: 18.11.2018
@@ -24,7 +24,10 @@ Daten: [https://github.com/cdeck3r/IoTNumb3rs/blob/iotdata/stats.csv](https://gi
 
 ## Evaluation
 
-Am Ende der Woche werden die erfassten Daten analysiert und mit dem Stand vom Startdatum verglichen.
+Am Ende der Woche werden die erfassten Daten analysiert und mit dem Stand vom Startdatum verglichen. Dabei werden die geforderten Resultat wie folgt gemessen
+
+Messgröße `Total data rows`: Alle Datensätze eines Nutzers  
+Messgröße `Distinct infographics`: verschiedene Infografiken eines Users
 
 ### Stand 14.11.2018
 
@@ -34,6 +37,7 @@ Am Ende der Woche werden die erfassten Daten analysiert und mit dem Stand vom St
 | MariaMarg | 13 | 8 |
 | marielledemuth | 36 | 35 |
 | Pattoho | 9 | 7 |
+| **Summe** | **79** |  |
 
 ### Stand 18.11.2018
 
@@ -43,5 +47,5 @@ Am Ende der Woche werden die erfassten Daten analysiert und mit dem Stand vom St
 | MariaMarg |  |  |
 | marielledemuth |  |  |
 | Pattoho |  |  |
-
+| **Summe** |  |  |
 

@@ -1,9 +1,3 @@
----
-description: >-
-  numb3rspipeline ist ein Instrument für die Erfassung von Daten aus IoT
-  Infografiken
----
-
 # Sprint: numb3rspipeline
 
 ## Neue Funktionen der numb3rspipeline
