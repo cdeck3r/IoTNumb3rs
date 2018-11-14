@@ -1,4 +1,23 @@
+---
+description: >-
+  Aufrüsten der numb3rspipeline mit neuen Funktionen für eine verbesserte
+  Datenerfassung
+---
+
 # Sprint: numb3rspipeline
+
+## Sprint Details
+
+#### Ziele 
+
+* Höherer Automatisierungsgrad bei der Datenerfassung durch Projektmitglieder
+* Automatische Sicherung der erfassten Daten in gemeinsamer Datenbasis
+* Statistik-Kennzahlen über den Umfang der Datenbasis
+
+#### Zeitraum
+
+Start:   
+Ende: 13.11.2018
 
 ## Neue Funktionen der numb3rspipeline
 
