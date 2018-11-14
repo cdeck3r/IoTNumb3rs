@@ -16,7 +16,7 @@ description: >-
 
 #### Zeitraum
 
-Start:   
+Start: 26.10.2018  
 Ende: 13.11.2018
 
 ## Neue Funktionen der numb3rspipeline
