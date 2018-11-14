@@ -37,5 +37,11 @@ Am Ende der Woche werden die erfassten Daten analysiert und mit dem Stand vom St
 
 ### Stand 18.11.2018
 
-&lt;tbd&gt;
+| User | Total data rows | Distinct infographics |
+| :--- | :---: | :---: |
+| JinlinHolic |  |  |
+| MariaMarg |  |  |
+| marielledemuth |  |  |
+| Pattoho |  |  |
+
 
