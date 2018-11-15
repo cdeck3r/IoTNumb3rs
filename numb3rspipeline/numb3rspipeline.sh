@@ -80,8 +80,8 @@ log_slack () {
     LOG_LEVEL=$1
     LOG_MSG=$2
     TS=$(date '+%Y-%m-%d %H:%M:%S,%s')
-    SLACK_MSG=""$SLACK_MSG"\n"$TS - $SCRIPT_NAME - $LOG_LEVEL - $LOG_MSG""
-    echo -e "$SLACK_MSG" > "$SLACK_MSG_ERRFILE"
+    SLACK_MSG="$TS - $SCRIPT_NAME - $LOG_LEVEL - $LOG_MSG"
+    echo "$SLACK_MSG" >> "$SLACK_MSG_ERRFILE"
 }
 
 
