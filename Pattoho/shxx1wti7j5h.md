@@ -1,0 +1,9 @@
+|IoTNumb3rs Datenerfassung|||||||||||
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+||||||||||||
+|URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
+|https://www.infographicdesignteam.com/blog/wp-content/uploads/2018/01/2018-The-Year-of-IoT-and-its-Six-Trends.jpg|https://www.infographicdesignteam.com/blog/2018-iot-six-staggering-trends-infographic/|file3_2018-The-Year-of-IoT-and-its-Six-Trends.jpg|||healthcare|1.17E+11|2020|2018|Blog|Pattoho/20181115-1802|
+|https://www.infographicdesignteam.com/blog/wp-content/uploads/2018/01/2018-The-Year-of-IoT-and-its-Six-Trends.jpg|https://www.infographicdesignteam.com/blog/2018-iot-six-staggering-trends-infographic/|file3_2018-The-Year-of-IoT-and-its-Six-Trends.jpg|device|5000000000|||2018|||Pattoho/20181115-1802|
+|https://www.infographicdesignteam.com/blog/wp-content/uploads/2018/01/2018-The-Year-of-IoT-and-its-Six-Trends.jpg|https://www.infographicdesignteam.com/blog/2018-iot-six-staggering-trends-infographic/|file3_2018-The-Year-of-IoT-and-its-Six-Trends.jpg|device|25000000000|||2020|||Pattoho/20181115-1802|
+|https://www.infographicdesignteam.com/blog/wp-content/uploads/2018/01/2018-The-Year-of-IoT-and-its-Six-Trends.jpg|https://www.infographicdesignteam.com/blog/2018-iot-six-staggering-trends-infographic/|file3_2018-The-Year-of-IoT-and-its-Six-Trends.jpg|cars|250000000|||2020|||Pattoho/20181115-1802|
+|https://www.infographicdesignteam.com/blog/wp-content/uploads/2018/01/2018-The-Year-of-IoT-and-its-Six-Trends.jpg|https://www.infographicdesignteam.com/blog/2018-iot-six-staggering-trends-infographic/|file3_2018-The-Year-of-IoT-and-its-Six-Trends.jpg|||industry|2E+12|2020|||Pattoho/20181115-1802|
