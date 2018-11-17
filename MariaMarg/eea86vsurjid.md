@@ -2,4 +2,4 @@
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 ||||||||||||
 |URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
-|https://entrigna.com/wp-content/uploads/2018/06/How-to-plan-an-IoT-solution-Infographic-1.png|https://entrigna.com/iot-infographics/|file9_How-to-plan-an-IoT-solution-Infographic-1.png|Generic IoT|20000000000|||2020||company|MariaMarg/20181115-2151|
+|http://pages.moxa.com/rs/211-ZWW-883/images/2016_MUS-EN_IIOT_INFOGRAPHIC_IIoT-Opportunity_1530x1673.png|http://pages.moxa.com/The-Industrial-IoT-is-here.html|file1_2016_MUS-EN_IIOT_INFOGRAPHIC_IIoT-Opportunity_1530x1673.png||||||||MariaMarg/20181117-0000|
