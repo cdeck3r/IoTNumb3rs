@@ -4,6 +4,10 @@
 # Downloads URL content using curl
 #
 
+# this directory is the script directory
+SCRIPT_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
+cd $SCRIPT_DIR
+
 #
 # Command line params
 #
@@ -13,6 +17,9 @@
 SCRIPT_NAME=$0
 DOWNLOAD_DIR=$1
 URL_LIST=$2
+
+# include common funcs
+source ./funcs.sh
 
 # all file ops within download directory
 cd "$DOWNLOAD_DIR"
@@ -40,14 +47,16 @@ while IFS='' read -r URL_STR || [[ -n "$URL_STR" ]]; do
     #### time snapshot using aux file 'start' before download
     start_date=$(date '+%Y%m%d%H%M.%S')
     touch -t ${start_date} start
+    sleep 10s
 
     # log string and download file
     TS=$(date '+%Y-%m-%d %H:%M:%S,%s')
     echo "$TS - $SCRIPT_NAME - INFO - Download $URL"
     # removes \CR at the end
     URL=${URL%$'\r'}
-    URL=$(echo "$URL" | egrep -o '^[[:alnum:]%:/._-]+')
+    URL=$(echo "$URL" | egrep -o '^[[:alnum:]%~:/._-]+')
     # download
+    #echo URL: "$URL"
     curl -L -k -J -On "$URL"
 
     #### find file created during download and rename
@@ -58,6 +67,17 @@ while IFS='' read -r URL_STR || [[ -n "$URL_STR" ]]; do
         -newer start \
         -exec sh -c 'mv "{}" file"$FILE_CNT"_"$(basename "{}")"' \;
     )
+    IMAGE_FILENAME="$(ls file"$FILE_CNT"_*)"
+    log_echo "INFO" "Rename downloaded image file: "$IMAGE_FILENAME""
+    # rename filename; remove % char and limit to 210 chars
+    IMAGE_FILENAME_NEW="$(echo "$IMAGE_FILENAME" | sed -e 's/\%//g' | sed -e 's/ /_/g' )"
+    IMAGE_FILENAME_NEW="${IMAGE_FILENAME_NEW:0:210}"
+    mv "$IMAGE_FILENAME" "$IMAGE_FILENAME_NEW"
+    if [[ $? -ne 0 ]]; then
+        log_echo "ERROR" "Error renaming file: "$IMAGE_FILENAME_NEW""
+    else
+        log_echo "INFO" "New image file: "$IMAGE_FILENAME_NEW""
+    fi
 
     # write the url_filelist
     (
@@ -72,6 +92,6 @@ while IFS='' read -r URL_STR || [[ -n "$URL_STR" ]]; do
     # remove aux 'start' file
     rm -rf ./start
     # needed to make find work in the next round
-    sleep 10s
+    #sleep 10s
 
 done < "$URL_LIST"
