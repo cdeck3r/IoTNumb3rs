@@ -64,7 +64,7 @@ while IFS='' read -r URL_STR || [[ -n "$URL_STR" ]]; do
     echo "$TS - $SCRIPT_NAME - INFO - Download $URL"
     # removes \CR at the end
     URL=${URL%$'\r'}
-    URL=$(echo "$URL" | egrep -o '^[[:alnum:]%~:/._-]+')
+    URL=$(echo "$URL" | egrep -o '^[[:alnum:]%&~:/._-]+')
     # download
     #echo URL: "$URL"
     curl -L -k -J -On "$URL"
