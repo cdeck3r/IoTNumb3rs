@@ -35,6 +35,15 @@ FILE_CNT=0
 # 2. rename downloaded files by prefixing $FILE_CNT
 while IFS='' read -r URL_STR || [[ -n "$URL_STR" ]]; do
 
+    #
+    # some preps
+    # removes newline
+    URL_STR=$(echo "$URL_STR" | tr -d '\n' | tr -d '\r')
+    # test if URL_STR is empty (= fake lines)
+    if [[ -z "$URL_STR" ]]; then
+        continue
+    fi
+
     #### parse url_list.txt file
     URL=$(echo $URL_STR | cut -d ';' -f 1)
     HOME_URL=$(echo $URL_STR | cut -d ';' -f 2)
@@ -46,7 +55,8 @@ while IFS='' read -r URL_STR || [[ -n "$URL_STR" ]]; do
 
     #### time snapshot using aux file 'start' before download
     start_date=$(date '+%Y%m%d%H%M.%S')
-    touch -t ${start_date} start
+    #touch -t ${start_date} start
+    touch start
     sleep 10s
 
     # log string and download file
