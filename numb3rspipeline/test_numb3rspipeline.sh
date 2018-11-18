@@ -19,14 +19,14 @@ echo "Setup ... "
 # create tmp directory
 TESTDIR=/tmp/testdata
 TESTUSER=testuser
-#rm -rf "$TESTDIR"
+rm -rf "$TESTDIR"
 mkdir -p "$TESTDIR"
 echo "Done."
 echo "============ [Test] numb3rspipeline - Run ============"
 echo "Dir: "$TESTDIR""
 echo "User: "$TESTUSER""
 # run the numb3rspipeline for a single (test)user
-#./run4all.sh "$TESTDIR" "$TESTUSER"
+./run4all.sh "$TESTDIR" "$TESTUSER"
 
 # test file existence
 echo "============ [Test] numb3rspipeline - File Test Run ============"
@@ -46,7 +46,8 @@ echo "File Test OK - :-)"
 # check
 echo "============ [Test] numb3rspipeline - Content Test Run ============"
 
-URL_CNT=$(cat "$TESTDIR"/testuser/*/url_list.txt | wc -l)
+URL_CNT=$(cat "$TESTDIR"/testuser/*/url_list.txt | sed '/^\s*$/d' | wc -l)
+URL_CNT=$((URL_CNT + 1)) # add 1 to count last line
 FILE_CNT=$(ls -l "$TESTDIR"/testuser/*/file*_*.txt | wc -l)
 
 if [[ $URL_CNT -ne $FILE_CNT ]]; then
