@@ -2,4 +2,4 @@
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 ||||||||||||
 |URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
-|http://www2.bain.com/infographics/Telcos-IoT/How-Telcos-can-win-the-IoT-infographic-FINAL.png|http://www2.bain.com/infographics/Telcos-IoT/|file5_How-Telcos-can-win-the-IoT-infographic-FINAL.png||||||||MariaMarg/20181117-0000|
+|http://www2.bain.com/infographics/Telcos-IoT/How-Telcos-can-win-the-IoT-infographic-FINAL.png|http://www2.bain.com/infographics/Telcos-IoT/|file5_How-Telcos-can-win-the-IoT-infographic-FINAL.png|telcos devices||opportunity|28000000000|2020|2017|company|MariaMarg/20181117-0000|
