@@ -37,15 +37,24 @@ Messgröße `Distinct infographics`: verschiedene Infografiken eines Users
 | MariaMarg | 13 | 8 |
 | marielledemuth | 36 | 35 |
 | Pattoho | 9 | 7 |
-| **Summe** | **79** |  |
+| **Summe** | **79** | **63** |
 
 ### Stand 18.11.2018
 
 | User | Total data rows | Distinct infographics |
 | :--- | :---: | :---: |
-| JinlinHolic |  |  |
-| MariaMarg |  |  |
-| marielledemuth |  |  |
-| Pattoho |  |  |
-| **Summe** |  |  |
+| JinlinHolic | 104 | 38 |
+| MariaMarg | 40 | 26 |
+| marielledemuth | 60 | 45 |
+| Pattoho | 120 | 29 |
+| **Summe** | **324** | **138** |
+
+### Zielerreichung
+
+| User | zusätzliche verschiedene \(=distinct\) infographics |
+| :--- | :--- |
+| JinlinHolic | 25 |
+| MariaMarg | 18 |
+| marielledemuth | 18 |
+| Pattoho | 22 |
 
