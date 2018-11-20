@@ -49,7 +49,7 @@ Messgröße `Distinct infographics`: verschiedene Infografiken eines Users
 | Pattoho | 120 | 29 |
 | **Summe** | **324** | **138** |
 
-### Zielerreichung
+### Erfüllung der zu Beginn aufgestellten messbaren Resultate
 
 | User | zusätzliche verschiedene \(=distinct\) infographics |
 | :--- | :--- |
