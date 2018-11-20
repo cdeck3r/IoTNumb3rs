@@ -55,6 +55,6 @@ Messgröße `Distinct infographics`: verschiedene Infografiken eines Users
 | :--- | :--- |
 | JinlinHolic | 25 |
 | MariaMarg | 18 |
-| marielledemuth | 18 |
+| marielledemuth | 10 |
 | Pattoho | 22 |
 
