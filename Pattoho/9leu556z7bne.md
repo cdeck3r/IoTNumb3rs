@@ -1,5 +1,7 @@
-|IoTNumb3rs Datenerfassung|||||||||||
-| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
-||||||||||||
-|URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
-|https://www.swim.ai/hs-fs/hubfs/Infographics/Swim_Smart%20City%20IOT%20Trends_Infographic.jpg|https://www.swim.ai/resources/infographic-smart-city-iot-trends|file8_Swim_Smart%20City%20IOT%20Trends_Infographic.jpg||||||||Pattoho/20181118-0006|
+<html>
+<head><title>502 Bad Gateway</title></head>
+<body bgcolor="white">
+<center><h1>502 Bad Gateway</h1></center>
+<hr><center>nginx/1.13.8</center>
+</body>
+</html>
