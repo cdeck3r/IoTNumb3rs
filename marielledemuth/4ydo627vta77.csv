@@ -1,4 +1,6 @@
 "IoTNumb3rs Datenerfassung",,,,,,,,,,
 ,,,,,,,,,,
 URL,home_url,filename,device_class,device_count,market_class,market_volume,prognosis_year,publication_year,authorship_class,"Dropbox folder"
-https://www.gsma.com/iot/wp-content/uploads/2016/09/cl_iot_security_infograph_09_16.png,https://www.gsma.com/iot/iot-security-industry-statistics/,file1_cl_iot_security_infograph_09_16.png,,,,,,,,marielledemuth/20181120-0000
+https://www.gsma.com/iot/wp-content/uploads/2016/09/cl_iot_security_infograph_09_16.png,https://www.gsma.com/iot/iot-security-industry-statistics/,file1_cl_iot_security_infograph_09_16.png,"generic IoT",26000000000,,,2020,2016,journalist,marielledemuth/20181120-0000
+,,,,,"cybersecurity cost",2000000000000,2019,2016,journalist,marielledemuth/20181120-0000
+,,,,,"IoT security spending",195000000000,2019,2016,journalist,marielledemuth/20181120-0000
