@@ -2,4 +2,4 @@
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 ||||||||||||
 |URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
-|https://regmedia.co.uk/2015/02/24/b2b_iot_verizon_forecast.png|https://www.theregister.co.uk/2015/02/24/verizon_reckons_theres_a_billion_business_iot_things_already/|file6_b2b_iot_verizon_forecast.png|B2B|5400000000|||2020|2015|journalist|marielledemuth/20181120-0000|
+|http://www.vertexventures.com/southeast-asia-india/wp-content/uploads/2017/02/14-4-Trillion-IoT.jpg|https://www.flutura.com/news|file10_14-4-Trillion-IoT.jpg|||value|1.44E+13|2022|2017|scientist|marielledemuth/20181121-1800|

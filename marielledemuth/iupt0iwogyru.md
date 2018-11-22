@@ -2,4 +2,4 @@
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 ||||||||||||
 |URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
-|https://regmedia.co.uk/2015/02/24/b2b_iot_verizon_forecast.png|https://www.theregister.co.uk/2015/02/24/verizon_reckons_theres_a_billion_business_iot_things_already/|file6_b2b_iot_verizon_forecast.png|B2B|5400000000|||2020|2015|journalist|marielledemuth/20181120-0000|
+|http://www.abnewswire.com/pressreleases/wp-content/uploads/2017/11/1510721867.jpeg|http://www.digitaljournal.com/pr/3563067|file9_1510721867.jpeg||||||||marielledemuth/20181121-1800|
