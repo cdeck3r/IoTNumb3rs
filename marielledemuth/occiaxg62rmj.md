@@ -1,0 +1,5 @@
+|IoTNumb3rs Datenerfassung|||||||||||
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+||||||||||||
+|URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
+|https://i.pinimg.com/564x/f7/d8/cc/f7d8cc6acca039a18b936174991ee65a.jpg|https://de.surveymonkey.com/curiosity/|file1_f7d8cc6acca039a18b936174991ee65a.jpg||||||||marielledemuth/20181123-1805|
