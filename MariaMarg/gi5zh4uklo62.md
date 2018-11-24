@@ -1,0 +1,5 @@
+|IoTNumb3rs Datenerfassung|||||||||||
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+||||||||||||
+|URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
+|https://www.morpho.com/sites/morpho/files/thumbnails/image/infographic_5predictions_09-16.jpg|https://www.morpho.com/en/media/five-predictions-internet-things-2025-20160928|file13_infographic_5predictions_09-16.jpg||||||||MariaMarg/20181124-0000|
