@@ -2,4 +2,4 @@
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 ||||||||||||
 |URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
-|https://entrigna.com/wp-content/uploads/2018/06/How-to-plan-an-IoT-solution-Infographic-1.png|https://entrigna.com/iot-infographics/|file10_How-to-plan-an-IoT-solution-Infographic-1.png|Generic IoT|20000000000|||2020|||JinlinHolic/20181123-1800|
+|https://etimg.etb2bimg.com/photo/64867136.cms|https://tech.economictimes.indiatimes.com/news/corporate/the-new-threat-weaponisation-of-iot-infographic/64866823|file2_64867136.cms||||||||JinlinHolic/20181125-0000|

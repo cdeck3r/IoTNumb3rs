@@ -2,4 +2,4 @@
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 ||||||||||||
 |URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
-|https://entrigna.com/wp-content/uploads/2018/06/How-to-plan-an-IoT-solution-Infographic-1.png|https://entrigna.com/iot-infographics/|file10_How-to-plan-an-IoT-solution-Infographic-1.png|Generic IoT|20000000000|||2020|||JinlinHolic/20181123-1800|
+|https://blog.bosch-si.com/wp-content/uploads/IoT-devices-year-2022.png|https://blog.bosch-si.com/internetofthings/market-size-and-connected-devices-wheres-the-future-of-iot/|file4_IoT-devices-year-2022.png||||||||JinlinHolic/20181125-0000|
