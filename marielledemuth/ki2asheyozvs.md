@@ -2,4 +2,4 @@
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 ||||||||||||
 |URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
-|https://i.pinimg.com/originals/76/52/79/7652790a9ac4ad9c521685edb7995f95.png|https://www.pinterest.de/pin/90635011236441922/|file2_7652790a9ac4ad9c521685edb7995f95.png|generic IoT|50000000000|||2020|N/A|company|marielledemuth/20181124-1500|
+|https://i.pinimg.com/564x/d7/37/9a/d7379a13c4398953541216c8ebcbcbf3.jpg|https://www.kontron.com/products/iot/iot-industry-4.0|file1_d7379a13c4398953541216c8ebcbcbf3.jpg|generic IoT|2E+11|||2020|N/A|company|marielledemuth/20181125-1200|

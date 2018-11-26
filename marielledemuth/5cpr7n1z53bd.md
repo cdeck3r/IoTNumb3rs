@@ -2,4 +2,4 @@
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 ||||||||||||
 |URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
-|https://i.pinimg.com/originals/76/52/79/7652790a9ac4ad9c521685edb7995f95.png|https://www.pinterest.de/pin/90635011236441922/|file2_7652790a9ac4ad9c521685edb7995f95.png|generic IoT|50000000000|||2020|N/A|company|marielledemuth/20181124-1500|
+|https://www.softwebsolutions.com/wp-content/uploads/2015/05/iot-infographic.jpg|https://www.softwebsolutions.com/infographic-iot.html|file2_iot-infographic.jpg|generic IoT|20000000000|||2020|2013|company|marielledemuth/20181125-1200|
