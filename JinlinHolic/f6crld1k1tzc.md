@@ -1,0 +1,11 @@
+|IoTNumb3rs Datenerfassung|||||||||||
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+||||||||||||
+|URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
+|https://siliconvalley.center/wp-content/uploads/2018/02/IoT-Devices-Outnumber-Humans-on-Earth-full-2.jpg|https://siliconvalley.center/blog/iot-devices/|file3_IoT-Devices-Outnumber-Humans-on-Earth-full-2.jpg|Generic IoT|26660000000|||2019|unknown|company|JinlinHolic/20181126-1800|
+|https://siliconvalley.center/wp-content/uploads/2018/02/IoT-Devices-Outnumber-Humans-on-Earth-full-2.jpg|https://siliconvalley.center/blog/iot-devices/|file3_IoT-Devices-Outnumber-Humans-on-Earth-full-2.jpg|Generic IoT|30730000000|||2020|unknown|company||
+|https://siliconvalley.center/wp-content/uploads/2018/02/IoT-Devices-Outnumber-Humans-on-Earth-full-2.jpg|https://siliconvalley.center/blog/iot-devices/|file3_IoT-Devices-Outnumber-Humans-on-Earth-full-2.jpg|Generic IoT|35820000000|||2021|unknown|company||
+|https://siliconvalley.center/wp-content/uploads/2018/02/IoT-Devices-Outnumber-Humans-on-Earth-full-2.jpg|https://siliconvalley.center/blog/iot-devices/|file3_IoT-Devices-Outnumber-Humans-on-Earth-full-2.jpg|Generic IoT|42620000000|||2022|unknown|company||
+|https://siliconvalley.center/wp-content/uploads/2018/02/IoT-Devices-Outnumber-Humans-on-Earth-full-2.jpg|https://siliconvalley.center/blog/iot-devices/|file3_IoT-Devices-Outnumber-Humans-on-Earth-full-2.jpg|Generic IoT|51110000000|||2023|unknown|company||
+|https://siliconvalley.center/wp-content/uploads/2018/02/IoT-Devices-Outnumber-Humans-on-Earth-full-2.jpg|https://siliconvalley.center/blog/iot-devices/|file3_IoT-Devices-Outnumber-Humans-on-Earth-full-2.jpg|Generic IoT|62120000000|||2024|unknown|company||
+|https://siliconvalley.center/wp-content/uploads/2018/02/IoT-Devices-Outnumber-Humans-on-Earth-full-2.jpg|https://siliconvalley.center/blog/iot-devices/|file3_IoT-Devices-Outnumber-Humans-on-Earth-full-2.jpg|Generic IoT|75440000000|||2025|unknown|company||
