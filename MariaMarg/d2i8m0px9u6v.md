@@ -2,4 +2,10 @@
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 ||||||||||||
 |URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
-|https://www.cloudmanagementsuite.com/wp-content/uploads/2018/03/Infographic-IoT-Report-Q1-2018-1.png|https://www.cloudmanagementsuite.com/iot-infographic|file12_Infographic-IoT-Report-Q1-2018-1.png||||||||MariaMarg/20181124-0000|
+|https://www.cloudmanagementsuite.com/wp-content/uploads/2018/03/Infographic-IoT-Report-Q1-2018-1.png|https://www.cloudmanagementsuite.com/iot-infographic|file12_Infographic-IoT-Report-Q1-2018-1.png|generic IoT|2000000000|||2016|2018|company|MariaMarg/20181124-0000|
+|https://www.cloudmanagementsuite.com/wp-content/uploads/2018/03/Infographic-IoT-Report-Q1-2018-1.png|https://www.cloudmanagementsuite.com/iot-infographic|file12_Infographic-IoT-Report-Q1-2018-1.png|generic IoT|6380000000|||2016|2018|company|MariaMarg/20181124-0000|
+|https://www.cloudmanagementsuite.com/wp-content/uploads/2018/03/Infographic-IoT-Report-Q1-2018-1.png|https://www.cloudmanagementsuite.com/iot-infographic|file12_Infographic-IoT-Report-Q1-2018-1.png|generic IoT|8400000000|||2018|2018|company|MariaMarg/20181124-0000|
+|https://www.cloudmanagementsuite.com/wp-content/uploads/2018/03/Infographic-IoT-Report-Q1-2018-1.png|https://www.cloudmanagementsuite.com/iot-infographic|file12_Infographic-IoT-Report-Q1-2018-1.png|generic IoT|20000000000|||2020|2018|company|MariaMarg/20181124-0000|
+|https://www.cloudmanagementsuite.com/wp-content/uploads/2018/03/Infographic-IoT-Report-Q1-2018-1.png|https://www.cloudmanagementsuite.com/iot-infographic|file12_Infographic-IoT-Report-Q1-2018-1.png|generic IoT|1.34E+11|||2022|2018|company|MariaMarg/20181124-0000|
+|https://www.cloudmanagementsuite.com/wp-content/uploads/2018/03/Infographic-IoT-Report-Q1-2018-1.png|https://www.cloudmanagementsuite.com/iot-infographic|file12_Infographic-IoT-Report-Q1-2018-1.png|generic IoT||cyberattack costs|1700000||2018|company|MariaMarg/20181124-0000|
+|https://www.cloudmanagementsuite.com/wp-content/uploads/2018/03/Infographic-IoT-Report-Q1-2018-1.png|https://www.cloudmanagementsuite.com/iot-infographic|file12_Infographic-IoT-Report-Q1-2018-1.png|generic IoT||value of IoT tech|6.25E+12|2025|2018|company|MariaMarg/20181124-0000|

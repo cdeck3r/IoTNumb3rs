@@ -2,4 +2,4 @@
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 ||||||||||||
 |URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
-|https://www.arc4dia.com/blog/wp-content/uploads/2017/02/infographic_2017_IoT_devices.jpg|https://www.arc4dia.com/blog/resources/2017-cybersecurity-iot-devices/|file7_infographic_2017_IoT_devices.jpg|cybersecurity|20000000000|||2020|2017|company|MariaMarg/20181124-0000|
+|https://www.intersec.com/images/BLOG/Images/infographie_annonce_WP_IoT.PNG|https://www.intersec.com/the-use-of-iot-infographics|file6_infographie_annonce_WP_IoT.PNG||||||||MariaMarg/20181126-2100|
