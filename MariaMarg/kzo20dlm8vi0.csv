@@ -1,7 +1,4 @@
-<html>
-<head><title>502 Bad Gateway</title></head>
-<body bgcolor="white">
-<center><h1>502 Bad Gateway</h1></center>
-<hr><center>nginx/1.13.8</center>
-</body>
-</html>
+"IoTNumb3rs Datenerfassung",,,,,,,,,,
+,,,,,,,,,,
+URL,home_url,filename,device_class,device_count,market_class,market_volume,prognosis_year,publication_year,authorship_class,"Dropbox folder"
+http://www.argenox.com/wp-content/uploads/iot_devices_by_2020_infographic_dark.png,http://www.argenox.com/wifi-iot-connectivity/,file17_iot_devices_by_2020_infographic_dark.png,,,,,,,,MariaMarg/20181118-1503
