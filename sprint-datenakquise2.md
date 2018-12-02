@@ -2,7 +2,7 @@
 description: Geschwindigkeit bei der Datenerfassung aus IoT Infografiken erhöhen
 ---
 
-# Sprint: Störungsfreier Betrieb schneller Datenakquise
+# Sprint: Störungsfreier Betrieb der schnellen Datenakquise
 
 ## Ziel
 
