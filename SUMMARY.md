@@ -4,4 +4,5 @@
 * [Kickoff und Initialer Sprint](kickoff-und-initialer-sprint.md)
 * [Sprint: numb3rspipeline](numb3rspipeline-round-trip.md)
 * [Sprint: Speed-up der Datenakquise](sprint-datenakquise.md)
+* [Sprint: Störungsfreier Betrieb schneller Datenakquise](sprint-datenakquise2.md)
 
