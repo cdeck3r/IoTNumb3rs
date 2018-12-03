@@ -109,6 +109,8 @@ commit_push_dataroot_git() {
     local DATAROOT=$1
     local DROPBOX_USERDIR=$2
 
+    # go into DATAROOT
+    cd "$DATAROOT"
     # add everything into repo
     # push using github token
     $GIT add *
