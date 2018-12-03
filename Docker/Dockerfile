@@ -1,8 +1,8 @@
-FROM alpine:3.7
+FROM alpine:3.8
 
 #
 # Image for the IoTNumb3rs project
-# Note: does not comply to best practises for writing Dockerfiles 
+# Note: does not comply to best practises for writing Dockerfiles
 #
 # See: https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
 # for improvements
@@ -66,7 +66,7 @@ ENV PATH $PATH:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openj
 
 ENV JAVA_VERSION 8u151
 #ENV JAVA_ALPINE_VERSION 8.151.12-r0
-ENV JAVA_ALPINE_VERSION 8.171.11-r0
+ENV JAVA_ALPINE_VERSION 8.181.13-r0
 
 RUN set -x \
 	&& apk add --no-cache \
@@ -97,11 +97,11 @@ RUN apk add --no-cache \
 	tiff \
 	tiff-dev \
 	libwebp \
-	openjpeg 
+	openjpeg
 
 #
 # Install tesseract
-# 
+#
 RUN apk add --no-cache \
 	tesseract-ocr
 
@@ -113,11 +113,21 @@ RUN apk add --no-cache \
 	python-dev && \
     python -m ensurepip && \
     rm -r /usr/lib/python*/ensurepip && \
-    pip install --upgrade pip setuptools && \
-    if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
-    if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
+    pip install --upgrade pip setuptools wheel && \
 	pip install virtualenv && \
-	rm -r /root/.cache
+rm -r /root/.cache
+
+#RUN apk add --no-cache \
+#	python \
+#	python-dev \
+#	py-pip && \
+#    python -m ensurepip && \
+#    rm -r /usr/lib/python*/ensurepip && \
+#    if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
+#    if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
+#	pip install --no-cache-dir -U pip setuptools && \
+#	pip install --no-cache-dir -U setuptools virtualenv && \
+#	rm -rf /root/.cache
 
 #
 # Switch to user
