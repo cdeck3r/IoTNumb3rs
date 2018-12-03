@@ -68,7 +68,7 @@ log_echo "INFO" "Processing user data directory: "$DATAPATH""
 for CSVFILE in $(find "$DATAPATH" -type f -name '*.csv' 2> /dev/null); do
     # grep for expected header
     # either    "IoTNumb3rs Datenerfassung"
-    # or        "URL,filename"    
+    # or        "URL,filename"
     head -1 "$CSVFILE" | grep "IoTNumb3rs Datenerfassung\|URL,filename" > /dev/null
     if [[ $? -ne 0 ]]; then
         log_echo "INFO" "File not valid: $CSVFILE"
@@ -86,7 +86,7 @@ log_echo "INFO" "All files processed for user: "$DROPBOX_USERDIR""
 # update README.md
 update_readme_dataroot_git "$DATAROOT" "$DROPBOX_USERDIR"
 # commit and push files
-# TEST commit_push_dataroot_git "$DATAROOT" "$DROPBOX_USERDIR"
+commit_push_dataroot_git "$DATAROOT" "$DROPBOX_USERDIR"
 
 # return to where you come from
 cd "$SCRIPT_DIR"
