@@ -69,6 +69,13 @@ csvstack --skipinitialspace --skip-lines 2 \
 | csvsql --db sqlite:///"${USER_DB}" --tables ${DATATBL} \
 --insert --overwrite
 
+SQLQUERY="SELECT count(*) AS data_rows FROM ${DATATBL};"
+QI_DATAROWS=$(sql2csv --db sqlite:///"${USER_DB}" \
+--query "$SQLQUERY" \
+| csvcut --skip-lines 1)
+
+log_echo "INFO" "Number of available data rows for user "$DROPBOX_USERDIR": $QI_DATAROWS"
+
 ## Check
 
 ## format error
@@ -104,7 +111,7 @@ QI_SUM_EMPTYURL=$(sql2csv --db sqlite:///"${USER_DB}" \
 log_echo "INFO" "Number of empty, but mandatory URL entries: $QI_SUM_EMPTYURL"
 
 # QI: QI_SUM_EMPTY_DROPBOX_FOLDER
-SQLQUERY="SELECT * FROM "${DATATBL}" WHERE \"Dropbox folder\" IS NULL;"
+SQLQUERY="SELECT * FROM "${DATATBL}" WHERE \"Dropbox folder\" IS NULL OR \"Dropbox folder\" = \"\";"
 mapfile -t QI_EMPTY_DROPBOX_FOLDER <<< $(sql2csv --db sqlite:///"${USER_DB}" \
 --query "$SQLQUERY" \
 | csvsql --query "SELECT distinct src_filename from STDIN" \
@@ -117,7 +124,7 @@ QI_SUM_EMPTY_DROPBOX_FOLDER=$(sql2csv --db sqlite:///"${USER_DB}" \
 | csvsql --query "SELECT distinct src_filename from STDIN" \
 | csvcut --skip-lines 1 | wc -l)
 
-log_echo "INFO" "Number of empty, but mandatory \"Dropbox folder\" entries: $QI_SUM_EMPTYURL"
+log_echo "INFO" "Number of empty, but mandatory \"Dropbox folder\" entries: $QI_SUM_EMPTY_DROPBOX_FOLDER"
 
 # QI: QI_SUM_NODATA
 SQLQUERY="SELECT * FROM "${DATATBL}" WHERE device_class IS NULL AND device_count is NULL AND market_class is NULL AND market_volume is NULL AND prognosis_year is NULL AND publication_year is NULL AND authorship_class is NULL;"
@@ -132,10 +139,67 @@ QI_SUM_NODATA=$(sql2csv --db sqlite:///"${USER_DB}" \
 --query "$SQLQUERY" \
 | csvsql --query "SELECT distinct src_filename from STDIN" \
 | csvcut --skip-lines 1 | wc -l)
-
 log_echo "INFO" "Number of empty data rows: $QI_SUM_NODATA"
 
+## Overall Quality Indicator
+SQLQUERY="SELECT 1-($QI_SUM_EMPTYURL + $QI_SUM_EMPTY_DROPBOX_FOLDER + $QI_SUM_NODATA)/($QI_DATAROWS+0.0)"
+QI=$(sql2csv --db sqlite:///"${USER_DB}" \
+--query "$SQLQUERY" \
+| csvcut --skip-lines 1)
+log_echo "INFO" "Quality Indicator for "$DROPBOX_USERDIR": $QI"
 
+
+# write into file
+echo "## Quality Indicator for $DROPBOX_USERDIR"
+cat << EOM
+
+The quality indicator (Q) is 1 - #incidents/data rows.
+
+EOM
+echo "Q = $QI"
+
+
+cat  << EOM
+
+## Empty URL Field
+
+The URL field must not be empty. This data problem may occur,
+if multiple figures are extracted from an infographic, but only
+for the very first the infographic's URL is provided.
+
+_Solution:_ fill up empty URL fields with the appropriate URL.
+
+EOM
+echo "*Quality incidents:* $QI_SUM_EMPTYURL"
+
+
+cat  << EOM
+
+## Empty "Dropbox folder" field
+
+The "Dropbox folder" field must not be empty. Like the previous "Empty URL"
+problem This data problem may occur, if multiple figures are extracted
+from an infographic, but only for the very first the infographic's URL is provided.
+
+_Solution:_ fill up empty "Dropbox folder" fields with the appropriate content.
+
+EOM
+echo "*Quality incidents:* $QI_SUM_EMPTY_DROPBOX_FOLDER"
+
+
+cat  << EOM
+
+## No Data
+
+Apart from the fields set automatically by th enumb3rspipeline
+there are no other data.
+
+_Solution:_ Extract the data from the infographic.
+If the infographic does not provide appropriate data,
+then remove the entire content from the Ethercalc sheet.
+
+EOM
+echo "*Quality incidents:* $QI_SUM_NODATA"
 
 #
 
