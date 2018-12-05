@@ -130,6 +130,12 @@ rm -r /root/.cache
 #	rm -rf /root/.cache
 
 #
+# Install sqlite
+#
+RUN apk add --no-cache \
+	sqlite
+
+#
 # Switch to user
 #
 WORKDIR /home/$IOT_USER
