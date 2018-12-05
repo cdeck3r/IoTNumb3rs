@@ -85,23 +85,57 @@ if [[ $FORMAT_ERR -ne 0 ]]; then
 fi
 
 ## Quality problems
-# QI: SUM_EMPTYURL
+# QI: QI_SUM_EMPTYURL
 log_echo "INFO" "Check data quality problems for user: "$DROPBOX_USERDIR""
 
-
-sql2csv --db sqlite:///"${USER_DB}" \
---query "SELECT * FROM "${DATATBL}" WHERE \"URL\" IS NULL;" \
+SQLQUERY="SELECT * FROM "${DATATBL}" WHERE \"URL\" IS NULL;"
+mapfile -t QI_EMPTYURL <<< $(sql2csv --db sqlite:///"${USER_DB}" \
+--query "$SQLQUERY" \
 | csvsql --query "SELECT distinct src_filename from STDIN" \
 | cut -d '.' -f1 \
 | csvcut -K 1 \
-| sed 's/^/https:\/\/www.ethercalc.org\//'
+| sed 's/^/https:\/\/www.ethercalc.org\//')
 
-SUM_EMPTYURL=$(sql2csv --db sqlite:///"${USER_DB}" \
---query "SELECT * FROM "${DATATBL}" WHERE \"URL\" IS NULL;" \
+QI_SUM_EMPTYURL=$(sql2csv --db sqlite:///"${USER_DB}" \
+--query "$SQLQUERY" \
 | csvsql --query "SELECT distinct src_filename from STDIN" \
 | csvcut --skip-lines 1 | wc -l)
 
-log_echo "INFO" "Empty URLs: $SUM_EMPTYURL"
+log_echo "INFO" "Number of empty, but mandatory URL entries: $QI_SUM_EMPTYURL"
+
+# QI: QI_SUM_EMPTY_DROPBOX_FOLDER
+SQLQUERY="SELECT * FROM "${DATATBL}" WHERE \"Dropbox folder\" IS NULL;"
+mapfile -t QI_EMPTY_DROPBOX_FOLDER <<< $(sql2csv --db sqlite:///"${USER_DB}" \
+--query "$SQLQUERY" \
+| csvsql --query "SELECT distinct src_filename from STDIN" \
+| cut -d '.' -f1 \
+| csvcut -K 1 \
+| sed 's/^/https:\/\/www.ethercalc.org\//')
+
+QI_SUM_EMPTY_DROPBOX_FOLDER=$(sql2csv --db sqlite:///"${USER_DB}" \
+--query "$SQLQUERY" \
+| csvsql --query "SELECT distinct src_filename from STDIN" \
+| csvcut --skip-lines 1 | wc -l)
+
+log_echo "INFO" "Number of empty, but mandatory \"Dropbox folder\" entries: $QI_SUM_EMPTYURL"
+
+# QI: QI_SUM_NODATA
+SQLQUERY="SELECT * FROM "${DATATBL}" WHERE device_class IS NULL AND device_count is NULL AND market_class is NULL AND market_volume is NULL AND prognosis_year is NULL AND publication_year is NULL AND authorship_class is NULL;"
+mapfile -t QI_NODATA <<< $(sql2csv --db sqlite:///"${USER_DB}" \
+--query "$SQLQUERY" \
+| csvsql --query "SELECT distinct src_filename from STDIN" \
+| cut -d '.' -f1 \
+| csvcut -K 1 \
+| sed 's/^/https:\/\/www.ethercalc.org\//')
+
+QI_SUM_NODATA=$(sql2csv --db sqlite:///"${USER_DB}" \
+--query "$SQLQUERY" \
+| csvsql --query "SELECT distinct src_filename from STDIN" \
+| csvcut --skip-lines 1 | wc -l)
+
+log_echo "INFO" "Number of empty data rows: $QI_SUM_NODATA"
+
+
 
 #
 
