@@ -82,14 +82,27 @@ log_echo "INFO" "Number of available data rows for user "$DROPBOX_USERDIR": $QI_
 
 log_echo "INFO" "Check format errors for files of user: "$DROPBOX_USERDIR""
 csvstack --skipinitialspace --skip-lines 2 \
---linenumbers --filenames \
+--linenumbers --filenames --group-name src_filename \
 "${DROPBOX_USERDIR}"/*.csv \
-| csvstat -c 1-13
-
+| csvstat --columns 1-13
 FORMAT_ERR=$?
 if [[ $FORMAT_ERR -ne 0 ]]; then
-    log_echo "WARN" "Format error in file of user: "$DROPBOX_USERDIR""
+    log_echo "WARN" "File format error in csv files for user: "$DROPBOX_USERDIR""
 fi
+
+for CSVFILE in "${DROPBOX_USERDIR}"/*.csv
+do
+    echo "$CSVFILE"
+    csvstack --skipinitialspace --skip-lines 2 \
+    --linenumbers --filenames --group-name src_filename \
+    "$CSVFILE" \
+    | csvstat --columns 1,2,URL,home_url,filename,device_class,device_count,market_class,market_volume,prognosis_year,publication_year,authorship_class,"Dropbox folder" > /dev/null
+
+    FORMAT_ERR=$?
+    if [[ $FORMAT_ERR -ne 0 ]]; then
+        log_echo "WARN" "File csv format error: "$CSVFILE""
+    fi
+done
 
 ## Quality problems
 # QI: QI_SUM_EMPTYURL
@@ -141,8 +154,24 @@ QI_SUM_NODATA=$(sql2csv --db sqlite:///"${USER_DB}" \
 | csvcut --skip-lines 1 | wc -l)
 log_echo "INFO" "Number of empty data rows: $QI_SUM_NODATA"
 
+# QI_UNEX_DROPBOX_FOLDER
+SQLQUERY="SELECT * FROM "${DATATBL}" WHERE \"Dropbox folder\" NOT LIKE \"%"${DROPBOX_USERDIR}"%\";"
+mapfile -t QI_UNEX_DROPBOX_FOLDER <<< $(sql2csv --db sqlite:///"${USER_DB}" \
+--query "$SQLQUERY" \
+| csvsql --query "SELECT distinct src_filename from STDIN" \
+| cut -d '.' -f1 \
+| csvcut -K 1 \
+| sed 's/^/https:\/\/www.ethercalc.org\//')
+
+QI_SUM_UNEX_DROPBOX_FOLDER=$(sql2csv --db sqlite:///"${USER_DB}" \
+--query "$SQLQUERY" \
+| csvsql --query "SELECT distinct src_filename from STDIN" \
+| csvcut --skip-lines 1 | wc -l)
+log_echo "INFO" "Number unexpected data in \"Dropbox folder\": $QI_SUM_UNEX_DROPBOX_FOLDER"
+
+
 ## Overall Quality Indicator
-SQLQUERY="SELECT 1-($QI_SUM_EMPTYURL + $QI_SUM_EMPTY_DROPBOX_FOLDER + $QI_SUM_NODATA)/($QI_DATAROWS+0.0)"
+SQLQUERY="SELECT 1-($QI_SUM_EMPTYURL + $QI_SUM_EMPTY_DROPBOX_FOLDER + $QI_SUM_NODATA + $QI_SUM_UNEX_DROPBOX_FOLDER)/($QI_DATAROWS+0.0)"
 QI=$(sql2csv --db sqlite:///"${USER_DB}" \
 --query "$SQLQUERY" \
 | csvcut --skip-lines 1)
@@ -150,17 +179,16 @@ log_echo "INFO" "Quality Indicator for "$DROPBOX_USERDIR": $QI"
 
 
 # write into file
-echo "## Quality Indicator for $DROPBOX_USERDIR"
 cat << EOM
+## Quality Indicator for $DROPBOX_USERDIR
 
 The quality indicator (Q) is 1 - #incidents/data rows.
 
-EOM
-echo "Q = $QI"
+Q = $QI
 
+EOM
 
 cat  << EOM
-
 ## Empty URL Field
 
 The URL field must not be empty. This data problem may occur,
@@ -169,12 +197,11 @@ for the very first the infographic's URL is provided.
 
 _Solution:_ fill up empty URL fields with the appropriate URL.
 
-EOM
-echo "*Quality incidents:* $QI_SUM_EMPTYURL"
+*Quality incidents:* $QI_SUM_EMPTYURL
 
+EOM
 
 cat  << EOM
-
 ## Empty "Dropbox folder" field
 
 The "Dropbox folder" field must not be empty. Like the previous "Empty URL"
@@ -183,12 +210,12 @@ from an infographic, but only for the very first the infographic's URL is provid
 
 _Solution:_ fill up empty "Dropbox folder" fields with the appropriate content.
 
+*Quality incidents:* $QI_SUM_EMPTY_DROPBOX_FOLDER
+
 EOM
-echo "*Quality incidents:* $QI_SUM_EMPTY_DROPBOX_FOLDER"
 
 
 cat  << EOM
-
 ## No Data
 
 Apart from the fields set automatically by th enumb3rspipeline
@@ -198,9 +225,21 @@ _Solution:_ Extract the data from the infographic.
 If the infographic does not provide appropriate data,
 then remove the entire content from the Ethercalc sheet.
 
-EOM
-echo "*Quality incidents:* $QI_SUM_NODATA"
+*Quality incidents:* $QI_SUM_NODATA
 
+EOM
+
+cat  << EOM
+## Unexpected Content
+
+For some attributes we expect a specific form of the content.
+This section investigates various attributes.
+
+### Attribute: Dropbox folder
+
+*Quality incidents:* $QI_SUM_UNEX_DROPBOX_FOLDER
+
+EOM
 #
 
 # remove USER_DB
