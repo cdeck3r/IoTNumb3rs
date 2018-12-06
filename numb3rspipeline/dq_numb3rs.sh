@@ -33,19 +33,34 @@ source ./funcs.sh
 source ./bck_funcs.sh
 
 ##############
+# Helper functions
 #
 # returns all ethercalc URLs,
 # which show the quality incident
-# Param #1: SQLQUERY selecting the incident
+# Param #1: Name of sqlite db file
+# Param #2: SQLQUERY selecting the incident
 qi_ec_url() {
-    echo "dummy"
+    local USER_DB=$1
+    local SQLQUERY=$2
+    sql2csv --db sqlite:///"${USER_DB}" \
+    --query "$SQLQUERY" \
+    | csvsql --query "SELECT distinct src_filename from STDIN" \
+    | cut -d '.' -f1 \
+    | csvcut -K 1 \
+    | sed 's/^/https:\/\/www.ethercalc.org\//'
 }
 
 # returns the count of ethercalc URLs
 # having the quality incident
-# Param #1: SQLQUERY selecting the incident
+# Param #1: Name of sqlite db file
+# Param #2: SQLQUERY selecting the incident
 qi_sum() {
-    echo "dummy"
+    local USER_DB=$1
+    local SQLQUERY=$2
+    sql2csv --db sqlite:///"${USER_DB}" \
+    --query "$SQLQUERY" \
+    | csvsql --query "SELECT distinct src_filename from STDIN" \
+    | csvcut --skip-lines 1 | wc -l
 }
 
 
@@ -98,17 +113,21 @@ log_echo "INFO" "Number of available data rows for user "$DROPBOX_USERDIR": $QI_
 ## format error
 
 log_echo "INFO" "Check format errors for files of user: "$DROPBOX_USERDIR""
-
-for CSVFILE in "${DROPBOX_USERDIR}"/*.csv
+# count format incidents
+QI_SUM_CSVFORMAT_ERR=0
+QI_CSVFORMAT_ERR=()
+for CSVFILE in "${DROPBOX_USERDIR}"/*.csvv
 do
     #echo "$CSVFILE"
     csvstack --skipinitialspace --skip-lines 2 \
     "$CSVFILE" \
     | csvstat --columns URL,home_url,filename,device_class,device_count,market_class,market_volume,prognosis_year,publication_year,authorship_class,"Dropbox folder" > /dev/null
-
     FORMAT_ERR=$?
     if [[ $FORMAT_ERR -ne 0 ]]; then
         log_echo "WARN" "File format error: "$CSVFILE""
+        QI_SUM_CSVFORMAT_ERR=$(($QI_SUM_CSVFORMAT_ERR + 1))
+        EC_ERR=$(basename "$CSVFILE" | cut -d '.' -f1 | sed 's/^/https:\/\/www.ethercalc.org\//')
+        QI_CSVFORMAT_ERR+=( "$EC_ERR" )
     fi
 done
 
@@ -117,69 +136,30 @@ done
 log_echo "INFO" "Check data quality problems for user: "$DROPBOX_USERDIR""
 
 SQLQUERY="SELECT * FROM "${DATATBL}" WHERE \"URL\" IS NULL;"
-mapfile -t QI_EMPTYURL <<< $(sql2csv --db sqlite:///"${USER_DB}" \
---query "$SQLQUERY" \
-| csvsql --query "SELECT distinct src_filename from STDIN" \
-| cut -d '.' -f1 \
-| csvcut -K 1 \
-| sed 's/^/https:\/\/www.ethercalc.org\//')
-
-QI_SUM_EMPTYURL=$(sql2csv --db sqlite:///"${USER_DB}" \
---query "$SQLQUERY" \
-| csvsql --query "SELECT distinct src_filename from STDIN" \
-| csvcut --skip-lines 1 | wc -l)
-
+mapfile -t QI_EMPTYURL <<< $(qi_ec_url "${USER_DB}" "${SQLQUERY}")
+QI_SUM_EMPTYURL=$(qi_sum "${USER_DB}" "${SQLQUERY}")
 log_echo "INFO" "Number of empty, but mandatory URL entries: $QI_SUM_EMPTYURL"
 
 # QI: QI_SUM_EMPTY_DROPBOX_FOLDER
 SQLQUERY="SELECT * FROM "${DATATBL}" WHERE \"Dropbox folder\" IS NULL OR \"Dropbox folder\" = \"\";"
-mapfile -t QI_EMPTY_DROPBOX_FOLDER <<< $(sql2csv --db sqlite:///"${USER_DB}" \
---query "$SQLQUERY" \
-| csvsql --query "SELECT distinct src_filename from STDIN" \
-| cut -d '.' -f1 \
-| csvcut -K 1 \
-| sed 's/^/https:\/\/www.ethercalc.org\//')
-
-QI_SUM_EMPTY_DROPBOX_FOLDER=$(sql2csv --db sqlite:///"${USER_DB}" \
---query "$SQLQUERY" \
-| csvsql --query "SELECT distinct src_filename from STDIN" \
-| csvcut --skip-lines 1 | wc -l)
-
+mapfile -t QI_EMPTY_DROPBOX_FOLDER <<< $(qi_ec_url "${USER_DB}" "${SQLQUERY}")
+QI_SUM_EMPTY_DROPBOX_FOLDER=$(qi_sum "${USER_DB}" "${SQLQUERY}")
 log_echo "INFO" "Number of empty, but mandatory \"Dropbox folder\" entries: $QI_SUM_EMPTY_DROPBOX_FOLDER"
 
 # QI: QI_SUM_NODATA
 SQLQUERY="SELECT * FROM "${DATATBL}" WHERE device_class IS NULL AND device_count is NULL AND market_class is NULL AND market_volume is NULL AND prognosis_year is NULL AND publication_year is NULL AND authorship_class is NULL;"
-mapfile -t QI_NODATA <<< $(sql2csv --db sqlite:///"${USER_DB}" \
---query "$SQLQUERY" \
-| csvsql --query "SELECT distinct src_filename from STDIN" \
-| cut -d '.' -f1 \
-| csvcut -K 1 \
-| sed 's/^/https:\/\/www.ethercalc.org\//')
-
-QI_SUM_NODATA=$(sql2csv --db sqlite:///"${USER_DB}" \
---query "$SQLQUERY" \
-| csvsql --query "SELECT distinct src_filename from STDIN" \
-| csvcut --skip-lines 1 | wc -l)
+mapfile -t QI_NODATA <<< $(qi_ec_url "${USER_DB}" "${SQLQUERY}")
+QI_SUM_NODATA=$(qi_sum "${USER_DB}" "${SQLQUERY}")
 log_echo "INFO" "Number of empty data rows: $QI_SUM_NODATA"
 
 # QI_UNEX_DROPBOX_FOLDER
 SQLQUERY="SELECT * FROM "${DATATBL}" WHERE \"Dropbox folder\" NOT LIKE \"%"${DROPBOX_USERDIR}"%\";"
-mapfile -t QI_UNEX_DROPBOX_FOLDER <<< $(sql2csv --db sqlite:///"${USER_DB}" \
---query "$SQLQUERY" \
-| csvsql --query "SELECT distinct src_filename from STDIN" \
-| cut -d '.' -f1 \
-| csvcut -K 1 \
-| sed 's/^/https:\/\/www.ethercalc.org\//')
-
-QI_SUM_UNEX_DROPBOX_FOLDER=$(sql2csv --db sqlite:///"${USER_DB}" \
---query "$SQLQUERY" \
-| csvsql --query "SELECT distinct src_filename from STDIN" \
-| csvcut --skip-lines 1 | wc -l)
+mapfile -t QI_UNEX_DROPBOX_FOLDER <<< $(qi_ec_url "${USER_DB}" "${SQLQUERY}")
+QI_SUM_UNEX_DROPBOX_FOLDER=$(qi_sum "${USER_DB}" "${SQLQUERY}")
 log_echo "INFO" "Number unexpected data in \"Dropbox folder\": $QI_SUM_UNEX_DROPBOX_FOLDER"
 
-
 ## Overall Quality Indicator
-SQLQUERY="SELECT 1-($QI_SUM_EMPTYURL + $QI_SUM_EMPTY_DROPBOX_FOLDER + $QI_SUM_NODATA + $QI_SUM_UNEX_DROPBOX_FOLDER)/($QI_DATAROWS+0.0)"
+SQLQUERY="SELECT 1-($QI_SUM_CSVFORMAT_ERR + $QI_SUM_EMPTYURL + $QI_SUM_EMPTY_DROPBOX_FOLDER + $QI_SUM_NODATA + $QI_SUM_UNEX_DROPBOX_FOLDER)/($QI_DATAROWS+0.0)"
 QI=$(sql2csv --db sqlite:///"${USER_DB}" \
 --query "$SQLQUERY" \
 | csvcut --skip-lines 1)
@@ -193,6 +173,19 @@ cat << EOM
 The quality indicator (Q) is 1 - #incidents/data rows.
 
 Q = $QI
+
+EOM
+
+cat << EOM
+## CSV Format Errors
+
+Ethercalc documents contain the IoTNumb3rs project's data as csv formatted files.
+Format errors may cause the exclusion of this partial data from the
+data analysis.
+
+_Solution:_ Check the Ethercalc documents and comply to the defined attributes.
+
+*Quality incidents:* $QI_SUM_CSVFORMAT_ERR
 
 EOM
 
