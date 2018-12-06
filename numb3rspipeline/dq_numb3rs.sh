@@ -32,6 +32,23 @@ CSVKIT=( 'csvsql' 'csvstack' 'csvcut' 'csvstat')
 source ./funcs.sh
 source ./bck_funcs.sh
 
+##############
+#
+# returns all ethercalc URLs,
+# which show the quality incident
+# Param #1: SQLQUERY selecting the incident
+qi_ec_url() {
+    echo "dummy"
+}
+
+# returns the count of ethercalc URLs
+# having the quality incident
+# Param #1: SQLQUERY selecting the incident
+qi_sum() {
+    echo "dummy"
+}
+
+
 # test if csvkit is installed
 for CSVTOOL in "${CSVKIT[@]}"
 do
@@ -81,26 +98,17 @@ log_echo "INFO" "Number of available data rows for user "$DROPBOX_USERDIR": $QI_
 ## format error
 
 log_echo "INFO" "Check format errors for files of user: "$DROPBOX_USERDIR""
-csvstack --skipinitialspace --skip-lines 2 \
---linenumbers --filenames --group-name src_filename \
-"${DROPBOX_USERDIR}"/*.csv \
-| csvstat --columns 1-13
-FORMAT_ERR=$?
-if [[ $FORMAT_ERR -ne 0 ]]; then
-    log_echo "WARN" "File format error in csv files for user: "$DROPBOX_USERDIR""
-fi
 
 for CSVFILE in "${DROPBOX_USERDIR}"/*.csv
 do
-    echo "$CSVFILE"
+    #echo "$CSVFILE"
     csvstack --skipinitialspace --skip-lines 2 \
-    --linenumbers --filenames --group-name src_filename \
     "$CSVFILE" \
-    | csvstat --columns 1,2,URL,home_url,filename,device_class,device_count,market_class,market_volume,prognosis_year,publication_year,authorship_class,"Dropbox folder" > /dev/null
+    | csvstat --columns URL,home_url,filename,device_class,device_count,market_class,market_volume,prognosis_year,publication_year,authorship_class,"Dropbox folder" > /dev/null
 
     FORMAT_ERR=$?
     if [[ $FORMAT_ERR -ne 0 ]]; then
-        log_echo "WARN" "File csv format error: "$CSVFILE""
+        log_echo "WARN" "File format error: "$CSVFILE""
     fi
 done
 
@@ -233,9 +241,13 @@ cat  << EOM
 ## Unexpected Content
 
 For some attributes we expect a specific form of the content.
-This section investigates various attributes.
+This section investigates various attributes. An incident is found
+of the attribute does not the expected content.
 
 ### Attribute: Dropbox folder
+
+All data entries for this attribute *must* contains the
+user name: $DROPBOX_USERDIR
 
 *Quality incidents:* $QI_SUM_UNEX_DROPBOX_FOLDER
 
