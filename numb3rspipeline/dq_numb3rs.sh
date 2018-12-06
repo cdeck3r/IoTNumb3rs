@@ -146,6 +146,12 @@ mapfile -t QI_EMPTY_DROPBOX_FOLDER <<< $(qi_ec_url "${USER_DB}" "${SQLQUERY}")
 QI_SUM_EMPTY_DROPBOX_FOLDER=$(qi_sum "${USER_DB}" "${SQLQUERY}")
 log_echo "INFO" "Number of empty, but mandatory \"Dropbox folder\" entries: $QI_SUM_EMPTY_DROPBOX_FOLDER"
 
+# QI: $QI_SUM_EMPTY_DEVICE_COUNT
+SQLQUERY="SELECT * FROM "${DATATBL}" WHERE device_count IS NULL AND device_class IS NOT NULL;"
+mapfile -t QI_EMPTY_DEVICE_COUNT <<< $(qi_ec_url "${USER_DB}" "${SQLQUERY}")
+QI_SUM_EMPTY_DEVICE_COUNT=$(qi_sum "${USER_DB}" "${SQLQUERY}")
+log_echo "INFO" "Number of empty, but mandatory \"device_count\" entries: $QI_SUM_EMPTY_DEVICE_COUNT"
+
 # QI: QI_SUM_NODATA
 SQLQUERY="SELECT * FROM "${DATATBL}" WHERE device_class IS NULL AND device_count is NULL AND market_class is NULL AND market_volume is NULL AND prognosis_year is NULL AND publication_year is NULL AND authorship_class is NULL;"
 mapfile -t QI_NODATA <<< $(qi_ec_url "${USER_DB}" "${SQLQUERY}")
@@ -158,8 +164,22 @@ mapfile -t QI_UNEX_DROPBOX_FOLDER <<< $(qi_ec_url "${USER_DB}" "${SQLQUERY}")
 QI_SUM_UNEX_DROPBOX_FOLDER=$(qi_sum "${USER_DB}" "${SQLQUERY}")
 log_echo "INFO" "Number unexpected data in \"Dropbox folder\": $QI_SUM_UNEX_DROPBOX_FOLDER"
 
+# QI_UNEX_DEVICE_COUNT
+# source: https://stackoverflow.com/a/51383461
+SQLQUERY="SELECT * FROM "${DATATBL}" WHERE device_count GLOB '*[^0-9]*' AND device_count LIKE '_%';"
+mapfile -t QI_UNEX_DEVICE_COUNT <<< $(qi_ec_url "${USER_DB}" "${SQLQUERY}")
+QI_SUM_UNEX_DEVICE_COUNT=$(qi_sum "${USER_DB}" "${SQLQUERY}")
+log_echo "INFO" "Number unexpected data in \"device_class\": $QI_SUM_UNEX_DEVICE_COUNT"
+
 ## Overall Quality Indicator
-SQLQUERY="SELECT 1-($QI_SUM_CSVFORMAT_ERR + $QI_SUM_EMPTYURL + $QI_SUM_EMPTY_DROPBOX_FOLDER + $QI_SUM_NODATA + $QI_SUM_UNEX_DROPBOX_FOLDER)/($QI_DATAROWS+0.0)"
+SQLQUERY="SELECT 1-($QI_SUM_EMPTYURL \
+    + $QI_SUM_EMPTY_DROPBOX_FOLDER \
+    + $QI_SUM_NODATA \
+    + $QI_SUM_UNEX_DROPBOX_FOLDER \
+    + $QI_SUM_CSVFORMAT_ERR \
+    + $QI_SUM_UNEX_DEVICE_COUNT \
+    + $QI_SUM_EMPTY_DEVICE_COUNT \
+    )/($QI_DATAROWS+0.0)"
 QI=$(sql2csv --db sqlite:///"${USER_DB}" \
 --query "$SQLQUERY" \
 | csvcut --skip-lines 1)
@@ -206,12 +226,23 @@ cat  << EOM
 ## Empty "Dropbox folder" field
 
 The "Dropbox folder" field must not be empty. Like the previous "Empty URL"
-problem This data problem may occur, if multiple figures are extracted
+problem this data problem may occur, if multiple figures are extracted
 from an infographic, but only for the very first the infographic's URL is provided.
 
 _Solution:_ fill up empty "Dropbox folder" fields with the appropriate content.
 
 *Quality incidents:* $QI_SUM_EMPTY_DROPBOX_FOLDER
+
+EOM
+
+cat  << EOM
+## Empty "device_count" field
+
+The "device_count" field must not be empty, if device_class contains data.
+
+_Solution:_ fill up empty "device_count" fields with the appropriate content.
+
+*Quality incidents:* $QI_SUM_EMPTY_DEVICE_COUNT
 
 EOM
 
@@ -243,6 +274,12 @@ All data entries for this attribute *must* contains the
 user name: $DROPBOX_USERDIR
 
 *Quality incidents:* $QI_SUM_UNEX_DROPBOX_FOLDER
+
+### Attribute: device_count
+
+All data entries for this attribute *must* contains integers.
+
+*Quality incidents:* $QI_SUM_UNEX_DEVICE_COUNT
 
 EOM
 #
