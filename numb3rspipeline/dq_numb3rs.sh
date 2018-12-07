@@ -27,6 +27,7 @@ DATATBL="iotdata"
 #
 GIT='git'
 CSVKIT=( 'csvsql' 'csvstack' 'csvcut' 'csvstat')
+DIFF='diff'
 
 # include common funcs
 source ./funcs.sh
@@ -63,6 +64,10 @@ qi_sum() {
     | csvcut --skip-lines 1 | wc -l
 }
 
+##############
+
+##############
+# checks
 
 # test if csvkit is installed
 for CSVTOOL in "${CSVKIT[@]}"
@@ -70,6 +75,12 @@ do
     command -v "$CSVTOOL" >/dev/null 2>&1 \
         || { log_echo "ERROR" "I require "$CSVTOOL" but it's not installed. Abort."; exit 1; }
 done
+
+command -v "$DIFF" >/dev/null 2>&1 \
+    || { log_echo "ERROR" "I require "$DIFF" but it's not installed. Abort."; exit 1; }
+
+##############
+
 
 # prepare DATAROOT directory
 log_echo "INFO" "Prepare backup data directory: "$DATAROOT""
@@ -119,6 +130,9 @@ QI_CSVFORMAT_ERR=()
 for CSVFILE in "${DROPBOX_USERDIR}"/*.csvv
 do
     #echo "$CSVFILE"
+    #VALID_HEADERS=$(csvstack --skipinitialspace --skip-lines 2 marielledemuth/0600huy6gplw.csv | csvstat --csv | csvcut -c 1,2)
+    #diff <(echo $VALID_HEADERS) <(csvstack --skipinitialspace --skip-lines 2 marielledemuth/0600huy6gplw.csv | csvstat --csv | csvcut -c 1,2)
+
     csvstack --skipinitialspace --skip-lines 2 \
     "$CSVFILE" \
     | csvstat --columns URL,home_url,filename,device_class,device_count,market_class,market_volume,prognosis_year,publication_year,authorship_class,"Dropbox folder" > /dev/null
@@ -152,6 +166,12 @@ mapfile -t QI_EMPTY_DEVICE_COUNT <<< $(qi_ec_url "${USER_DB}" "${SQLQUERY}")
 QI_SUM_EMPTY_DEVICE_COUNT=$(qi_sum "${USER_DB}" "${SQLQUERY}")
 log_echo "INFO" "Number of empty, but mandatory \"device_count\" entries: $QI_SUM_EMPTY_DEVICE_COUNT"
 
+# QI: $QI_SUM_EMPTY_DEVICE_CLASS
+SQLQUERY="SELECT * FROM "${DATATBL}" WHERE device_class IS NULL AND device_count IS NOT NULL;"
+mapfile -t QI_EMPTY_DEVICE_CLASS <<< $(qi_ec_url "${USER_DB}" "${SQLQUERY}")
+QI_SUM_EMPTY_DEVICE_CLASS=$(qi_sum "${USER_DB}" "${SQLQUERY}")
+log_echo "INFO" "Number of empty, but mandatory \"device_class\" entries: $QI_SUM_EMPTY_DEVICE_CLASS"
+
 # QI: QI_SUM_NODATA
 SQLQUERY="SELECT * FROM "${DATATBL}" WHERE device_class IS NULL AND device_count is NULL AND market_class is NULL AND market_volume is NULL AND prognosis_year is NULL AND publication_year is NULL AND authorship_class is NULL;"
 mapfile -t QI_NODATA <<< $(qi_ec_url "${USER_DB}" "${SQLQUERY}")
@@ -179,6 +199,7 @@ SQLQUERY="SELECT 1-($QI_SUM_EMPTYURL \
     + $QI_SUM_CSVFORMAT_ERR \
     + $QI_SUM_UNEX_DEVICE_COUNT \
     + $QI_SUM_EMPTY_DEVICE_COUNT \
+    + $QI_SUM_EMPTY_DEVICE_CLASS \
     )/($QI_DATAROWS+0.0)"
 QI=$(sql2csv --db sqlite:///"${USER_DB}" \
 --query "$SQLQUERY" \
@@ -238,7 +259,7 @@ EOM
 cat  << EOM
 ## Empty "device_count" field
 
-The "device_count" field must not be empty, if device_class contains data.
+The "device_count" field must not be empty, if device_class field contains data.
 
 _Solution:_ fill up empty "device_count" fields with the appropriate content.
 
@@ -246,6 +267,16 @@ _Solution:_ fill up empty "device_count" fields with the appropriate content.
 
 EOM
 
+cat  << EOM
+## Empty "device_class" field
+
+The "device_class" field must not be empty, if device_count field contains data.
+
+_Solution:_ fill up empty "device_class" fields with the appropriate content.
+
+*Quality incidents:* $QI_SUM_EMPTY_DEVICE_CLASS
+
+EOM
 
 cat  << EOM
 ## No Data
