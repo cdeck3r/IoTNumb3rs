@@ -172,6 +172,19 @@ mapfile -t QI_EMPTY_DEVICE_CLASS <<< $(qi_ec_url "${USER_DB}" "${SQLQUERY}")
 QI_SUM_EMPTY_DEVICE_CLASS=$(qi_sum "${USER_DB}" "${SQLQUERY}")
 log_echo "INFO" "Number of empty, but mandatory \"device_class\" entries: $QI_SUM_EMPTY_DEVICE_CLASS"
 
+# QI: $QI_SUM_EMPTY_MARKET_VOLUME
+SQLQUERY="SELECT * FROM "${DATATBL}" WHERE market_volume IS NULL AND market_class IS NOT NULL;"
+mapfile -t QI_EMPTY_MARKET_VOLUME <<< $(qi_ec_url "${USER_DB}" "${SQLQUERY}")
+QI_SUM_EMPTY_MARKET_VOLUME=$(qi_sum "${USER_DB}" "${SQLQUERY}")
+log_echo "INFO" "Number of empty, but mandatory \"market_volume\" entries: $QI_SUM_EMPTY_MARKET_VOLUME"
+
+# QI: $QI_SUM_EMPTY_MARKET_CLASS
+SQLQUERY="SELECT * FROM "${DATATBL}" WHERE market_class IS NULL AND market_volume IS NOT NULL;"
+mapfile -t QI_EMPTY_MARKET_CLASS <<< $(qi_ec_url "${USER_DB}" "${SQLQUERY}")
+QI_SUM_EMPTY_MARKET_CLASS=$(qi_sum "${USER_DB}" "${SQLQUERY}")
+log_echo "INFO" "Number of empty, but mandatory \"market_class\" entries: $QI_SUM_EMPTY_MARKET_CLASS"
+
+
 # QI: QI_SUM_NODATA
 SQLQUERY="SELECT * FROM "${DATATBL}" WHERE device_class IS NULL AND device_count is NULL AND market_class is NULL AND market_volume is NULL AND prognosis_year is NULL AND publication_year is NULL AND authorship_class is NULL;"
 mapfile -t QI_NODATA <<< $(qi_ec_url "${USER_DB}" "${SQLQUERY}")
@@ -200,6 +213,8 @@ SQLQUERY="SELECT 1-($QI_SUM_EMPTYURL \
     + $QI_SUM_UNEX_DEVICE_COUNT \
     + $QI_SUM_EMPTY_DEVICE_COUNT \
     + $QI_SUM_EMPTY_DEVICE_CLASS \
+    + $QI_SUM_EMPTY_MARKET_VOLUME \
+    + $QI_SUM_EMPTY_MARKET_CLASS \
     )/($QI_DATAROWS+0.0)"
 QI=$(sql2csv --db sqlite:///"${USER_DB}" \
 --query "$SQLQUERY" \
@@ -279,9 +294,31 @@ _Solution:_ fill up empty "device_class" fields with the appropriate content.
 EOM
 
 cat  << EOM
+## Empty "market_volume" field
+
+The "market_volume" field must not be empty, if market_class field contains data.
+
+_Solution:_ fill up empty "market_volume" fields with the appropriate content.
+
+*Quality incidents:* $QI_SUM_EMPTY_MARKET_VOLUME
+
+EOM
+
+cat  << EOM
+## Empty "market_class" field
+
+The "market_class" field must not be empty, if market_volume field contains data.
+
+_Solution:_ fill up empty "market_class" fields with the appropriate content.
+
+*Quality incidents:* $QI_SUM_EMPTY_MARKET_CLASS
+
+EOM
+
+cat  << EOM
 ## No Data
 
-Apart from the fields set automatically by th enumb3rspipeline
+Apart from the fields set automatically by the numb3rspipeline
 there are no other data.
 
 _Solution:_ Extract the data from the infographic.
