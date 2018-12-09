@@ -23,6 +23,11 @@ DROPBOX_USERDIR=$2
 USER_DB="${DROPBOX_USERDIR}"_sqlite.db
 DATATBL="iotdata"
 
+# template for format diff
+NUMB3RS_TEMPLATE="$SCRIPT_DIR"/numb3rs_template.csv
+# report file
+DQ_REPORT="dq.md"
+
 # tools
 #
 GIT='git'
@@ -64,6 +69,26 @@ qi_sum() {
     | csvcut --skip-lines 1 | wc -l
 }
 
+# returns markdown formated enumeration of ethercalc URLs
+# Param #1: number of quality incidents
+# Param #2: array containing the Ethercalc URLs
+qi_md_list() {
+    local QI_SUM=$1
+    local QI_EC_URL=("$@")
+    local FIRST=0
+    if [[ $QI_SUM -ne 0 ]]; then
+        for EC_URL in ${QI_EC_URL[@]}
+        do
+            if [[ $FIRST -ne 0  ]]; then
+                # we ignore first entry
+                echo "1. "$EC_URL""
+            else
+                FIRST=1
+            fi
+        done
+    fi
+}
+
 ##############
 
 ##############
@@ -78,6 +103,12 @@ done
 
 command -v "$DIFF" >/dev/null 2>&1 \
     || { log_echo "ERROR" "I require "$DIFF" but it's not installed. Abort."; exit 1; }
+
+if [ ! -f "$NUMB3RS_TEMPLATE" ]; then
+    log_echo "ERROR" "Template for format diff not found. Abort."
+    exit 1
+fi
+
 
 ##############
 
@@ -130,18 +161,19 @@ QI_CSVFORMAT_ERR=()
 for CSVFILE in "${DROPBOX_USERDIR}"/*.csvv
 do
     #echo "$CSVFILE"
-    #VALID_HEADERS=$(csvstack --skipinitialspace --skip-lines 2 marielledemuth/0600huy6gplw.csv | csvstat --csv | csvcut -c 1,2)
-    #diff <(echo $VALID_HEADERS) <(csvstack --skipinitialspace --skip-lines 2 marielledemuth/0600huy6gplw.csv | csvstat --csv | csvcut -c 1,2)
+    VALID_HEADERS=$(csvstack --skipinitialspace --skip-lines 2 "$NUMB3RS_TEMPLATE" | csvstat --csv | csvcut -c 1,2)
+    CSVFILE_HEADER=$(csvstack --skipinitialspace --skip-lines 2 "$CSVFILE" | csvstat --csv | csvcut -c 1,2)
+    #echo $VALID_HEADERS
+    diff <(echo $VALID_HEADERS) <(echo $CSVFILE_HEADER) > /dev/null
 
-    csvstack --skipinitialspace --skip-lines 2 \
-    "$CSVFILE" \
-    | csvstat --columns URL,home_url,filename,device_class,device_count,market_class,market_volume,prognosis_year,publication_year,authorship_class,"Dropbox folder" > /dev/null
     FORMAT_ERR=$?
     if [[ $FORMAT_ERR -ne 0 ]]; then
         log_echo "WARN" "File format error: "$CSVFILE""
         QI_SUM_CSVFORMAT_ERR=$(($QI_SUM_CSVFORMAT_ERR + 1))
         EC_ERR=$(basename "$CSVFILE" | cut -d '.' -f1 | sed 's/^/https:\/\/www.ethercalc.org\//')
         QI_CSVFORMAT_ERR+=( "$EC_ERR" )
+    else
+        log_echo "INFO" "File format ok: "$CSVFILE""
     fi
 done
 
@@ -195,14 +227,21 @@ log_echo "INFO" "Number of empty data rows: $QI_SUM_NODATA"
 SQLQUERY="SELECT * FROM "${DATATBL}" WHERE \"Dropbox folder\" NOT LIKE \"%"${DROPBOX_USERDIR}"%\";"
 mapfile -t QI_UNEX_DROPBOX_FOLDER <<< $(qi_ec_url "${USER_DB}" "${SQLQUERY}")
 QI_SUM_UNEX_DROPBOX_FOLDER=$(qi_sum "${USER_DB}" "${SQLQUERY}")
-log_echo "INFO" "Number unexpected data in \"Dropbox folder\": $QI_SUM_UNEX_DROPBOX_FOLDER"
+log_echo "INFO" "Number of unexpected data in \"Dropbox folder\": $QI_SUM_UNEX_DROPBOX_FOLDER"
 
 # QI_UNEX_DEVICE_COUNT
 # source: https://stackoverflow.com/a/51383461
 SQLQUERY="SELECT * FROM "${DATATBL}" WHERE device_count GLOB '*[^0-9]*' AND device_count LIKE '_%';"
 mapfile -t QI_UNEX_DEVICE_COUNT <<< $(qi_ec_url "${USER_DB}" "${SQLQUERY}")
 QI_SUM_UNEX_DEVICE_COUNT=$(qi_sum "${USER_DB}" "${SQLQUERY}")
-log_echo "INFO" "Number unexpected data in \"device_class\": $QI_SUM_UNEX_DEVICE_COUNT"
+log_echo "INFO" "Number of unexpected data in \"device_class\": $QI_SUM_UNEX_DEVICE_COUNT"
+
+# QI_UNEX_MARKET_VOLUME
+# source: https://stackoverflow.com/a/51383461
+SQLQUERY="SELECT * FROM "${DATATBL}" WHERE market_volume GLOB '*[^0-9]*' AND market_volume LIKE '_%';"
+mapfile -t QI_UNEX_MARKET_VOLUME <<< $(qi_ec_url "${USER_DB}" "${SQLQUERY}")
+QI_SUM_UNEX_MARKET_VOLUME=$(qi_sum "${USER_DB}" "${SQLQUERY}")
+log_echo "INFO" "Number of unexpected data in \"market_volume\": $QI_SUM_UNEX_MARKET_VOLUME"
 
 ## Overall Quality Indicator
 SQLQUERY="SELECT 1-($QI_SUM_EMPTYURL \
@@ -215,6 +254,7 @@ SQLQUERY="SELECT 1-($QI_SUM_EMPTYURL \
     + $QI_SUM_EMPTY_DEVICE_CLASS \
     + $QI_SUM_EMPTY_MARKET_VOLUME \
     + $QI_SUM_EMPTY_MARKET_CLASS \
+    + $QI_SUM_UNEX_MARKET_VOLUME \
     )/($QI_DATAROWS+0.0)"
 QI=$(sql2csv --db sqlite:///"${USER_DB}" \
 --query "$SQLQUERY" \
@@ -223,7 +263,7 @@ log_echo "INFO" "Quality Indicator for "$DROPBOX_USERDIR": $QI"
 
 
 # write into file
-cat << EOM
+cat << EOM >> "./$DQ_REPORT"
 ## Quality Indicator for $DROPBOX_USERDIR
 
 The quality indicator (Q) is 1 - #incidents/data rows.
@@ -232,7 +272,8 @@ Q = $QI
 
 EOM
 
-cat << EOM
+cat << EOM >> "./$DQ_REPORT"
+
 ## CSV Format Errors
 
 Ethercalc documents contain the IoTNumb3rs project's data as csv formatted files.
@@ -244,8 +285,10 @@ _Solution:_ Check the Ethercalc documents and comply to the defined attributes.
 *Quality incidents:* $QI_SUM_CSVFORMAT_ERR
 
 EOM
+qi_md_list $QI_SUM_CSVFORMAT_ERR "${QI_CSVFORMAT_ERR[@]}" >> "./$DQ_REPORT"
 
-cat  << EOM
+cat  << EOM >> "./$DQ_REPORT"
+
 ## Empty URL Field
 
 The URL field must not be empty. This data problem may occur,
@@ -257,8 +300,10 @@ _Solution:_ fill up empty URL fields with the appropriate URL.
 *Quality incidents:* $QI_SUM_EMPTYURL
 
 EOM
+qi_md_list $QI_SUM_EMPTYURL "${QI_EMPTYURL[@]}" >> "./$DQ_REPORT"
 
-cat  << EOM
+cat  << EOM >> "./$DQ_REPORT"
+
 ## Empty "Dropbox folder" field
 
 The "Dropbox folder" field must not be empty. Like the previous "Empty URL"
@@ -270,8 +315,10 @@ _Solution:_ fill up empty "Dropbox folder" fields with the appropriate content.
 *Quality incidents:* $QI_SUM_EMPTY_DROPBOX_FOLDER
 
 EOM
+qi_md_list $QI_SUM_EMPTY_DROPBOX_FOLDER "${QI_EMPTY_DROPBOX_FOLDER[@]}" >> "./$DQ_REPORT"
 
-cat  << EOM
+cat  << EOM >> "./$DQ_REPORT"
+
 ## Empty "device_count" field
 
 The "device_count" field must not be empty, if device_class field contains data.
@@ -281,8 +328,10 @@ _Solution:_ fill up empty "device_count" fields with the appropriate content.
 *Quality incidents:* $QI_SUM_EMPTY_DEVICE_COUNT
 
 EOM
+qi_md_list $QI_SUM_EMPTY_DEVICE_COUNT "${QI_EMPTY_DEVICE_COUNT[@]}" >> "./$DQ_REPORT"
 
-cat  << EOM
+cat  << EOM >> "./$DQ_REPORT"
+
 ## Empty "device_class" field
 
 The "device_class" field must not be empty, if device_count field contains data.
@@ -292,8 +341,10 @@ _Solution:_ fill up empty "device_class" fields with the appropriate content.
 *Quality incidents:* $QI_SUM_EMPTY_DEVICE_CLASS
 
 EOM
+qi_md_list $QI_SUM_EMPTY_DEVICE_CLASS "${QI_EMPTY_DEVICE_CLASS[@]}" >> "./$DQ_REPORT"
 
-cat  << EOM
+cat  << EOM >> "./$DQ_REPORT"
+
 ## Empty "market_volume" field
 
 The "market_volume" field must not be empty, if market_class field contains data.
@@ -303,8 +354,10 @@ _Solution:_ fill up empty "market_volume" fields with the appropriate content.
 *Quality incidents:* $QI_SUM_EMPTY_MARKET_VOLUME
 
 EOM
+qi_md_list $QI_SUM_EMPTY_MARKET_VOLUME "${QI_EMPTY_MARKET_VOLUME[@]}" >> "./$DQ_REPORT"
 
-cat  << EOM
+cat  << EOM >> "./$DQ_REPORT"
+
 ## Empty "market_class" field
 
 The "market_class" field must not be empty, if market_volume field contains data.
@@ -314,8 +367,10 @@ _Solution:_ fill up empty "market_class" fields with the appropriate content.
 *Quality incidents:* $QI_SUM_EMPTY_MARKET_CLASS
 
 EOM
+qi_md_list $QI_SUM_EMPTY_MARKET_CLASS "${QI_EMPTY_MARKET_CLASS[@]}" >> "./$DQ_REPORT"
 
-cat  << EOM
+cat  << EOM >> "./$DQ_REPORT"
+
 ## No Data
 
 Apart from the fields set automatically by the numb3rspipeline
@@ -328,8 +383,10 @@ then remove the entire content from the Ethercalc sheet.
 *Quality incidents:* $QI_SUM_NODATA
 
 EOM
+qi_md_list $QI_SUM_NODATA "${QI_NODATA[@]}" >> "./$DQ_REPORT"
 
-cat  << EOM
+cat  << EOM >> "./$DQ_REPORT"
+
 ## Unexpected Content
 
 For some attributes we expect a specific form of the content.
@@ -343,6 +400,11 @@ user name: $DROPBOX_USERDIR
 
 *Quality incidents:* $QI_SUM_UNEX_DROPBOX_FOLDER
 
+EOM
+qi_md_list $QI_SUM_UNEX_DROPBOX_FOLDER "${QI_UNEX_DROPBOX_FOLDER[@]}" >> "./$DQ_REPORT"
+
+cat  << EOM >> "./$DQ_REPORT"
+
 ### Attribute: device_count
 
 All data entries for this attribute *must* contains integers.
@@ -350,6 +412,19 @@ All data entries for this attribute *must* contains integers.
 *Quality incidents:* $QI_SUM_UNEX_DEVICE_COUNT
 
 EOM
+qi_md_list $QI_SUM_UNEX_DEVICE_COUNT "${QI_UNEX_DEVICE_COUNT[@]}" >> "./$DQ_REPORT"
+
+cat  << EOM >> "./$DQ_REPORT"
+
+### Attribute: market_volume
+
+All data entries for this attribute *must* contains integers.
+
+*Quality incidents:* $QI_SUM_UNEX_MARKET_VOLUME
+
+EOM
+qi_md_list $QI_SUM_UNEX_MARKET_VOLUME "${QI_UNEX_MARKET_VOLUME[@]}" >> "./$DQ_REPORT"
+
 #
 
 # remove USER_DB
