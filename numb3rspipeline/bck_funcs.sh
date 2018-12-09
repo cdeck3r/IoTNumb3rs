@@ -126,3 +126,36 @@ commit_push_dataroot_git() {
     # revert to original URL in order to avoid token to be stored
     $GIT remote set-url --push origin "https://github.com/cdeck3r/IoTNumb3rs.git"
 }
+
+#
+# commit and push specified files in DATAROOT directory
+#
+# Param #1: DATAROOT directory
+# Param #2: DROPBOX_USERDIR
+# Param #3: COMMIT_FILES
+commit_push_files_dataroot_git() {
+    local DATAROOT=$1
+    local DROPBOX_USERDIR=$2
+    local COMMIT_FILES=("$3")
+
+    # go into DATAROOT
+    cd "$DATAROOT"
+    # add COMMIT_FILES and push using github token
+    for CFILE in $COMMIT_FILES
+    do
+        $GIT add "$CFILE"
+    done
+
+    $GIT commit -m "Adding IoTNumb3rs data for user "$DROPBOX_USERDIR""
+    #$GIT push
+    # Final error / info logging
+    if [[ $? -ne 0 ]]; then
+        log_echo "ERROR" "Error pushing data into branch <iotdata> on Github."
+        BCK_ERROR=1
+    else
+        log_echo "INFO" "Successfully pushed data into branch <iotdata> on Github."
+        BCK_ERROR=0
+    fi
+    # revert to original URL in order to avoid token to be stored
+    $GIT remote set-url --push origin "https://github.com/cdeck3r/IoTNumb3rs.git"
+}

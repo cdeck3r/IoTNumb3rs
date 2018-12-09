@@ -27,6 +27,10 @@ DATATBL="iotdata"
 NUMB3RS_TEMPLATE="$SCRIPT_DIR"/numb3rs_template.csv
 # report file
 DQ_REPORT="dq.md"
+SLACK_MSG_FILE="/tmp/slack_msg_dq.txt"
+
+# error code
+BCK_ERROR=0
 
 # tools
 #
@@ -425,7 +429,14 @@ All data entries for this attribute *must* contains integers.
 EOM
 qi_md_list $QI_SUM_UNEX_MARKET_VOLUME "${QI_UNEX_MARKET_VOLUME[@]}" >> "./$DQ_REPORT"
 
-#
-
 # remove USER_DB
-#rm -rf "${USER_DB}"
+rm -rf "${USER_DB}"
+
+# commit data quality report (dq.md )
+COMMIT_FILES=""./$DQ_REPORT""
+commit_push_files_dataroot_git "$DATAROOT" "$DROPBOX_USERDIR" "${COMMIT_FILES[@]}"
+
+# notify slack
+echo "Quality Indicator Q: $QI" > "$SLACK_MSG_FILE"
+#
+exit $BCK_ERROR
