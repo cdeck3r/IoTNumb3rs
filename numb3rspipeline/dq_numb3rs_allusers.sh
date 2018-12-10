@@ -26,7 +26,7 @@ DROPBOX_USERDIR=
 DROPBOX_USERDIR=$2
 
 # report file
-DQ_REPORT="dq.md"
+DQ_REPORT=""$DATAROOT"/dq.md"
 
 # include common funcs
 source ./funcs.sh
@@ -50,7 +50,7 @@ fi
 #
 if [ -z "$DROPBOX_USERDIR" ]; then
 	# set default value
-	DROPBOX_USERDIR=( "JinlinHolic" "MariaMarg" "marielledemuth" "Pattoho" "ManualUser")
+	DROPBOX_USERDIR=( "JinlinHolic" "MariaMarg" "marielledemuth" "Pattoho" )
 fi
 # log string
 log_echo "INFO" "numb3rs data quality report configured for user(s): "${DROPBOX_USERDIR[@]}""
@@ -61,17 +61,17 @@ log_echo "INFO" "numb3rs data quality report configured for user(s): "${DROPBOX_
 DQNUMB3RS='./dq_numb3rs.sh'
 SLACKR='../slackr/slackr'
 
-cd "$DATAROOT"
-cat  << EOM > "./$DQ_REPORT"
+# initialize the dq report
+cat  << EOM > "$DQ_REPORT"
 # IoTNumb3rs Data Quality Report
 
 EOM
 for USERDIR in "${DROPBOX_USERDIR[@]}"
 do
-	echo "1. "$USERDIR"" >> "./$DQ_REPORT"
+	echo "1. ["$USERDIR"](#quality-indicator-for-"$USERDIR")" >> "$DQ_REPORT"
 done
 
-# call numb3rspipeline for each user
+# call data quality report for each user
 for USERDIR in "${DROPBOX_USERDIR[@]}"
 do
 	"$DQNUMB3RS" "$DATAROOT" "$USERDIR"

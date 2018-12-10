@@ -121,7 +121,7 @@ fi
 log_echo "INFO" "Prepare backup data directory: "$DATAROOT""
 clone_dataroot_git "$DATAROOT"
 update_config_dataroot_git "$DATAROOT"
-clean_dataroot_git "$DATAROOT"
+#clean_dataroot_git "$DATAROOT"
 log_echo "INFO" "All preps done for branch <iotdata> in directory: "$DATAROOT""
 # back to where you come from
 cd "$SCRIPT_DIR"
