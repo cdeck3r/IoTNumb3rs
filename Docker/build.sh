@@ -6,7 +6,7 @@
 # Author: Christian Decker (cdeck3r)
 #
 
-echo Building TA base [iotnumb3rs:latest]
+echo Building [iotnumb3rs:latest]
 TARGET=latest
 
 docker build --force-rm --rm --no-cache \
