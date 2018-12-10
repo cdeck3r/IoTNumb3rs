@@ -147,7 +147,7 @@ commit_push_files_dataroot_git() {
     done
 
     $GIT commit -m "Adding IoTNumb3rs data for user "$DROPBOX_USERDIR""
-    #$GIT push
+    $GIT push
     # Final error / info logging
     if [[ $? -ne 0 ]]; then
         log_echo "ERROR" "Error pushing data into branch <iotdata> on Github."
@@ -158,4 +158,17 @@ commit_push_files_dataroot_git() {
     fi
     # revert to original URL in order to avoid token to be stored
     $GIT remote set-url --push origin "https://github.com/cdeck3r/IoTNumb3rs.git"
+}
+
+# removes untracked files from DATAROOT directory
+#
+# Param #1: DATAROOT directory
+clean_dataroot_git() {
+    local DATAROOT=$1
+    # go into DATAROOT
+    cd "$DATAROOT"
+    $GIT clean -f
+    if [[ $? -ne 0 ]]; then
+        log_echo "ERROR" "GIT could not clean directory: "$DATAROOT""
+    fi
 }

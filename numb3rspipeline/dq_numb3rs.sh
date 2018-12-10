@@ -121,6 +121,7 @@ fi
 log_echo "INFO" "Prepare backup data directory: "$DATAROOT""
 clone_dataroot_git "$DATAROOT"
 update_config_dataroot_git "$DATAROOT"
+clean_dataroot_git "$DATAROOT"
 log_echo "INFO" "All preps done for branch <iotdata> in directory: "$DATAROOT""
 # back to where you come from
 cd "$SCRIPT_DIR"
@@ -180,6 +181,8 @@ do
         log_echo "INFO" "File format ok: "$CSVFILE""
     fi
 done
+## FIXME we don't consider format errors
+QI_SUM_CSVFORMAT_ERR=0
 
 ## Quality problems
 # QI: QI_SUM_EMPTYURL
@@ -435,6 +438,7 @@ rm -rf "${USER_DB}"
 # commit data quality report (dq.md )
 COMMIT_FILES=""./$DQ_REPORT""
 commit_push_files_dataroot_git "$DATAROOT" "$DROPBOX_USERDIR" "${COMMIT_FILES[@]}"
+clean_dataroot_git "$DATAROOT"
 
 # notify slack
 echo "Quality Indicator Q: $QI" > "$SLACK_MSG_FILE"
