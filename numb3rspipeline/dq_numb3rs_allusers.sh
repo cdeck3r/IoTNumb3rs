@@ -86,7 +86,7 @@ do
 	else
 		# load slack message file
 		SLACK_MSG_FILE="/tmp/slack_msg_dq.txt"
-        echo "Successfully created data quality report for user: $USERDIR" | cat - "$SLACK_MSG_FILE" | "$SLACKR" -r random -n $USERDIR -c good -i :heavy_check_mark:
+        echo "Successfully created data quality report for user: $USERDIR" | cat - "$SLACK_MSG_FILE" | "$SLACKR" -r random -n $USERDIR -c good -i :bar_chart:
 		#"$SLACKR" -r random -n $USERDIR -c good -i :heavy_check_mark: "Successfully created data quality report for user: $USERDIR"
     fi
 done
