@@ -457,5 +457,7 @@ clean_dataroot_git "$DATAROOT"
 
 # notify slack
 echo "Quality Indicator Q: $QI" > "$SLACK_MSG_FILE"
+echo "Quality report URL: " >> "$SLACK_MSG_FILE"
+echo "https://github.com/cdeck3r/IoTNumb3rs/blob/iotdata/dq.md#quality-indicator-for-"${DROPBOX_USERDIR}"" >> "$SLACK_MSG_FILE"
 #
 exit $BCK_ERROR
