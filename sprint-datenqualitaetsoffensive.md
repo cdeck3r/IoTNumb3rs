@@ -10,15 +10,15 @@ Mit den IoTNumb3rs Daten analytisch arbeiten können.
 
 ## Messbare Resultate
 
-* Jeder Nutzer erfasst 5 Tage lang, jeden Tag 5 Infografiken.
-* Am Ende des Sprints sollen insgesamt, d.h. über alle Nutzer zusammen, mindestens 100 neue Datensätze hinzugekommen sein.
-* Am Ende des Sprints soll die [Datenqualität](https://github.com/cdeck3r/IoTNumb3rs/blob/iotdata/dq.md) >95%
-* Mindestens 2 Leistungsstatistiken als Balkendiagramme sind zu erstellen.
-* Mindestens 4 Boxplot Diagramme über die IoTNumb3rs Daten sind zu erstellen.
+* Jeder Nutzer erfasst 5 Tage lang, durchschnittlich 5 Infografiken pro Tag.
+* Am Ende des Sprints sind insgesamt, d.h. über alle Nutzer zusammen, mindestens 100 neue Datensätze hinzugekommen.
+* Am Ende des Sprints ist die [Datenqualität](https://github.com/cdeck3r/IoTNumb3rs/blob/iotdata/dq.md) >95%
+* Mindestens 2 Leistungsstatistiken als Balkendiagramme sind erstellt.
+* Mindestens 4 Boxplot Diagramme über die IoTNumb3rs Daten sind erstellt.
 
 Optional:
-* Anzahl der duplizierter Infografiken *über* mehrere Users ist zu quantifizieren. Wie stark unterscheiden sich die von verschiedenen Usern extrahierten Daten?
-* Für Boxplot Diagramme ist zusätzlich der jeweilige Datenumfang für jeden Boxplot als Balkendiagramm anzugeben.
+* Anzahl der duplizierter Infografiken *über* mehrere Users ist bekannt. Wie stark unterscheiden sich die von verschiedenen Usern extrahierten Daten?
+* Für Boxplot Diagramme gibt es zusätzlich ein Balkendiagramm über den jeweiligen Datenumfang für jeden Boxplot.
 
 #### Sprintdauer
 
