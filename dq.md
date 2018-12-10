@@ -227,3 +227,215 @@ All data entries for this attribute *must* contains integers.
 1. https://www.ethercalc.org/ie54pnqefd6n
 1. https://www.ethercalc.org/n0h4vfji6cll
 1. https://www.ethercalc.org/s48myzy61v9l
+## Quality Indicator for MariaMarg
+
+The quality indicator (Q) is 1 - #incidents/data rows.
+
+Q = 0.639405204461
+
+
+## CSV Format Errors
+
+Ethercalc documents contain the IoTNumb3rs project's data as csv formatted files.
+Format errors may cause the exclusion of this partial data from the
+data analysis.
+
+_Solution:_ Check the Ethercalc documents and comply to the defined attributes.
+
+*Quality incidents:* 0
+
+
+## Empty URL Field
+
+The URL field must not be empty. This data problem may occur,
+if multiple figures are extracted from an infographic, but only
+for the very first the infographic's URL is provided.
+
+_Solution:_ fill up empty URL fields with the appropriate URL.
+
+*Quality incidents:* 8
+
+1. https://www.ethercalc.org/2p5noj98sdx3
+1. https://www.ethercalc.org/3r3hjjzpddob
+1. https://www.ethercalc.org/4ty0uic3depw
+1. https://www.ethercalc.org/954ao3o2kkl2
+1. https://www.ethercalc.org/ae5bsdo0ib18
+1. https://www.ethercalc.org/ss7nwwj2i81n
+1. https://www.ethercalc.org/ud1dacnrukci
+1. https://www.ethercalc.org/ytb1gys08xik
+
+## Empty "Dropbox folder" field
+
+The "Dropbox folder" field must not be empty. Like the previous "Empty URL"
+problem this data problem may occur, if multiple figures are extracted
+from an infographic, but only for the very first the infographic's URL is provided.
+
+_Solution:_ fill up empty "Dropbox folder" fields with the appropriate content.
+
+*Quality incidents:* 0
+
+
+## Empty "device_count" field
+
+The "device_count" field must not be empty, if device_class field contains data.
+
+_Solution:_ fill up empty "device_count" fields with the appropriate content.
+
+*Quality incidents:* 52
+
+1. https://www.ethercalc.org/0b6hhpwxiv3j
+1. https://www.ethercalc.org/0hhrnf7rp3e9
+1. https://www.ethercalc.org/20wbfoapn4hz
+1. https://www.ethercalc.org/22b8by6m8iht
+1. https://www.ethercalc.org/279om4tb9ow1
+1. https://www.ethercalc.org/2b7uzxhrx8q7
+1. https://www.ethercalc.org/5zp0fyqasls0
+1. https://www.ethercalc.org/8bhz2gu86x9z
+1. https://www.ethercalc.org/8ouqwmug6dj8
+1. https://www.ethercalc.org/8x0pci02vno7
+1. https://www.ethercalc.org/97a7j7t29vie
+1. https://www.ethercalc.org/9p2ymq7kl1sq
+1. https://www.ethercalc.org/9rnagyoaj3f9
+1. https://www.ethercalc.org/ajcwcjnhxz10
+1. https://www.ethercalc.org/bf0kyumn7s76
+1. https://www.ethercalc.org/d2i8m0px9u6v
+1. https://www.ethercalc.org/eea86vsurjid
+1. https://www.ethercalc.org/gi5zh4uklo62
+1. https://www.ethercalc.org/glm2ptiwxh6c
+1. https://www.ethercalc.org/h7t34my0wnpd
+1. https://www.ethercalc.org/hgh0azlv4bsq
+1. https://www.ethercalc.org/hm5zrxhfo2u9
+1. https://www.ethercalc.org/hqdi51sukaof
+1. https://www.ethercalc.org/is7pxxudw6s0
+1. https://www.ethercalc.org/j76yqvcw27aw
+1. https://www.ethercalc.org/klcb12rz64z2
+1. https://www.ethercalc.org/l42ruico3zqg
+1. https://www.ethercalc.org/ly6w1k1tgzdb
+1. https://www.ethercalc.org/m1rr1tfot642
+1. https://www.ethercalc.org/mlp3nj11wber
+1. https://www.ethercalc.org/msi32444p4dy
+1. https://www.ethercalc.org/ovtov9j03eow
+1. https://www.ethercalc.org/p36klc4shlzh
+1. https://www.ethercalc.org/pjy86grzf3rh
+1. https://www.ethercalc.org/pl5qdt1c06jt
+1. https://www.ethercalc.org/pmx9r0n1e0nf
+1. https://www.ethercalc.org/pqkm7a0qolip
+1. https://www.ethercalc.org/qxfbri8r7h5p
+1. https://www.ethercalc.org/sjsbaqkccgx2
+1. https://www.ethercalc.org/smabmsf6t93q
+1. https://www.ethercalc.org/uquw4cx3ek9a
+1. https://www.ethercalc.org/vcsfhqd45xho
+1. https://www.ethercalc.org/veai3a9zc63t
+1. https://www.ethercalc.org/vt7jvxmvcaof
+1. https://www.ethercalc.org/wgypvf6zugdp
+1. https://www.ethercalc.org/wzrl0jgece7h
+1. https://www.ethercalc.org/xfi98n2xvmr6
+1. https://www.ethercalc.org/xlhyr1nbs3to
+1. https://www.ethercalc.org/ya1lghg7jh9p
+1. https://www.ethercalc.org/ymbi4lnr54su
+1. https://www.ethercalc.org/yqclleg1xt6h
+1. https://www.ethercalc.org/zn6anwpnkpzf
+
+## Empty "device_class" field
+
+The "device_class" field must not be empty, if device_count field contains data.
+
+_Solution:_ fill up empty "device_class" fields with the appropriate content.
+
+*Quality incidents:* 1
+
+1. https://www.ethercalc.org/o4w22azy1oeq
+
+## Empty "market_volume" field
+
+The "market_volume" field must not be empty, if market_class field contains data.
+
+_Solution:_ fill up empty "market_volume" fields with the appropriate content.
+
+*Quality incidents:* 0
+
+
+## Empty "market_class" field
+
+The "market_class" field must not be empty, if market_volume field contains data.
+
+_Solution:_ fill up empty "market_class" fields with the appropriate content.
+
+*Quality incidents:* 0
+
+
+## No Data
+
+Apart from the fields set automatically by the numb3rspipeline
+there are no other data.
+
+_Solution:_ Extract the data from the infographic.
+If the infographic does not provide appropriate data,
+then remove the entire content from the Ethercalc sheet.
+
+*Quality incidents:* 33
+
+1. https://www.ethercalc.org/0xamai0e5fhp
+1. https://www.ethercalc.org/0yirixgzepub
+1. https://www.ethercalc.org/2p5noj98sdx3
+1. https://www.ethercalc.org/3r3hjjzpddob
+1. https://www.ethercalc.org/3upm8da4s7lk
+1. https://www.ethercalc.org/4qgtoa8u3hbd
+1. https://www.ethercalc.org/4qmyltz8syw1
+1. https://www.ethercalc.org/4ty0uic3depw
+1. https://www.ethercalc.org/58f2ny2jq6sr
+1. https://www.ethercalc.org/90zlp21qrei7
+1. https://www.ethercalc.org/954ao3o2kkl2
+1. https://www.ethercalc.org/ae5bsdo0ib18
+1. https://www.ethercalc.org/bh2bnifgh2kw
+1. https://www.ethercalc.org/cf63wjvnmyn1
+1. https://www.ethercalc.org/cxwz8nc1dl1f
+1. https://www.ethercalc.org/hqv0vo55bqul
+1. https://www.ethercalc.org/isdjn718tzce
+1. https://www.ethercalc.org/kzo20dlm8vi0
+1. https://www.ethercalc.org/m6blq0xye8sb
+1. https://www.ethercalc.org/mh46v4orb06f
+1. https://www.ethercalc.org/nm300zhuny1s
+1. https://www.ethercalc.org/ota6i5d2fced
+1. https://www.ethercalc.org/pmji1w4lntl2
+1. https://www.ethercalc.org/ryjdl9c042ww
+1. https://www.ethercalc.org/ss7nwwj2i81n
+1. https://www.ethercalc.org/su6f4j63fvid
+1. https://www.ethercalc.org/ud1dacnrukci
+1. https://www.ethercalc.org/ue9ai917q5c4
+1. https://www.ethercalc.org/wzw3itg6qj3p
+1. https://www.ethercalc.org/y9vdfdva9l6n
+1. https://www.ethercalc.org/yryu00c7sp8e
+1. https://www.ethercalc.org/ytb1gys08xik
+1. https://www.ethercalc.org/z9xgqwaz48zn
+
+## Unexpected Content
+
+For some attributes we expect a specific form of the content.
+This section investigates various attributes. An incident is found
+of the attribute does not the expected content.
+
+### Attribute: Dropbox folder
+
+All data entries for this attribute *must* contains the
+user name: MariaMarg
+
+*Quality incidents:* 0
+
+
+### Attribute: device_count
+
+All data entries for this attribute *must* contains integers.
+
+*Quality incidents:* 1
+
+1. https://www.ethercalc.org/kpnoethmey1u
+
+### Attribute: market_volume
+
+All data entries for this attribute *must* contains integers.
+
+*Quality incidents:* 2
+
+1. https://www.ethercalc.org/msi32444p4dy
+1. https://www.ethercalc.org/pqkm7a0qolip
