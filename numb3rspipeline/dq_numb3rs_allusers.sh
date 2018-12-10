@@ -61,21 +61,21 @@ log_echo "INFO" "numb3rs data quality report configured for user(s): "${DROPBOX_
 DQNUMB3RS='./dq_numb3rs.sh'
 SLACKR='../slackr/slackr'
 
-# initialize the dq report
-cat  << EOM > "$DQ_REPORT"
-# IoTNumb3rs Data Quality Report
-
-EOM
+# Prepare user list to use it as script parameter later on
 for USERDIR in "${DROPBOX_USERDIR[@]}"
 do
-	echo "1. ["$USERDIR"](#quality-indicator-for-"$USERDIR")" >> "$DQ_REPORT"
+	ALLUSERS="$ALLUSERS "$USERDIR""
 done
 
 # call data quality report for each user
+INITDQ=1
 for USERDIR in "${DROPBOX_USERDIR[@]}"
 do
-	"$DQNUMB3RS" "$DATAROOT" "$USERDIR"
+	"$DQNUMB3RS" "$DATAROOT" "$USERDIR" $INITDQ "${ALLUSERS[@]}"
 	ERR_CODE=$?
+	if [[ $INITDQ -ne 0 ]]; then
+		INITDQ=0
+	fi
 	if [ $ERR_CODE -eq 20 ]; then
 		"$SLACKR" -r random -n $USERDIR -c good -i :white_check_mark: "Nothing has changed for user: $USERDIR"
 		continue

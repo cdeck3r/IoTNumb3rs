@@ -18,6 +18,9 @@ SCRIPT_NAME=$0
 DATAROOT=$1
 # the name of the dropbox directory where the url_list is found
 DROPBOX_USERDIR=$2
+# Whether it is the initial run of data quality report
+INITDQ=$3
+ALLUSERS=("$4")
 
 # User's data as sqlite db
 USER_DB="${DROPBOX_USERDIR}"_sqlite.db
@@ -121,7 +124,7 @@ fi
 log_echo "INFO" "Prepare backup data directory: "$DATAROOT""
 clone_dataroot_git "$DATAROOT"
 update_config_dataroot_git "$DATAROOT"
-#clean_dataroot_git "$DATAROOT"
+clean_dataroot_git "$DATAROOT"
 log_echo "INFO" "All preps done for branch <iotdata> in directory: "$DATAROOT""
 # back to where you come from
 cd "$SCRIPT_DIR"
@@ -137,6 +140,18 @@ log_echo "INFO" "Processing user data directory: "$DATAPATH""
 ##################################
 
 cd "$DATAROOT"
+
+# initialize the dq report
+if [[ $INITDQ -ne 0 ]]; then
+    cat  << EOM > "$DQ_REPORT"
+    # IoTNumb3rs Data Quality Report
+
+EOM
+    for USERDIR in $ALLUSERS
+    do
+    	echo "1. ["$USERDIR"](#quality-indicator-for-"$USERDIR")" >> "$DQ_REPORT"
+    done
+fi
 
 # import into DB
 # cut all invalid files
