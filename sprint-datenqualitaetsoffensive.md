@@ -22,13 +22,12 @@ Optional:
 
 #### Sprintdauer
 
-Start: 10.12.2018
+Start: 10.12.2018  
 Ende: 18.12.2018
 
 #### Fortschrittsverfolgung
 
-Datenerfassung: [stats.csv](https://github.com/cdeck3r/IoTNumb3rs/blob/iotdata/stats.csv)
-
+Datenerfassung: [stats.csv](https://github.com/cdeck3r/IoTNumb3rs/blob/iotdata/stats.csv)  
 Datenqualität: [dq.md](https://github.com/cdeck3r/IoTNumb3rs/blob/iotdata/dq.md)
 
 ### Vorgehen
@@ -66,7 +65,7 @@ Die optionalen Fragestellungen von oben können ebenfalls auf dem [Datenfile aus
 Am Ende des Sprints werden die erfassten Daten analysiert und mit dem Stand vom Startdatum verglichen. Dabei werden die geforderten Resultat wie folgt gemessen
 
 Messgröße `Total data rows`: Alle Datensätze eines Nutzers  
-Messgröße `Distinct infographics`: verschiedene Infografiken eines Users
+Messgröße `Distinct infographics`: verschiedene Infografiken eines Users  
 Messgröße `Datenqualität Q`: Qualitätsindikator aus [dq.md](https://github.com/cdeck3r/IoTNumb3rs/blob/iotdata/dq.md)
 
 ### Stand 10.12.2018
