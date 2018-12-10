@@ -2,7 +2,7 @@
 description: Mit IoTNumb3rs Daten analytisch arbeiten
 ---
 
-# Sprint: Datenqualitätsoffensive
+# Sprint: Datenqualitätsoffensive 
 
 ## Ziel
 
