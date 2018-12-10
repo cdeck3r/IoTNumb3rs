@@ -144,7 +144,7 @@ cd "$DATAROOT"
 # initialize the dq report
 if [[ $INITDQ -ne 0 ]]; then
     cat  << EOM > "$DQ_REPORT"
-    # IoTNumb3rs Data Quality Report
+# IoTNumb3rs Data Quality Report
 
 EOM
     for USERDIR in $ALLUSERS
