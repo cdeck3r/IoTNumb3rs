@@ -1,7 +1,5 @@
-<html>
-<head><title>502 Bad Gateway</title></head>
-<body bgcolor="white">
-<center><h1>502 Bad Gateway</h1></center>
-<hr><center>nginx/1.13.8</center>
-</body>
-</html>
+|IoTNumb3rs Datenerfassung|||||||||||
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+||||||||||||
+|URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
+|https://iotuk.org.uk/wp-content/uploads/2017/05/IoT-UK-Infographic45b25d-pdf-1.jpg|https://iotuk.org.uk/iotuk-year-two-the-numbers/|file7_file6_170130-infographic-internet-of-things-truncated.jpg||||||||Pattoho/20181118-0006|
