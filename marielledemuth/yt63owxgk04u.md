@@ -3,7 +3,7 @@
 ||||||||||||
 |URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
 |http://2oqz471sa19h3vbwa53m33yj.wpengine.netdna-cdn.com/wp-content/uploads/2016/04/iot-will-change-your-life.png|http://www.visualcapitalist.com/internet-of-things-will-change-your-life/|file8_iot-will-change-your-life.png|smart home|13000000000|||2020|2016|Journalist|marielledemuth/20181125-1200|
-||||vehicle|3500000000|||2020|2016|Journalist|marielledemuth/20181125-1200|
-||||wearable|411000000|||2020|2016|Journalist|marielledemuth/20181125-1200|
-||||healthcare|646000000|||2020|2016|Journalist|marielledemuth/20181125-1200|
-||||smart city|9700000000|||2020|2016|Journalist|marielledemuth/20181125-1200|
+|http://2oqz471sa19h3vbwa53m33yj.wpengine.netdna-cdn.com/wp-content/uploads/2016/04/iot-will-change-your-life.png|http://www.visualcapitalist.com/internet-of-things-will-change-your-life/|file8_iot-will-change-your-life.png|vehicle|3500000000|||2020|2016|Journalist|marielledemuth/20181125-1200|
+|http://2oqz471sa19h3vbwa53m33yj.wpengine.netdna-cdn.com/wp-content/uploads/2016/04/iot-will-change-your-life.png|http://www.visualcapitalist.com/internet-of-things-will-change-your-life/|file8_iot-will-change-your-life.png|wearable|411000000|||2020|2016|Journalist|marielledemuth/20181125-1200|
+|http://2oqz471sa19h3vbwa53m33yj.wpengine.netdna-cdn.com/wp-content/uploads/2016/04/iot-will-change-your-life.png|http://www.visualcapitalist.com/internet-of-things-will-change-your-life/|file8_iot-will-change-your-life.png|healthcare|646000000|||2020|2016|Journalist|marielledemuth/20181125-1200|
+|http://2oqz471sa19h3vbwa53m33yj.wpengine.netdna-cdn.com/wp-content/uploads/2016/04/iot-will-change-your-life.png|http://www.visualcapitalist.com/internet-of-things-will-change-your-life/|file8_iot-will-change-your-life.png|smart city|9700000000|||2020|2016|Journalist|marielledemuth/20181125-1200|

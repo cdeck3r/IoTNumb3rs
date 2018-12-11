@@ -3,8 +3,8 @@
 ||||||||||||
 |URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
 |http://res.cloudinary.com/engineering-com/image/upload/c_limit/Internet-of-things-savings-R2_gv56vu.jpg|https://fathym.com/2016/04/the-growing-iot-market-an-infographic/|file2_Internet-of-things-savings-R2_gv56vu.jpg|generic IoT|50000000000|||2020|2016|blogger|marielledemuth/20181106-0000|
-||||||value|1.9E+13|2026|2016|blogger|marielledemuth/20181106-0000|
-||||Smart Home|100000000|||2020|2016|blogger|marielledemuth/20181106-0000|
-||||Smart meters|1100000000|||2022|2016|blogger|marielledemuth/20181106-0000|
-||||||world output|1.42E+13|2030|2016|blogger|marielledemuth/20181106-0000|
-||||||global GDP|1.5E+13|2036|2016|bloger|marielledemuth/20181106-0000|
+|http://res.cloudinary.com/engineering-com/image/upload/c_limit/Internet-of-things-savings-R2_gv56vu.jpg|https://fathym.com/2016/04/the-growing-iot-market-an-infographic/|file2_Internet-of-things-savings-R2_gv56vu.jpg|||value|1.9E+13|2026|2016|blogger|marielledemuth/20181106-0000|
+|http://res.cloudinary.com/engineering-com/image/upload/c_limit/Internet-of-things-savings-R2_gv56vu.jpg|https://fathym.com/2016/04/the-growing-iot-market-an-infographic/|file2_Internet-of-things-savings-R2_gv56vu.jpg|Smart Home|100000000|||2020|2016|blogger|marielledemuth/20181106-0000|
+|http://res.cloudinary.com/engineering-com/image/upload/c_limit/Internet-of-things-savings-R2_gv56vu.jpg|https://fathym.com/2016/04/the-growing-iot-market-an-infographic/|file2_Internet-of-things-savings-R2_gv56vu.jpg|Smart meters|1100000000|||2022|2016|blogger|marielledemuth/20181106-0000|
+|http://res.cloudinary.com/engineering-com/image/upload/c_limit/Internet-of-things-savings-R2_gv56vu.jpg|https://fathym.com/2016/04/the-growing-iot-market-an-infographic/|file2_Internet-of-things-savings-R2_gv56vu.jpg|||world output|1.42E+13|2030|2016|blogger|marielledemuth/20181106-0000|
+|http://res.cloudinary.com/engineering-com/image/upload/c_limit/Internet-of-things-savings-R2_gv56vu.jpg|https://fathym.com/2016/04/the-growing-iot-market-an-infographic/|file2_Internet-of-things-savings-R2_gv56vu.jpg|||global GDP|1.5E+13|2036|2016|bloger|marielledemuth/20181106-0000|

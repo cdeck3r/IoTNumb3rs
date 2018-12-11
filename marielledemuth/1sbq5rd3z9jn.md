@@ -3,8 +3,7 @@
 ||||||||||||
 |URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
 |https://i.pinimg.com/564x/a8/05/16/a805167fe40ff0c208f3f9a9a6c47881.jpg|http://blog.venturepact.com/15-mind-blowing-stats-about-the-internet-of-things/|file2_a805167fe40ff0c208f3f9a9a6c47881.jpg|generic IoT|50000000000|||2020|2015|company|marielledemuth/20181123-1805|
-||||||revenue|1.9E+13|2020|2015|company|marielledemuth/20181123-1805|
-||||smart home|1900000000|||2019|2015|company|marielledemuth/20181123-1805|
-||||||revenue smart home|1900000000|2019|2015|company|marielledemuth/20181123-1805|
-||||||vehicle connected|0.9|2020|2015|company|marielledemuth/20181123-1805|
-||||wearable|171000000|||2016|2015|company|marielledemuth/20181123-1805|
+|https://i.pinimg.com/564x/a8/05/16/a805167fe40ff0c208f3f9a9a6c47881.jpg|http://blog.venturepact.com/15-mind-blowing-stats-about-the-internet-of-things/|file2_a805167fe40ff0c208f3f9a9a6c47881.jpg|||revenue|1.9E+13|2020|2015|company|marielledemuth/20181123-1805|
+|https://i.pinimg.com/564x/a8/05/16/a805167fe40ff0c208f3f9a9a6c47881.jpg|http://blog.venturepact.com/15-mind-blowing-stats-about-the-internet-of-things/|file2_a805167fe40ff0c208f3f9a9a6c47881.jpg|smart home|1900000000|||2019|2015|company|marielledemuth/20181123-1805|
+|https://i.pinimg.com/564x/a8/05/16/a805167fe40ff0c208f3f9a9a6c47881.jpg|http://blog.venturepact.com/15-mind-blowing-stats-about-the-internet-of-things/|file2_a805167fe40ff0c208f3f9a9a6c47881.jpg|||revenue smart home|1900000000|2019|2015|company|marielledemuth/20181123-1805|
+|https://i.pinimg.com/564x/a8/05/16/a805167fe40ff0c208f3f9a9a6c47881.jpg|http://blog.venturepact.com/15-mind-blowing-stats-about-the-internet-of-things/|file2_a805167fe40ff0c208f3f9a9a6c47881.jpg|wearable|171000000|||2016|2015|company|marielledemuth/20181123-1805|

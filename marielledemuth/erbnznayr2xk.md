@@ -2,4 +2,6 @@
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 ||||||||||||
 |URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
-|https://cdn2.hubspot.net/hubfs/292250/Collateral/Dialogic_RTC_IoT_Infographic.pdf|https://blog.dialogic.com/blog/iot-and-rtc-infographic|file4_Dialogic_RTC_IoT_Infographic.pdf||||||||marielledemuth/20181113-1800|
+|https://cdn2.hubspot.net/hubfs/292250/Collateral/Dialogic_RTC_IoT_Infographic.pdf|https://blog.dialogic.com/blog/iot-and-rtc-infographic|file4_Dialogic_RTC_IoT_Infographic.pdf|||worth IoT software and devices|6E+11|2019|||marielledemuth/20181113-1800|
+|https://cdn2.hubspot.net/hubfs/292250/Collateral/Dialogic_RTC_IoT_Infographic.pdf|https://blog.dialogic.com/blog/iot-and-rtc-infographic|file4_Dialogic_RTC_IoT_Infographic.pdf|||revenue|1.7E+12|2020||||
+|https://cdn2.hubspot.net/hubfs/292250/Collateral/Dialogic_RTC_IoT_Infographic.pdf|https://blog.dialogic.com/blog/iot-and-rtc-infographic|file4_Dialogic_RTC_IoT_Infographic.pdf|generic IoT|20800000000|||2020||||
