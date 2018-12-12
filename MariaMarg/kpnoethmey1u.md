@@ -2,7 +2,6 @@
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 ||||||||||||
 |URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
-|https://www.zurichna.com/_/media/dbe/zna/images/kh/campaigns/600x889_internet-of-everything-infographic.jpg|https://www.zurichna.com/en/knowledge/articles/2015/11/internet-of-things-infographic|file16_600x889_internet-of-everything-infographic.jpg|connected devices per person|6.85|||2020|2015|company|MariaMarg/20181124-0000|
 |https://www.zurichna.com/_/media/dbe/zna/images/kh/campaigns/600x889_internet-of-everything-infographic.jpg|https://www.zurichna.com/en/knowledge/articles/2015/11/internet-of-things-infographic|file16_600x889_internet-of-everything-infographic.jpg|generic IoT|8700000000|||2012|2015|company|MariaMarg/20181124-0000|
 |https://www.zurichna.com/_/media/dbe/zna/images/kh/campaigns/600x889_internet-of-everything-infographic.jpg|https://www.zurichna.com/en/knowledge/articles/2015/11/internet-of-things-infographic|file16_600x889_internet-of-everything-infographic.jpg|generic IoT|11200000000|||2013|2015|company|MariaMarg/20181124-0000|
 |https://www.zurichna.com/_/media/dbe/zna/images/kh/campaigns/600x889_internet-of-everything-infographic.jpg|https://www.zurichna.com/en/knowledge/articles/2015/11/internet-of-things-infographic|file16_600x889_internet-of-everything-infographic.jpg|generic IoT|14400000000|||2014|2015|company|MariaMarg/20181124-0000|
