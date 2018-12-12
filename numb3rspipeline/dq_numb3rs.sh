@@ -158,7 +158,7 @@ fi
 log_echo "INFO" "Import files into sqlite for user: "$DROPBOX_USERDIR""
 csvstack --skipinitialspace --skip-lines 2 \
 --linenumbers --filenames --group-name src_filename \
-"${DROPBOX_USERDIR}"/*.csv \
+$(find "${DROPBOX_USERDIR}" -name '*.csv' -type f -size +2c ) \
 | csvcut -c 1,2,3,4,5,6,7,8,9,10,11,12,13 \
 | csvsql --db sqlite:///"${USER_DB}" --tables ${DATATBL} \
 --insert --overwrite
