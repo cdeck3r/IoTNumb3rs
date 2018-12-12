@@ -50,6 +50,7 @@ source ./bck_funcs.sh
 log_echo "INFO" "Prepare backup data directory: "$DATAROOT""
 clone_dataroot_git "$DATAROOT"
 update_config_dataroot_git "$DATAROOT"
+clean_dataroot_git "$DATAROOT"
 log_echo "INFO" "All preps done for branch <iotdata> in directory: "$DATAROOT""
 # back to where you come from
 cd "$SCRIPT_DIR"
@@ -64,14 +65,14 @@ log_echo "INFO" "Processing user data directory: "$DATAPATH""
 
 ##################################
 
-# loop through all csv files of DROPBOX_USERDIR
-for CSVFILE in $(find "$DATAPATH" -type f -name '*.csv' 2> /dev/null); do
+# loop through all csv files of size > 2bytes of DROPBOX_USERDIR
+for CSVFILE in $(find "$DATAPATH" -type f -name '*.csv' -size +2c 2> /dev/null); do
     # grep for expected header
     # either    "IoTNumb3rs Datenerfassung"
     # or        "URL,filename"
     head -1 "$CSVFILE" | grep "IoTNumb3rs Datenerfassung\|URL,filename" > /dev/null
     if [[ $? -ne 0 ]]; then
-        log_echo "INFO" "File not valid: $CSVFILE"
+        log_echo "WARN" "File not valid: $CSVFILE"
         # constructs ethercalc URL from filename and download
         EC_URL=$(basename "$CSVFILE" | cut -d '.' -f 1)
         EC_URL="https://www.ethercalc.org/"${EC_URL}
