@@ -1,0 +1,8 @@
+|IoTNumb3rs Datenerfassung|||||||||||
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+||||||||||||
+|URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
+|https://iot.telefonica.com/sites/default/files/tel_iot_inteligencia_960_eng_v1_0.png|https://iot.telefonica.com/multimedia-resources/infographic-the-intelligence-of-the-iot|file4_tel_iot_inteligencia_960_eng_v1_0.png|generic IoT|50000000000|||2020|2018|scientist|marielledemuth/20181211-2100|
+|https://iot.telefonica.com/sites/default/files/tel_iot_inteligencia_960_eng_v1_0.png|https://iot.telefonica.com/multimedia-resources/infographic-the-intelligence-of-the-iot|file4_tel_iot_inteligencia_960_eng_v1_0.png|||investment|1.29E+12|2020|2018|scientist|marielledemuth/20181211-2100|
+|https://iot.telefonica.com/sites/default/files/tel_iot_inteligencia_960_eng_v1_0.png|https://iot.telefonica.com/multimedia-resources/infographic-the-intelligence-of-the-iot|file4_tel_iot_inteligencia_960_eng_v1_0.png|||worth|1E+11|2025|2018|scientist|marielledemuth/20181211-2100|
+|https://iot.telefonica.com/sites/default/files/tel_iot_inteligencia_960_eng_v1_0.png|https://iot.telefonica.com/multimedia-resources/infographic-the-intelligence-of-the-iot|file4_tel_iot_inteligencia_960_eng_v1_0.png|smart city cameras|1000000000|||2020|2018|scientist|marielledemuth/20181211-2100|
