@@ -32,7 +32,9 @@ SCRIPT_NAME=$0
 DATAROOT=$1
 # the name of the dropbox directory where the url_list is found
 DROPBOX_USERDIR=$2
-
+# template for ethercalc format
+NUMB3RS_TEMPLATE="$SCRIPT_DIR"/numb3rs_template.csv
+NUMB3RS_TEMPLATE_FILESIZE=$(stat -c %s "$NUMB3RS_TEMPLATE")
 # error record
 BCK_ERROR=0
 
@@ -66,7 +68,7 @@ log_echo "INFO" "Processing user data directory: "$DATAPATH""
 ##################################
 
 # loop through all csv files of size > 2bytes of DROPBOX_USERDIR
-for CSVFILE in $(find "$DATAPATH" -type f -name '*.csv' -size +2c 2> /dev/null); do
+for CSVFILE in $(find "$DATAPATH" -type f -name '*.csv' -size +${NUMB3RS_TEMPLATE_FILESIZE}c 2> /dev/null); do
     # grep for expected header
     # either    "IoTNumb3rs Datenerfassung"
     # or        "URL,filename"
@@ -80,6 +82,8 @@ for CSVFILE in $(find "$DATAPATH" -type f -name '*.csv' -size +2c 2> /dev/null);
         "$CURL" -s -S -L -k -O "$EC_URL.csv" # > "$DATAPATH"/$(basename "$EC_URL.csv")
         "$CURL" -s -S -L -k -O "$EC_URL.xlxs" # > "$DATAPATH"/$(basename "$EC_URL.csv")
         "$CURL" -s -S -L -k -O "$EC_URL.md"  # > "$DATAPATH"/$(basename "$EC_URL.csv")
+    else
+        log_echo "INFO" "File format ok: $CSVFILE"
     fi
 done
 log_echo "INFO" "All files processed for user: "$DROPBOX_USERDIR""
