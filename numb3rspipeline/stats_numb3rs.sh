@@ -146,5 +146,6 @@ commit_push_files_dataroot_git "$DATAROOT" \
     "$DROPBOX_USERDIR" "${COMMIT_FILES[@]}" \
     "Update statistics for user "$DROPBOX_USERDIR""
 ERR_CODE=$BCK_ERROR
+clean_dataroot_git "$DATAROOT"
 
 exit $ERR_CODE

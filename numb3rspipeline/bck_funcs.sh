@@ -115,7 +115,7 @@ commit_push_dataroot_git() {
     # push using github token
     $GIT add *
     $GIT commit -m "Backup IoTNumb3rs data for user "$DROPBOX_USERDIR""
-    #$GIT push
+    $GIT push
     # Final error / info logging
     if [[ $? -ne 0 ]]; then
         log_echo "ERROR" "Error pushing data into branch <iotdata> on Github."
@@ -153,7 +153,7 @@ commit_push_files_dataroot_git() {
         COMMIT_MSG="Adding IoTNumb3rs data for user "$DROPBOX_USERDIR""
     fi
     $GIT commit -m "$COMMIT_MSG"
-    #$GIT push
+    $GIT push
     # Final error / info logging
     if [[ $? -ne 0 ]]; then
         log_echo "ERROR" "Error pushing data into branch <iotdata> on Github."
