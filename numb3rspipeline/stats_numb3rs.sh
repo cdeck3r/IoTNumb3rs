@@ -22,57 +22,43 @@ DROPBOX_USERDIR=$2
 
 # stats output file
 STATS_FILE="$DATAROOT/stats.csv"
-
+# template for ethercalc format
+NUMB3RS_TEMPLATE="$SCRIPT_DIR"/numb3rs_template.csv
+NUMB3RS_TEMPLATE_FILESIZE=$(stat -c %s "$NUMB3RS_TEMPLATE")
 #
 # tools
 #
 GIT='git'
-DB_UPLOADER='../Dropbox-Uploader/dropbox_uploader.sh'
-CURL='curl'
 
 # include common funcs
 source ./funcs.sh
+source ./bck_funcs.sh
 
-# prep dir
-mkdir -p "$DATAROOT"
-cd "$DATAROOT"
-$GIT status
-if [[ $? -eq 128 ]]; then
-    log_echo "WARN" "Data directory is not in git: "$DATAROOT""
-    log_echo "INFO" "Clone branch <iotdata> in "$DATAROOT""
-    # one dir up, e.g. /tmp
-    cd "$(dirname "$DATAROOT")"
-    # ... and clone branch iodata into ./iotdata
-    $GIT clone https://github.com/cdeck3r/IoTNumb3rs.git \
-    --branch iotdata \
-    --single-branch \
-    $(basename "$DATAROOT")
-    if [[ $? -ne 0 ]]; then
-        log_echo "ERROR" "GIT does not work. Abort."
-        ERR_CODE=1
-        exit $ERR_CODE
-    fi
-fi
+##############
 
-# Update DATAROOT directory
-cd "$DATAROOT"
-log_echo "INFO" "Switch directory to branch <iotdata> and pull into: "$DATAROOT""
-$GIT branch --set-upstream-to origin/iotdata iotdata
-$GIT reset --hard # throw away all uncommited changes
-$GIT checkout iotdata
-$GIT pull origin iotdata
-
-cd "$DATAROOT"
-GIT_STATUS="$(git status --branch --short)"
-log_echo "INFO" "Git status for "$DATAROOT" is: ${GIT_STATUS}"
-
-# prep done.
+# prepare DATAROOT directory
+log_echo "INFO" "Prepare backup data directory: "$DATAROOT""
+clone_dataroot_git "$DATAROOT"
+update_config_dataroot_git "$DATAROOT"
+clean_dataroot_git "$DATAROOT"
+log_echo "INFO" "All preps done for branch <iotdata> in directory: "$DATAROOT""
+# back to where you come from
+cd "$SCRIPT_DIR"
 
 ##################################
 
-# go into user dir
-cd "$DATAROOT"/"$DROPBOX_USERDIR"
-DATA_FILES=( $(ls *.csv) )
+# create & goto into DATAPATH (= user specific dir)
+DATAPATH="$DATAROOT"/"$DROPBOX_USERDIR"
+mkdir -p "$DATAPATH"
+cd "$DATAPATH"
+log_echo "INFO" "Processing user data directory: "$DATAPATH""
+
+##################################
+
+# go into user dir; find all .csv files larger than template file
+cd "$DATAPATH"
+DATA_FILES=( $(find . -name '*.csv' -type f -size +${NUMB3RS_TEMPLATE_FILESIZE}c) )
+
 URL_LST=()
 
 # we start with error,
@@ -112,7 +98,7 @@ do
     fi
 
     FIRST_DATA_LINE=$((HEADER_LINE + 1))
-    readarray DATA_ROWS <<< $(tail +${FIRST_DATA_LINE} "$DATA_FILE")
+    readarray DATA_ROWS <<< $(tail -n +${FIRST_DATA_LINE} "$DATA_FILE")
     for ROW in ${DATA_ROWS[@]}
     do
         if [[ $ROW == "http"* ]]; then
@@ -142,6 +128,7 @@ echo Total data rows: $URL_TOTAL_CNT
 echo Distinct Infographics: $UNIQ_URL_TOTAL_CNT
 echo "======================================="
 
+
 # Write stats file; create header first, if file does not exist
 if [ ! -f "$STATS_FILE" ]; then
     echo "datetime;user;total_rows;distinct_infographics" > "$STATS_FILE"
@@ -152,28 +139,12 @@ ERR_CODE=0
 
 # add STATS_FILE to repo
 cd "$DATAROOT"
-GIT_STATUS="$(git status --branch --short)"
-log_echo "INFO" "Git status for "$DATAROOT" is: "$GIT_STATUS""
-
-# set remote url containing token var
-# each time git is used, the var should be replaced by its current value
-$GIT remote set-url --push origin https://${GITHUB_OAUTH_ACCESS_TOKEN}@github.com/cdeck3r/IoTNumb3rs.git
-$GIT config user.name "Christian Decker"
-$GIT config user.email "christian.decker@reutlingen-university.de"
-
-# add everything into repo
-# push using github token
-$GIT add $(basename $STATS_FILE)
-$GIT commit -m "Update statistics for user "$DROPBOX_USERDIR"" $(basename $STATS_FILE)
-$GIT push
-# Final error / info logging
-if [[ $? -ne 0 ]]; then
-    log_echo "ERROR" "Error pushing data into branch <iotdata> on Github."
-    ERR_CODE=1
-else
-    log_echo "INFO" "Successfully pushed data into branch <iotdata> on Github."
-fi
-# revert to original URL in order to avoid token to be stored
-$GIT remote set-url --push origin "https://github.com/cdeck3r/IoTNumb3rs.git"
+# commit data quality report (dq.md )
+BCK_ERROR=$ERR_CODE
+COMMIT_FILES=""$STATS_FILE""
+commit_push_files_dataroot_git "$DATAROOT" \
+    "$DROPBOX_USERDIR" "${COMMIT_FILES[@]}" \
+    "Update statistics for user "$DROPBOX_USERDIR""
+ERR_CODE=$BCK_ERROR
 
 exit $ERR_CODE
