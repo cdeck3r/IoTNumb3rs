@@ -26,8 +26,10 @@ ALLUSERS=("$4")
 USER_DB="${DROPBOX_USERDIR}"_sqlite.db
 DATATBL="iotdata"
 
-# template for format diff
+# template for ethercalc format
 NUMB3RS_TEMPLATE="$SCRIPT_DIR"/numb3rs_template.csv
+NUMB3RS_TEMPLATE_FILESIZE=$(stat -c %s "$NUMB3RS_TEMPLATE")
+
 # report file
 DQ_REPORT="dq.md"
 SLACK_MSG_FILE="/tmp/slack_msg_dq.txt"
@@ -158,7 +160,7 @@ fi
 log_echo "INFO" "Import files into sqlite for user: "$DROPBOX_USERDIR""
 csvstack --skipinitialspace --skip-lines 2 \
 --linenumbers --filenames --group-name src_filename \
-$(find "${DROPBOX_USERDIR}" -name '*.csv' -type f -size +2c ) \
+$(find "${DROPBOX_USERDIR}" -name '*.csv' -type f -size +${NUMB3RS_TEMPLATE_FILESIZE}c ) \
 | csvcut -c 1,2,3,4,5,6,7,8,9,10,11,12,13 \
 | csvsql --db sqlite:///"${USER_DB}" --tables ${DATATBL} \
 --insert --overwrite
@@ -452,7 +454,9 @@ rm -rf "${USER_DB}"
 
 # commit data quality report (dq.md )
 COMMIT_FILES=""./$DQ_REPORT""
-commit_push_files_dataroot_git "$DATAROOT" "$DROPBOX_USERDIR" "${COMMIT_FILES[@]}"
+commit_push_files_dataroot_git "$DATAROOT" \
+    "$DROPBOX_USERDIR" "${COMMIT_FILES[@]}" \
+    "Update data quality report for user "$DROPBOX_USERDIR"" 
 clean_dataroot_git "$DATAROOT"
 
 # notify slack
