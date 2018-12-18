@@ -1,0 +1,9 @@
+|IoTNumb3rs Datenerfassung|||||||||||
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+||||||||||||
+|URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
+|https://www.cloudmanagementsuite.com/wp-content/uploads/2018/03/Infographic-IoT-Report-Q1-2018-1.png|https://www.cloudmanagementsuite.com/iot-infographic|file1_Infographic-IoT-Report-Q1-2018-1.png|generic IoT|2000000000|||2006|2018|company|MariaMarg/20181217-1200|
+|https://www.cloudmanagementsuite.com/wp-content/uploads/2018/03/Infographic-IoT-Report-Q1-2018-1.png|https://www.cloudmanagementsuite.com/iot-infographic|file1_Infographic-IoT-Report-Q1-2018-1.png|generic IoT|6380000000|||2016|2018|company|MariaMarg/20181217-1200|
+|https://www.cloudmanagementsuite.com/wp-content/uploads/2018/03/Infographic-IoT-Report-Q1-2018-1.png|https://www.cloudmanagementsuite.com/iot-infographic|file1_Infographic-IoT-Report-Q1-2018-1.png|generic IoT|8400000000|||2018|2018|company|MariaMarg/20181217-1200|
+|https://www.cloudmanagementsuite.com/wp-content/uploads/2018/03/Infographic-IoT-Report-Q1-2018-1.png|https://www.cloudmanagementsuite.com/iot-infographic|file1_Infographic-IoT-Report-Q1-2018-1.png|generic IoT|20000000000|||2020|2018|company|MariaMarg/20181217-1200|
+|https://www.cloudmanagementsuite.com/wp-content/uploads/2018/03/Infographic-IoT-Report-Q1-2018-1.png|https://www.cloudmanagementsuite.com/iot-infographic|file1_Infographic-IoT-Report-Q1-2018-1.png|||spend on IoT cybersucurity|1.34E+11||||MariaMarg/20181217-1200|
