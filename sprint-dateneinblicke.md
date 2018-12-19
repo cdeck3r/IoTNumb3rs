@@ -48,7 +48,7 @@ Jeder Nutzer erfasst seine Projektleistung (optional: von allen Nutzern)
 Im Sprint ["Datenqualitätsoffensive"](sprint-datenqualitaetsoffensive.md) wurden bereits Boxplot-Diagramme erstellen. 
 Mit den neuen zur Verfügung gestellten IoTNumb3rs Daten erfahren diese Diagramme ein Update.
 
-Datenquelle: [Datenfile aus Slack]
+Datenquelle: [Datenfile aus Slack](https://iotnumb3rs.slack.com/files/UCJ01E3DZ/FEXJF7SH1/combined_19_02_2018.csv)
 
 #### Drill-Down Boxplot-Diagramme 
 
