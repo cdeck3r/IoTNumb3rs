@@ -18,6 +18,10 @@ Datenbasis über IoT Prognosedaten fertigstellen.
     * Descriptive Diagramme aus Sprint [Datenqualitätsoffensive](sprint-datenqualitaetsoffensive.md)  
     * Drill-Down Diagramme aus Sprint [Dateneinblicke](sprint-dateneinblicke.md) 
     * Diagramme der Prognoseerfüllung und des Prognosehorizont aus Sprint [Dateneinblicke](sprint-dateneinblicke.md) 
+* Für jeder Nutzer gibt es am Sprintende 1 Excelfile, in dem alle Diagramme enthalten sind. 
+* Das Excelfile ist benannt gemäß des [Namenschemas](https://github.com/cdeck3r/IoTNumb3rs/blob/master/Diagramme/README.md)
+* Das Excelfile liegt auf Github unter https://github.com/cdeck3r/IoTNumb3rs/tree/master/Diagramme 
+
 
 #### Sprintdauer
 
