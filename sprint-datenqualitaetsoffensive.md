@@ -82,18 +82,18 @@ Messgröße `Datenqualität Q`: Qualitätsindikator aus [dq.md](https://github.c
 
 | User | Total data rows | Distinct infographics | Datenqualität |
 | :--- | :---: | :---: | :---: |
-| JinlinHolic |  |  |  |
-| MariaMarg |  |  |  |
-| marielledemuth |  |  |  |
-| Pattoho |  |  |  |
-| **Summe** | **n/a** | **n/a** |  |
+| JinlinHolic | 356 | 115 | 1.0 |
+| MariaMarg | 311 | 98 | 1.0 |
+| marielledemuth | 326 | 115 | 1.0 |
+| Pattoho | 529 | 108 | 1.0 |
+| **Summe** | **1522** | **436** |  |
 
 ### Erfüllung der zu Beginn aufgestellten messbaren Resultate
 
 | User | zusätzliche verschiedene \(=distinct\) infographics | Delta Q |
 | :--- | :--- | :--- |
-| JinlinHolic |  |  |
-| MariaMarg |  |  |
-| marielledemuth |  |  |
-| Pattoho |  |  |
+| JinlinHolic | 14 | 0.377622378 |
+| MariaMarg | 6 | 0.360594796 |
+| marielledemuth | -13 | 0.495145631 |
+| Pattoho | 2 | 0.239864865 |
 
