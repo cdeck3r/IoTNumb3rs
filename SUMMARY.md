@@ -6,4 +6,7 @@
 * [Sprint: Speed-up der Datenakquise](sprint-datenakquise.md)
 * [Sprint: Störungsfreier Betrieb der schnellen Datenakquise](sprint-datenakquise2.md)
 * [Sprint: Datenqualitätsoffensive](sprint-datenqualitaetsoffensive.md)
+* [Sprint: Dateneinblicke](sprint-dateneinblicke.md)
+* [Sprint: Finales Update der IoTNumb3rs Daten](sprint-finalupdate.md)
+* [Sprint: Projektpräsentation](sprint-praesentation.md)
 
