@@ -2,7 +2,7 @@
 description: Letztes Update der IoTNumb3rs Daten
 ---
 
-# Sprint: Finales Updates der IoTNumb3rs Daten
+# Sprint: Finales Update der IoTNumb3rs Daten
 
 ## Ziel
 
