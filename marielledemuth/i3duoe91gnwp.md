@@ -2,4 +2,6 @@
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 ||||||||||||
 |URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
-|https://biztechmagazine.com/sites/default/files/infographic-the-magic-of-iot-1.jpg|https://biztechmagazine.com/article/2017/07/digital-transformation-helps-businesses-take-advantage-iot-infographic|file1_infographic-the-magic-of-iot-1.jpg||||||||marielledemuth/20181217-1802|
+|https://biztechmagazine.com/sites/default/files/infographic-the-magic-of-iot-1.jpg|https://biztechmagazine.com/article/2017/07/digital-transformation-helps-businesses-take-advantage-iot-infographic|file1_infographic-the-magic-of-iot-1.jpg|||IoT spending|1.3E+13|2025|2017|journalist|marielledemuth/20181217-1802|
+|https://biztechmagazine.com/sites/default/files/infographic-the-magic-of-iot-1.jpg|https://biztechmagazine.com/article/2017/07/digital-transformation-helps-businesses-take-advantage-iot-infographic|file1_infographic-the-magic-of-iot-1.jpg|generic IoT|34000000000|||2020|2017|journalist|marielledemuth/20181217-1802|
+|https://biztechmagazine.com/sites/default/files/infographic-the-magic-of-iot-1.jpg|https://biztechmagazine.com/article/2017/07/digital-transformation-helps-businesses-take-advantage-iot-infographic|file1_infographic-the-magic-of-iot-1.jpg|||healthcare saving|34000000000|2020|2017|journalist|marielledemuth/20181217-1802|
