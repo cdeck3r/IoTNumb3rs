@@ -13,10 +13,13 @@ Neue Einblicke aus den IoTNumb3rs Daten gewinnen
 * Jeder Nutzer erfasst 25 neue Infografiken.
 * Am Ende des Sprints sind insgesamt, d.h. über alle Nutzer zusammen, mindestens 100 neue Datensätze hinzugekommen.
 * Am Ende des Sprints ist die [Datenqualität](https://github.com/cdeck3r/IoTNumb3rs/blob/iotdata/dq.md) >95%
-* Die im Sprint ["Datenqualitätsoffensive"](sprint-datenqualitaetsoffensive.md) erstellten Leistungsstatistiken sind mit neuen Daten des Sprints fortgeschrieben.
-* Die im Sprint ["Datenqualitätsoffensive"](sprint-datenqualitaetsoffensive.md) erstellten Boxplot Diagramme erhalten ein Update mit neuen IoTNumb3rs Daten.
+* Die im Sprint [Datenqualitätsoffensive](sprint-datenqualitaetsoffensive.md) erstellten Leistungsstatistiken sind mit neuen Daten des Sprints fortgeschrieben.
+* Die im Sprint [Datenqualitätsoffensive](sprint-datenqualitaetsoffensive.md) erstellten Boxplot Diagramme erhalten ein Update mit neuen IoTNumb3rs Daten.
 * Es sind 4 neue Klassen von Boxplot-Diagramme erstellt, die in die Daten reinbohren, sog. Drill-Down.
 * Es sind 2 neue Diagramme zur Erfüllung von Prognosen und zum Prognosehorizont erstellt.
+* Für jeder Nutzer gibt es am Sprintende 1 Excelfile, in dem alle Diagramme enthalten sind. 
+* Das Excelfile ist benannt gemäß des [Namenschemas](https://github.com/cdeck3r/IoTNumb3rs/blob/master/Diagramme/README.md)
+* Das Excelfile liegt auf Github unter https://github.com/cdeck3r/IoTNumb3rs/tree/master/Diagramme 
 
 #### Sprintdauer
 
@@ -44,6 +47,8 @@ Jeder Nutzer erfasst seine Projektleistung (optional: von allen Nutzern)
 
 Im Sprint ["Datenqualitätsoffensive"](sprint-datenqualitaetsoffensive.md) wurden bereits Boxplot-Diagramme erstellen. 
 Mit den neuen zur Verfügung gestellten IoTNumb3rs Daten erfahren diese Diagramme ein Update.
+
+Datenquelle: [Datenfile aus Slack]
 
 #### Drill-Down Boxplot-Diagramme 
 
