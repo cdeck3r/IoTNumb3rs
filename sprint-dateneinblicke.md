@@ -17,9 +17,9 @@ Neue Einblicke aus den IoTNumb3rs Daten gewinnen
 * Die im Sprint [Datenqualitätsoffensive](sprint-datenqualitaetsoffensive.md) erstellten Boxplot Diagramme erhalten ein Update mit neuen IoTNumb3rs Daten.
 * Es sind 4 neue Klassen von Boxplot-Diagramme erstellt, die in die Daten reinbohren, sog. Drill-Down.
 * Es sind 2 neue Diagramme zur Erfüllung von Prognosen und zum Prognosehorizont erstellt.
-* Für jeder Nutzer gibt es am Sprintende 1 Excelfile, in dem alle Diagramme enthalten sind. 
-* Das Excelfile ist benannt gemäß des [Namenschemas](https://github.com/cdeck3r/IoTNumb3rs/blob/master/Diagramme/README.md)
-* Das Excelfile liegt auf Github unter https://github.com/cdeck3r/IoTNumb3rs/tree/master/Diagramme 
+* Für jeder Nutzer gibt es am Sprintende 1 Excelfile und 1 PDF File, in dem alle Diagramme enthalten sind. 
+* Die Files sind benannt gemäß des [Namenschemas](https://github.com/cdeck3r/IoTNumb3rs/blob/master/Diagramme/README.md)
+* Die Files liegen auf Github unter https://github.com/cdeck3r/IoTNumb3rs/tree/master/Diagramme 
 
 #### Sprintdauer
 
