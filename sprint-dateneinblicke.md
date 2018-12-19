@@ -33,6 +33,14 @@ Datenqualität: [dq.md](https://github.com/cdeck3r/IoTNumb3rs/blob/iotdata/dq.md
 
 ### Vorgehen
 
+### Hinweise zur Anfertigung von Diagrammen
+
+* Ein Tabellenblatt (Reiter in Excel) enthält nur ein Diagramm.
+* Ein Tabellenblatt beginnt immer mit einer Überschrift, die beschreibt, welches Diagramm zu sehen ist. Die Beschreibung aus dem Sprint kann verwendet werden.
+* Der Reiter in Excel hat auch einen passenden Namen. Generische Namen wie "Tabelle 1" sind nicht zulässig-
+* Alle Diagramme sind ordentlich zu beschriften, d.h. alle Achsenbezeichnung müssen vorhanden sein
+
+
 #### Leistungsstatistiken
 
 Im Sprint ["Datenqualitätsoffensive"](sprint-datenqualitaetsoffensive.md) wurden bereits Leistungsstatistiken erstellt.
