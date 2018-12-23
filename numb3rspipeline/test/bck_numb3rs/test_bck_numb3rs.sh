@@ -101,15 +101,17 @@ setup() {
     if [ ! -f "$TEST_LOG_FILE" ]; then
         echo "Run TEST_UNIT: "$TEST_UNIT""
         # run TEST_UNIT
-        "$TEST_UNIT" "$DATAROOT" "$DROPBOX_USERDIR" > "$TEST_LOG_FILE"
-    else
-        echo "TEST_UNIT did run previously: "$TEST_UNIT""
+        "$TEST_UNIT" "$DATAROOT" "$DROPBOX_USERDIR" &> "$TEST_LOG_FILE"
+    #else
+    #    echo "TEST_UNIT did run previously: "$TEST_UNIT""
     fi
 }
 
 # will run once before any unit test starts
 setup_suite() {
     echo "setup_suite()"
+    # export this variable to inform other scripts about the test mode
+    export NUMB3RS_TEST=1
     rm -rf "$TEST_LOG_FILE"
     setup_dropbox && \
     setup_local && setup_git
@@ -137,6 +139,9 @@ teardown_suite() {
     echo "Data files: $DATAPATH"
     echo ""
     echo "############################################"
+
+    # unset variable to end test mode
+    unset NUMB3RS_TEST
 }
 
 ##

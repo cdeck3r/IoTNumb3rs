@@ -1,58 +1,74 @@
+2018-12-23 15:45:46,1545579946 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Prepare backup data directory: /tmp/iotdata-test
 On branch iotdata-test
 nothing to commit, working tree clean
-2018-12-23 13:42:48,1545572568 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Switch directory to branch <iotdata-test> and pull into: /tmp/iotdata-test
-HEAD is now at c379379 Cleanup directory for testing user: testuser
+2018-12-23 15:45:46,1545579946 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Switch directory to branch <iotdata-test> and pull into: /tmp/iotdata-test
+error: the requested upstream branch 'origin/iotdata-test' does not exist
+hint: 
+hint: If you are planning on basing your work on an upstream
+hint: branch that already exists at the remote, you may need to
+hint: run "git fetch" to retrieve it.
+hint: 
+hint: If you are planning to push out a new local branch that
+hint: will track its remote counterpart, you may want to use
+hint: "git push -u" to set the upstream config as you push.
+HEAD is now at ed7aaf2 Cleanup directory for testing user: testuser
+Already on 'iotdata-test'
+From https://github.com/cdeck3r/IoTNumb3rs
+ * branch            iotdata-test -> FETCH_HEAD
 Already up to date.
-2018-12-23 13:42:48,1545572568 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Git status for /tmp/iotdata-test is: ##
-2018-12-23 13:42:48,1545572568 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - All preps done for branch <iotdata-test> in directory: /tmp/iotdata-test
-2018-12-23 13:42:48,1545572568 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Processing user data directory: /tmp/iotdata-test/testuser
-2018-12-23 13:42:50,1545572570 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download from dropbox /testuser/20181022-2316/url_filelist.csv
+2018-12-23 15:45:47,1545579947 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Git status for /tmp/iotdata-test is: ##
+2018-12-23 15:45:47,1545579947 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - All preps done for branch <iotdata-test> in directory: /tmp/iotdata-test
+2018-12-23 15:45:47,1545579947 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Processing user data directory: /tmp/iotdata-test/testuser
+2018-12-23 15:45:49,1545579949 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download from dropbox /testuser/20181022-2316/url_filelist.csv
  > Downloading "/testuser/20181022-2316/url_filelist.csv" to "/tmp/iotdata-test/testuser/url_filelist.csv"... DONE
-2018-12-23 13:42:52,1545572572 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download from dropbox /testuser/20181026-0716/url_filelist.csv
+2018-12-23 15:45:51,1545579951 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download from dropbox /testuser/20181026-0716/url_filelist.csv
  > Downloading "/testuser/20181026-0716/url_filelist.csv" to "/tmp/iotdata-test/testuser/url_filelist.csv"... DONE
-2018-12-23 13:42:54,1545572574 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - ERROR - Unexpected file format in url_filelist.csv: /tmp/iotdata-test/testuser/url_filelist.csv
-2018-12-23 13:42:54,1545572574 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download from dropbox /testuser/20181026-0725/url_filelist.csv
+2018-12-23 15:45:53,1545579953 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - ERROR - Unexpected file format in url_filelist.csv: /tmp/iotdata-test/testuser/url_filelist.csv
+2018-12-23 15:45:53,1545579953 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download from dropbox /testuser/20181026-0725/url_filelist.csv
  > Downloading "/testuser/20181026-0725/url_filelist.csv" to "/tmp/iotdata-test/testuser/url_filelist.csv"... DONE
-2018-12-23 13:42:56,1545572576 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - ERROR - Unexpected file format in url_filelist.csv: /tmp/iotdata-test/testuser/url_filelist.csv
-2018-12-23 13:42:56,1545572576 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download from dropbox /testuser/20181030-1250/url_filelist.csv
+2018-12-23 15:45:55,1545579955 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - ERROR - Unexpected file format in url_filelist.csv: /tmp/iotdata-test/testuser/url_filelist.csv
+2018-12-23 15:45:55,1545579955 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download from dropbox /testuser/20181030-1250/url_filelist.csv
  > Downloading "/testuser/20181030-1250/url_filelist.csv" to "/tmp/iotdata-test/testuser/url_filelist.csv"... DONE
-2018-12-23 13:42:58,1545572578 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - ERROR - Unexpected file format in url_filelist.csv: /tmp/iotdata-test/testuser/url_filelist.csv
-2018-12-23 13:42:58,1545572578 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download from dropbox /testuser/20181104-1706/url_filelist.csv
+2018-12-23 15:45:57,1545579957 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - ERROR - Unexpected file format in url_filelist.csv: /tmp/iotdata-test/testuser/url_filelist.csv
+2018-12-23 15:45:57,1545579957 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download from dropbox /testuser/20181104-1706/url_filelist.csv
  > Downloading "/testuser/20181104-1706/url_filelist.csv" to "/tmp/iotdata-test/testuser/url_filelist.csv"... DONE
-2018-12-23 13:43:00,1545572580 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - File format of url_filelist.csv is OK.
-2018-12-23 13:43:00,1545572580 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download from dropbox /testuser/20181104-1713/url_filelist.csv
+2018-12-23 15:45:58,1545579958 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - File format of url_filelist.csv is OK.
+2018-12-23 15:45:58,1545579958 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download from dropbox /testuser/20181104-1713/url_filelist.csv
  > Downloading "/testuser/20181104-1713/url_filelist.csv" to "/tmp/iotdata-test/testuser/url_filelist.csv"... DONE
-2018-12-23 13:43:03,1545572583 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - File format of url_filelist.csv is OK.
-2018-12-23 13:43:04,1545572584 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download ethercalc https://www.ethercalc.org/ptdw9ho9jxoa
-2018-12-23 13:43:08,1545572588 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download ethercalc https://www.ethercalc.org/d7jr7ygxx8ca
-2018-12-23 13:43:12,1545572592 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download ethercalc https://www.ethercalc.org/quzmlcw8h6qw
-2018-12-23 13:43:16,1545572596 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download ethercalc https://www.ethercalc.org/0h4jqjs4mmn4
-2018-12-23 13:43:21,1545572601 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download from dropbox /testuser/20181104-2035/url_filelist.csv
+2018-12-23 15:46:00,1545579960 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - File format of url_filelist.csv is OK.
+2018-12-23 15:46:00,1545579960 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download ethercalc https://www.ethercalc.org/ptdw9ho9jxoa
+2018-12-23 15:46:05,1545579965 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download ethercalc https://www.ethercalc.org/d7jr7ygxx8ca
+2018-12-23 15:46:09,1545579969 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download ethercalc https://www.ethercalc.org/quzmlcw8h6qw
+2018-12-23 15:46:13,1545579973 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download ethercalc https://www.ethercalc.org/0h4jqjs4mmn4
+2018-12-23 15:46:17,1545579977 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download from dropbox /testuser/20181104-2035/url_filelist.csv
  > Downloading "/testuser/20181104-2035/url_filelist.csv" to "/tmp/iotdata-test/testuser/url_filelist.csv"... DONE
-2018-12-23 13:43:23,1545572603 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - File format of url_filelist.csv is OK.
-2018-12-23 13:43:23,1545572603 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download ethercalc https://www.ethercalc.org/akmleekzdfhi
-2018-12-23 13:43:27,1545572607 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download ethercalc https://www.ethercalc.org/vl1mshx8aiqv
-2018-12-23 13:43:31,1545572611 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download ethercalc https://www.ethercalc.org/qvswt8p81wtg
-2018-12-23 13:43:35,1545572615 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download from dropbox /testuser/20181104-2042/url_filelist.csv
+2018-12-23 15:46:19,1545579979 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - File format of url_filelist.csv is OK.
+2018-12-23 15:46:19,1545579979 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download ethercalc https://www.ethercalc.org/akmleekzdfhi
+2018-12-23 15:46:23,1545579983 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download ethercalc https://www.ethercalc.org/vl1mshx8aiqv
+2018-12-23 15:46:27,1545579987 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download ethercalc https://www.ethercalc.org/qvswt8p81wtg
+2018-12-23 15:46:32,1545579992 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download from dropbox /testuser/20181104-2042/url_filelist.csv
  > Downloading "/testuser/20181104-2042/url_filelist.csv" to "/tmp/iotdata-test/testuser/url_filelist.csv"... DONE
-2018-12-23 13:43:37,1545572617 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - File format of url_filelist.csv is OK.
-2018-12-23 13:43:37,1545572617 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download ethercalc https://www.ethercalc.org/akmleekzdfhi
-2018-12-23 13:43:41,1545572621 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download ethercalc https://www.ethercalc.org/vl1mshx8aiqv
-2018-12-23 13:43:46,1545572626 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download ethercalc https://www.ethercalc.org/qvswt8p81wtg
-2018-12-23 13:43:50,1545572630 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download from dropbox /testuser/20181104-2106/url_filelist.csv
+2018-12-23 15:46:34,1545579994 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - File format of url_filelist.csv is OK.
+2018-12-23 15:46:34,1545579994 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download ethercalc https://www.ethercalc.org/akmleekzdfhi
+2018-12-23 15:46:38,1545579998 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download ethercalc https://www.ethercalc.org/vl1mshx8aiqv
+2018-12-23 15:46:42,1545580002 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download ethercalc https://www.ethercalc.org/qvswt8p81wtg
+2018-12-23 15:46:46,1545580006 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download from dropbox /testuser/20181104-2106/url_filelist.csv
  > Downloading "/testuser/20181104-2106/url_filelist.csv" to "/tmp/iotdata-test/testuser/url_filelist.csv"... DONE
-2018-12-23 13:43:52,1545572632 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - File format of url_filelist.csv is OK.
-2018-12-23 13:43:52,1545572632 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download ethercalc ftp://www.ethercalc.org/ua47zu5gv3w1
-2018-12-23 13:44:13,1545572653 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download from dropbox /testuser/20181115-2001/url_filelist.csv
+2018-12-23 15:46:48,1545580008 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - File format of url_filelist.csv is OK.
+2018-12-23 15:46:48,1545580008 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download ethercalc ftp://www.ethercalc.org/ua47zu5gv3w1
+curl: (7) Failed to connect to www.ethercalc.org port 21: Connection refused
+curl: (7) Failed to connect to www.ethercalc.org port 21: Connection refused
+curl: (7) Failed to connect to www.ethercalc.org port 21: Connection refused
+2018-12-23 15:47:10,1545580030 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download from dropbox /testuser/20181115-2001/url_filelist.csv
  > Downloading "/testuser/20181115-2001/url_filelist.csv" to "/tmp/iotdata-test/testuser/url_filelist.csv"... DONE
-2018-12-23 13:44:15,1545572655 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - File format of url_filelist.csv is OK.
-2018-12-23 13:44:15,1545572655 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download ethercalc https://www.ethercalc.org/1q4kiu
-2018-12-23 13:44:19,1545572659 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download from dropbox /testuser/20181115-2026/url_filelist.csv
+2018-12-23 15:47:12,1545580032 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - File format of url_filelist.csv is OK.
+2018-12-23 15:47:12,1545580032 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download ethercalc https://www.ethercalc.org/1q4kiu
+2018-12-23 15:47:16,1545580036 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download from dropbox /testuser/20181115-2026/url_filelist.csv
  > Downloading "/testuser/20181115-2026/url_filelist.csv" to "/tmp/iotdata-test/testuser/url_filelist.csv"... DONE
-2018-12-23 13:44:21,1545572661 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - File format of url_filelist.csv is OK.
-2018-12-23 13:44:21,1545572661 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download ethercalc https://www.ethercalc.org/ya4l7kwbgh1masdasdasdasdas
-2018-12-23 13:44:25,1545572665 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Git status for /tmp/iotdata-test is: ##
-[iotdata-test badcafe] Backup IoTNumb3rs data for user testuser
+2018-12-23 15:47:18,1545580038 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - File format of url_filelist.csv is OK.
+2018-12-23 15:47:18,1545580038 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Download ethercalc https://www.ethercalc.org/ya4l7kwbgh1masdasdasdasdas
+2018-12-23 15:47:22,1545580042 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Git status for /tmp/iotdata-test is: ##
+[iotdata-test 0581700] Backup IoTNumb3rs data for user testuser
  28 files changed, 830 insertions(+)
  create mode 100644 testuser/0h4jqjs4mmn4.csv
  create mode 100644 testuser/0h4jqjs4mmn4.md
@@ -81,4 +97,4 @@ Already up to date.
  create mode 100644 testuser/ya4l7kwbgh1masdasdasdasdas.csv
  create mode 100644 testuser/ya4l7kwbgh1masdasdasdasdas.md
  create mode 100644 testuser/ya4l7kwbgh1masdasdasdasdas.xlxs
-2018-12-23 13:44:25,1545572665 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Successfully pushed data into branch <iotdata-test> on Github.
+2018-12-23 15:47:22,1545580042 - /home/iot/numb3rspipeline/test/bck_numb3rs/../../bck_numb3rs.sh - INFO - Successfully pushed data into branch <iotdata-test> on Github.
