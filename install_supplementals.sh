@@ -19,4 +19,17 @@ cd ..
 git clone https://github.com/andreafabrizi/Dropbox-Uploader.git
 cd Dropbox-Uploader
 chmod +x dropbox_uploader.sh
+
+# back
+cd ..
+
+#
+# bash_unit
+#
+mkdir -p bash_unit
+cd bash_unit
+bash <(curl -s https://raw.githubusercontent.com/pgrange/bash_unit/master/install.sh)
+chmod +x bash_unit
+
+# back
 cd ..

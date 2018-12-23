@@ -2,10 +2,12 @@
 # do not commit, but clone from orig repo
 Dropbox-Uploader/
 slackr/
+bash_unit/
 
 # test data
 testdata/
 _test*
+!numb3rspipeline/test/*/testdata/
 
 #
 .*
