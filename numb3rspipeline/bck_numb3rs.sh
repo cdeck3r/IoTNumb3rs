@@ -60,6 +60,7 @@ parse_urlstr() {
 
 # include common funcs
 source ./funcs.sh
+source ./bck_funcs.sh
 
 ##################################
 # 0. prep
@@ -80,45 +81,13 @@ source ./funcs.sh
 # git push --set-upstream origin iotdata
 ########
 
-mkdir -p "$DATAROOT"
-cd "$DATAROOT"
-$GIT status
-if [[ $? -eq 128 ]]; then
-    log_echo "WARN" "Data directory is not in git: "$DATAROOT""
-    log_echo "INFO" "Clone branch <iotdata> in "$DATAROOT""
-    # one dir up, e.g. /tmp
-    cd "$(dirname "$DATAROOT")"
-    # ... and clone branch iodata into ./iotdata
-    $GIT clone https://github.com/cdeck3r/IoTNumb3rs.git \
-    --branch iotdata \
-    --single-branch \
-    $(basename "$DATAROOT")
-    if [[ $? -ne 0 ]]; then
-        log_echo "ERROR" "GIT does not work. Abort."
-        BCK_ERROR=1
-        exit $BCK_ERROR
-    fi
-fi
 
-# Update DATAROOT directory
-cd "$DATAROOT"
-log_echo "INFO" "Switch directory to branch <iotdata> and pull into: "$DATAROOT""
-$GIT branch --set-upstream-to origin/iotdata iotdata
-$GIT reset --hard # throw away all uncommited changes
-$GIT checkout iotdata
-$GIT pull origin iotdata
-
-GIT_STATUS="$(git status --branch --short)"
-log_echo "INFO" "Git status for "$DATAROOT" is: "$GIT_STATUS""
-
-# set remote url containing token var
-# each time git is used, the var should be replaced by its current value
-$GIT remote set-url --push origin https://${GITHUB_OAUTH_ACCESS_TOKEN}@github.com/cdeck3r/IoTNumb3rs.git
-$GIT config user.name "Christian Decker"
-$GIT config user.email "christian.decker@reutlingen-university.de"
-
-log_echo "INFO" "All preps done for branch <iotdata> in directory: "$DATAROOT""
-
+# prepare DATAROOT directory
+log_echo "INFO" "Prepare backup data directory: "$DATAROOT""
+clone_dataroot_git "$DATAROOT"
+update_config_dataroot_git "$DATAROOT"
+clean_dataroot_git "$DATAROOT"
+log_echo "INFO" "All preps done for branch <"$DATA_BRANCH"> in directory: "$DATAROOT""
 # back to where you come from
 cd "$SCRIPT_DIR"
 
@@ -201,41 +170,12 @@ rm -rf "$DATAPATH"/url_filelist.csv
 # 3.
 # transfer the backup files into the branch <iotdata> the github repo
 #
-
-# need to switch to DATAROOT to add / commit / push all data
-cd "$DATAROOT"
-GIT_STATUS="$(git status --branch --short)"
-log_echo "INFO" "Git status for "$DATAROOT" is: "$GIT_STATUS""
-# update README.md, if necessary
-GIT_FILES=
-GIT_FILES="$(git status --short)"
-if [[ -z $GIT_FILES ]]; then
-    log_echo "INFO" "No new files to be added for git."
-    BCK_ERROR=20
-else
-    echo " " >> "$DATAROOT"/README.md
-    echo "Date: $(date '+%Y-%m-%d %H:%M:%S,%s');" \
-        "User: $DROPBOX_USERDIR;" \
-        "Files: $(ls -l $DATAPATH | wc -l )" >> "$DATAROOT"/README.md
-fi
-
-# add everything into repo
-# push using github token
-$GIT add *
-$GIT commit -m "Backup IoTNumb3rs data for user "$DROPBOX_USERDIR""
-$GIT push
-# Final error / info logging
-if [[ $? -ne 0 ]]; then
-    log_echo "ERROR" "Error pushing data into branch <iotdata> on Github."
-    BCK_ERROR=1
-else
-    log_echo "INFO" "Successfully pushed data into branch <iotdata> on Github."
-fi
-# revert to original URL in order to avoid token to be stored
-$GIT remote set-url --push origin "https://github.com/cdeck3r/IoTNumb3rs.git"
+# update README.md
+update_readme_dataroot_git "$DATAROOT" "$DROPBOX_USERDIR"
+# commit and push files
+commit_push_dataroot_git "$DATAROOT" "$DROPBOX_USERDIR"
 
 # return to where you come from
 cd "$SCRIPT_DIR"
-
 # done done
 exit $BCK_ERROR

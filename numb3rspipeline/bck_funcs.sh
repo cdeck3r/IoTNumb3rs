@@ -7,6 +7,14 @@
 # include common funcs
 source ./funcs.sh
 
+if [ -z "${NUMB3RS_TEST+x}" ]; then
+    # we are in regular operation mode
+    DATA_BRANCH="iotdata"
+else
+    # we are in test mode
+    DATA_BRANCH="iotdata-test"
+fi
+
 if [ -z "${GIT+x}" ]; then
     # if GIT is unset, set it default
     GIT='git'
@@ -32,12 +40,12 @@ clone_dataroot_git() {
     $GIT status
     if [[ $? -eq 128 ]]; then
         log_echo "WARN" "Data directory is not in git: "$DATAROOT""
-        log_echo "INFO" "Clone branch <iotdata> in "$DATAROOT""
+        log_echo "INFO" "Clone branch <"$DATA_BRANCH"> in "$DATAROOT""
         # one dir up, e.g. /tmp
         cd "$(dirname "$DATAROOT")"
         # ... and clone branch iodata into ./iotdata
         $GIT clone https://github.com/cdeck3r/IoTNumb3rs.git \
-        --branch iotdata \
+        --branch "$DATA_BRANCH" \
         --single-branch \
         $(basename "$DATAROOT")
         if [[ $? -ne 0 ]]; then
@@ -56,11 +64,11 @@ update_config_dataroot_git() {
     local DATAROOT=$1
     # Update DATAROOT directory
     cd "$DATAROOT"
-    log_echo "INFO" "Switch directory to branch <iotdata> and pull into: "$DATAROOT""
-    $GIT branch --set-upstream-to origin/iotdata iotdata
+    log_echo "INFO" "Switch directory to branch <"$DATA_BRANCH"> and pull into: "$DATAROOT""
+    $GIT branch --set-upstream-to origin/"$DATA_BRANCH" "$DATA_BRANCH"
     $GIT reset --hard # throw away all uncommited changes
-    $GIT checkout iotdata
-    $GIT pull origin iotdata
+    $GIT checkout "$DATA_BRANCH"
+    $GIT pull origin "$DATA_BRANCH"
 
     GIT_STATUS="$(git status --branch --short)"
     log_echo "INFO" "Git status for "$DATAROOT" is: "$GIT_STATUS""
@@ -118,10 +126,10 @@ commit_push_dataroot_git() {
     $GIT push
     # Final error / info logging
     if [[ $? -ne 0 ]]; then
-        log_echo "ERROR" "Error pushing data into branch <iotdata> on Github."
+        log_echo "ERROR" "Error pushing data into branch <"$DATA_BRANCH"> on Github."
         BCK_ERROR=1
     else
-        log_echo "INFO" "Successfully pushed data into branch <iotdata> on Github."
+        log_echo "INFO" "Successfully pushed data into branch <"$DATA_BRANCH"> on Github."
     fi
     # revert to original URL in order to avoid token to be stored
     $GIT remote set-url --push origin "https://github.com/cdeck3r/IoTNumb3rs.git"
@@ -156,10 +164,10 @@ commit_push_files_dataroot_git() {
     $GIT push
     # Final error / info logging
     if [[ $? -ne 0 ]]; then
-        log_echo "ERROR" "Error pushing data into branch <iotdata> on Github."
+        log_echo "ERROR" "Error pushing data into branch <"$DATA_BRANCH"> on Github."
         BCK_ERROR=1
     else
-        log_echo "INFO" "Successfully pushed data into branch <iotdata> on Github."
+        log_echo "INFO" "Successfully pushed data into branch <"$DATA_BRANCH"> on Github."
         #BCK_ERROR=0
     fi
     # revert to original URL in order to avoid token to be stored
