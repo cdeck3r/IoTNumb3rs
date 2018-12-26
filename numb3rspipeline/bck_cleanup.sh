@@ -67,8 +67,9 @@ log_echo "INFO" "Processing user data directory: "$DATAPATH""
 
 ##################################
 
-# loop through all csv files of size > 2bytes of DROPBOX_USERDIR
-for CSVFILE in $(find "$DATAPATH" -type f -name '*.csv' -size +${NUMB3RS_TEMPLATE_FILESIZE}c 2> /dev/null); do
+# loop through all csv files of DROPBOX_USERDIR containing '<html>' string
+for CSVFILE in $(find "$DATAPATH" -type f -name '*.csv' | xargs grep -l '<html>' 2> /dev/null)
+do
     # grep for expected header
     # either    "IoTNumb3rs Datenerfassung"
     # or        "URL,filename"

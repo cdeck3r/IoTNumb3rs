@@ -1,0 +1,32 @@
+2018-12-26 22:21:36,1545862896 - /home/iot/numb3rspipeline/test/bck_cleanup/../../bck_cleanup.sh - INFO - Prepare backup data directory: /tmp/iotdata-test
+On branch iotdata-test
+nothing to commit, working tree clean
+2018-12-26 22:21:36,1545862896 - /home/iot/numb3rspipeline/test/bck_cleanup/../../bck_cleanup.sh - INFO - Switch directory to branch <iotdata-test> and pull into: /tmp/iotdata-test
+error: the requested upstream branch 'origin/iotdata-test' does not exist
+hint: 
+hint: If you are planning on basing your work on an upstream
+hint: branch that already exists at the remote, you may need to
+hint: run "git fetch" to retrieve it.
+hint: 
+hint: If you are planning to push out a new local branch that
+hint: will track its remote counterpart, you may want to use
+hint: "git push -u" to set the upstream config as you push.
+HEAD is now at ae5a352 Test data for testing user: testuser
+Already on 'iotdata-test'
+From https://github.com/cdeck3r/IoTNumb3rs
+ * branch            iotdata-test -> FETCH_HEAD
+Already up to date.
+2018-12-26 22:21:36,1545862896 - /home/iot/numb3rspipeline/test/bck_cleanup/../../bck_cleanup.sh - INFO - Git status for /tmp/iotdata-test is: ##
+2018-12-26 22:21:36,1545862896 - /home/iot/numb3rspipeline/test/bck_cleanup/../../bck_cleanup.sh - INFO - All preps done for branch <iotdata> in directory: /tmp/iotdata-test
+2018-12-26 22:21:36,1545862896 - /home/iot/numb3rspipeline/test/bck_cleanup/../../bck_cleanup.sh - INFO - Processing user data directory: /tmp/iotdata-test/testuser
+2018-12-26 22:21:36,1545862896 - /home/iot/numb3rspipeline/test/bck_cleanup/../../bck_cleanup.sh - WARN - File not valid: /tmp/iotdata-test/testuser/8epvzl83pou0.csv
+2018-12-26 22:21:36,1545862896 - /home/iot/numb3rspipeline/test/bck_cleanup/../../bck_cleanup.sh - INFO - Download ethercalc https://www.ethercalc.org/8epvzl83pou0
+2018-12-26 22:21:40,1545862900 - /home/iot/numb3rspipeline/test/bck_cleanup/../../bck_cleanup.sh - INFO - All files processed for user: testuser
+2018-12-26 22:21:40,1545862900 - /home/iot/numb3rspipeline/test/bck_cleanup/../../bck_cleanup.sh - INFO - Git status for /tmp/iotdata-test is: ##
+[iotdata-test d38b6d6] Backup IoTNumb3rs data for user testuser
+ 4 files changed, 89 insertions(+), 7 deletions(-)
+ create mode 100644 testuser/8epvzl83pou0.md
+ create mode 100644 testuser/8epvzl83pou0.xlxs
+To https://github.com/cdeck3r/IoTNumb3rs.git
+   ae5a352..d38b6d6  iotdata-test -> iotdata-test
+2018-12-26 22:21:44,1545862904 - /home/iot/numb3rspipeline/test/bck_cleanup/../../bck_cleanup.sh - INFO - Successfully pushed data into branch <iotdata-test> on Github.
