@@ -176,12 +176,32 @@ test_csv_filediff_check() {
     done
 }
 
+# 8epvzl83pou0.csv shall change
+test_csv_cleanup_filediff_check() {
+    CLEANUP_FILE=$(ls "$TESTDATA"/8epvzl83pou0.csv)
+    CLEANUP_FILENAME=$(basename "$CLEANUP_FILE")
+    assert_fail "diff <(cat "$CLEANUP_FILE") <(cat "$DATAPATH"/"$CLEANUP_FILENAME")"
+}
+
+# we expect 8epvzl83pou0.[md|xlxs] as new files
+test_for_new_files_check() {
+    CLEANUP_FILE=$(ls "$TESTDATA"/8epvzl83pou0.csv)
+    CLEANUP_FILENAME=$(basename "$CLEANUP_FILE")
+    CLEANUP_FILENAME_ONLY="${CLEANUP_FILENAME%.*}"
+    # 8epvzl83pou0.[md|xlxs] must not exist in $TESTDATA dir
+    assert_fail "test -f "$TESTDATA"/"${CLEANUP_FILENAME_ONLY}".md"
+    assert_fail "test -f "$TESTDATA"/"${CLEANUP_FILENAME_ONLY}".xlxs"
+    # 8epvzl83pou0.[md|xlxs] must exist in $DATAPATH dir
+    assert "test -f "$DATAPATH"/"${CLEANUP_FILENAME_ONLY}".md"
+    assert "test -f "$DATAPATH"/"${CLEANUP_FILENAME_ONLY}".xlxs"
+}
+
 # checks the timestamp change of "gateway error" file
-test_csv_timestamp_check() {
-    CSV_TIMESTAMP_ORG=$TESTDATA/8epvzl83pou0.csv
-    CSV_TIMESTAMP_CLEAN=$DATAPATH/8epvzl83pou0.csv
+todo_csv_timestamp_check() {
+    CSV_TIMESTAMP_ORG=$(stat -c%Y $TESTDATA/8epvzl83pou0.csv)
+    CSV_TIMESTAMP_CLEAN=$(stat -c%Y $DATAPATH/8epvzl83pou0.csv)
     # assert: clean is newer than old
-    assert "test \"$CSV_FILESIZE_CLEAN\" -nt \"$CSV_TIMESTAMP_ORG\" "
+    assert "test \"$CSV_FILESIZE_CLEAN\" -gt \"$CSV_TIMESTAMP_ORG\""
 }
 
 # checks the file size change of "gateway error" file
@@ -189,7 +209,7 @@ test_csv_filesize_check() {
     CSV_FILESIZE_ORG=$(stat -c%s $TESTDATA/8epvzl83pou0.csv)
     CSV_FILESIZE_CLEAN=$(stat -c%s $DATAPATH/8epvzl83pou0.csv)
     # assert: clean > org
-    assert "test $CSV_FILESIZE_CLEAN -gt $CSV_FILESIZE_ORG"
+    assert "test $CSV_FILESIZE_CLEAN -ne $CSV_FILESIZE_ORG"
 }
 
 # only one file should be downloaded
