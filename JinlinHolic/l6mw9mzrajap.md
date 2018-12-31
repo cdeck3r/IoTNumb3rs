@@ -1,0 +1,5 @@
+|IoTNumb3rs Datenerfassung|||||||||||
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+||||||||||||
+|URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
+|https://i.pinimg.com/564x/9f/16/0a/9f160a66f1b210248afb5560930f5e25.jpg|https://www.lightreading.com/new-ip.asp|file5_9f160a66f1b210248afb5560930f5e25.jpg||||||||JinlinHolic/20181230-1500|
