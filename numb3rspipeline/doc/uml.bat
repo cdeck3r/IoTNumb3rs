@@ -14,3 +14,4 @@ SET SCRIPT_DIR=%THIS_DIR:~0,-1%
 SET PLANTUML_JAR=..\..\plantuml\plantuml.jar
 
 java -jar %PLANTUML_JAR% numb3rspipeline_uml.txt
+java -jar %PLANTUML_JAR% iotnumb3rs_uml.txt
