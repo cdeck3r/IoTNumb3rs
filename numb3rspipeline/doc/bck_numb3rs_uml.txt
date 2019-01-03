@@ -13,11 +13,11 @@ start
 partition "foreach url_filelist.csv" {
     :Extract all Ethercalc URLs;
     :Download all Ethercalc documents;
+    |Ethercalc|
+    :document]
+    |bck_numb3rs|
+    :.csv .xlxs .md]
 }
-|Ethercalc|
-:document]
-|bck_numb3rs|
-:.csv .xlxs .md]
 :Update README.md;
 :Commit and push into repo;
 |github|

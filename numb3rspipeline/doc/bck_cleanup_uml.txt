@@ -1,0 +1,28 @@
+@startuml
+|bck_numb3rs|
+start
+:Clone repo;
+|github|
+:IoTNumb3rs/iotdata]
+|bck_numb3rs|
+partition "foreach csv file" {
+    if (file contains html) then (yes)
+        :Construct Ethercalc URL from filename;
+        :Download Ethercalc document;
+        |Ethercalc|
+        :document]
+        |bck_numb3rs|
+        :.csv .xlxs .md]
+    else (no)
+    endif
+}
+:Update README.md;
+:Commit and push into repo;
+|github|
+:IoTNumb3rs/iotdata]
+|bck_numb3rs|
+:Report status;
+|Slack|
+:Backup status]
+stop
+@enduml
