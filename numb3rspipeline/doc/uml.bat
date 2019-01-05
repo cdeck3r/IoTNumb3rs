@@ -17,3 +17,4 @@ java -jar %PLANTUML_JAR% numb3rspipeline_uml.txt
 java -jar %PLANTUML_JAR% iotnumb3rs_uml.txt
 java -jar %PLANTUML_JAR% bck_numb3rs_uml.txt
 java -jar %PLANTUML_JAR% bck_cleanup_uml.txt
+java -jar %PLANTUML_JAR% stats_numb3rs_uml.txt
