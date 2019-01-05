@@ -1,0 +1,30 @@
+@startuml
+|bck_numb3rs|
+start
+:Clone repo;
+|github|
+:IoTNumb3rs/iotdata]
+|bck_numb3rs|
+:Search all url_filelist.txt]
+:Download url_filelist.txt]
+|Dropbox|
+:USERDIR/*/url_filelist.csv]
+|bck_numb3rs|
+partition "foreach url_filelist.csv" {
+    :Extract all Ethercalc URLs;
+    :Download all Ethercalc documents;
+    |Ethercalc|
+    :document]
+    |bck_numb3rs|
+    :.csv .xlxs .md]
+}
+:Update README.md;
+:Commit and push into repo;
+|github|
+:IoTNumb3rs/iotdata]
+|bck_numb3rs|
+:Report status;
+|Slack|
+:Backup status]
+stop
+@enduml

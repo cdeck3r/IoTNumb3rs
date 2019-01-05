@@ -1,0 +1,43 @@
+@startuml
+|User|
+start
+:Collect Infograpics URLs;
+|Dropbox|
+:USERDIR/url_list.txt]
+detach
+|numb3rspipeline|
+start
+:Download USERDIR/url_list.txt;
+|Dropbox|
+:USERDIR/url_list.txt]
+|numb3rspipeline|
+partition "foreach URL in url_list.txt" {
+    :Image download;
+    :tesseract OCR;
+    :Setup Ethercalc doc;
+    :Fill Ethercalc doc;
+    :Store url_filelist.csv;
+}
+:Upload to Dropbox;
+|Dropbox|
+:USERDIR/datetime]
+|numb3rspipeline|
+:Delete from Dropbox;
+|Dropbox|
+:USERDIR/url_list.txt]
+|numb3rspipeline|
+:Report Ethercalc URLs;
+|Slack|
+:Ethercalc URLs]
+stop
+|User|
+start
+:Get Ethercalc URLs;
+|Slack|
+:Ethercalc URLs]
+|User|
+:Extract data from infographic;
+|Ethercalc|
+:document]
+stop
+@enduml

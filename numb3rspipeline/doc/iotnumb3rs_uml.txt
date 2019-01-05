@@ -1,0 +1,17 @@
+@startuml
+|Runs at: 9, 12, 15, 18, 21, 24|
+start
+:numb3rspipeline;
+stop
+|Runs at: 3|
+start
+:bck_numb3rs;
+:stats_numb3rs;
+stop
+|Runs at: 6|
+start
+:bck_cleanup;
+:stats_numb3rs;
+:dq_numb3rs;
+stop
+@enduml

@@ -1,0 +1,24 @@
+@startuml
+|stats_numb3rs|
+start
+:Clone repo;
+|github|
+:IoTNumb3rs/iotdata]
+|stats_numb3rs|
+partition "foreach csv file" {
+    if (file has correct header) then (yes)
+        :Count all URLs in file;
+        :Count distinct URLs;
+    else (no)
+    endif
+}
+:Update stats.csv;
+:Commit and push into repo;
+|github|
+:IoTNumb3rs/iotdata]
+|stats_numb3rs|
+:Report stats status;
+|Slack|
+:Stats status]
+stop
+@enduml
