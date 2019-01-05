@@ -1,0 +1,20 @@
+@startuml
+|dq_numb3rs|
+start
+:Clone repo;
+|github|
+:IoTNumb3rs/iotdata]
+|dq_numb3rs|
+:Import csv files into sqlite DB;
+:Count all quality incidents;
+:Compute quality indicator;
+:Update dq.md;
+:Commit and push into repo;
+|github|
+:IoTNumb3rs/iotdata]
+|dq_numb3rs|
+:Report data quality;
+|Slack|
+:Data quality]
+stop
+@enduml
