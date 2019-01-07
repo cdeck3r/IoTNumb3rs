@@ -14,7 +14,7 @@ IoTNumb3rs software consists of the following components.
 
 All software activity is reported via [Slack](https://iotnumb3rs.slack.com/).
 
-## numbe3rspipeline
+## numb3rspipeline
 
 The project's workhorse is this pipeline. Users provide URLs to infographics via Dropbox and the numbe3rspipeline creates Ethercalc templates from them. Afterwards, users extract relevant figures from the infographics and fill out the template.
 
