@@ -2,4 +2,4 @@
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 ||||||||||||
 |URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
-|https://i.pinimg.com/564x/97/53/f7/9753f7bb18b505ddf89ac7d65c758db0.jpg|http://www.industrial-ip.org/en|file9_9753f7bb18b505ddf89ac7d65c758db0.jpg|device|50000000000|||2022|-----------|company|Pattoho/20190101-2100|
+|https://cdn.statcdn.com/Statistic/740000/744292-blank-754.png|https://www.statista.com/statistics/744292/worldwide-cybersecurity-costs/|file9_744292-blank-754.png||||||||Pattoho/20190107-1200|

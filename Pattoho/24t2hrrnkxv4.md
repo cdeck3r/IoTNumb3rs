@@ -2,4 +2,4 @@
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 ||||||||||||
 |URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
-|https://i.pinimg.com/564x/97/53/f7/9753f7bb18b505ddf89ac7d65c758db0.jpg|http://www.industrial-ip.org/en|file9_9753f7bb18b505ddf89ac7d65c758db0.jpg|device|50000000000|||2022|-----------|company|Pattoho/20190101-2100|
+|https://i.pinimg.com/originals/1f/d9/d8/1fd9d8fffe7b1aefc0ffb507d49c66c0.jpg|https://www.pinterest.de/pin/402227810450895305/?lp=true|file12_1fd9d8fffe7b1aefc0ffb507d49c66c0.jpg|||cybersecurity(spending)|6.55E+11|2020|-------------|pinterest|Pattoho/20190107-1200|
