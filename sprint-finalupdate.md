@@ -36,7 +36,7 @@ Datenqualität: [dq.md](https://github.com/cdeck3r/IoTNumb3rs/blob/iotdata/dq.md
 
 siehe Sprint [Datenqualitätsoffensive](sprint-datenqualitaetsoffensive.md) und Sprint [Dateneinblicke](sprint-dateneinblicke.md) 
 
-Datenquelle: [Datenfile aus Slack]()
+Datenquelle: [Datenfile aus Slack](https://iotnumb3rs.slack.com/files/UCJ01E3DZ/FF9JFDTB6/combined_09012019.csv)
 
 **Besondere Hinweise**
 
