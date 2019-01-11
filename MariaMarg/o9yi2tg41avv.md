@@ -1,6 +1,7 @@
-|IoTNumb3rs Datenerfassung|||||||||||
-| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
-||||||||||||
-|URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
-|https://www.stardust-testing.com/wp-content/uploads/2018/10/vignette-infographic-IOT-1.png|https://www.stardust-testing.com/en/publications/testing-iot/|file4_vignette-infographic-IOT-1.png|||growth of IoT´s|8500000000|2017|2018|company|MariaMarg/20181213-0000|
-|https://www.stardust-testing.com/wp-content/uploads/2018/10/vignette-infographic-IOT-1.png|https://www.stardust-testing.com/en/publications/testing-iot/|file4_vignette-infographic-IOT-1.png|||growth of IoT´s|30000000000|2020|2018|company|MariaMarg/20181213-0000|
+<html>
+<head><title>502 Bad Gateway</title></head>
+<body bgcolor="white">
+<center><h1>502 Bad Gateway</h1></center>
+<hr><center>nginx/1.13.8</center>
+</body>
+</html>
