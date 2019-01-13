@@ -2,4 +2,6 @@
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 ||||||||||||
 |URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
-|https://i.pinimg.com/564x/ee/e2/4e/eee24e04cab7fed7f6ec8118bf505adc.jpg|https://www.webpronews.com/2020-will-30-billion-connected-things/|file11_eee24e04cab7fed7f6ec8118bf505adc.jpg||||||||JinlinHolic/20190109-2100|
+|https://i.pinimg.com/564x/ee/e2/4e/eee24e04cab7fed7f6ec8118bf505adc.jpg|https://www.webpronews.com/2020-will-30-billion-connected-things/|file11_eee24e04cab7fed7f6ec8118bf505adc.jpg|Vechicle|2.5E+11|||2020|2016|company|JinlinHolic/20190109-2100|
+|https://i.pinimg.com/564x/ee/e2/4e/eee24e04cab7fed7f6ec8118bf505adc.jpg|https://www.webpronews.com/2020-will-30-billion-connected-things/|file11_eee24e04cab7fed7f6ec8118bf505adc.jpg|Generic IoT|30000000000|||2020|2016|company|JinlinHolic/20190109-2100|
+|https://i.pinimg.com/564x/ee/e2/4e/eee24e04cab7fed7f6ec8118bf505adc.jpg|https://www.webpronews.com/2020-will-30-billion-connected-things/|file11_eee24e04cab7fed7f6ec8118bf505adc.jpg|||value|1.7E+12|2020|2016|company|JinlinHolic/20190109-2100|

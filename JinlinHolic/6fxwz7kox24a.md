@@ -2,4 +2,6 @@
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 ||||||||||||
 |URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
-|https://i.pinimg.com/564x/de/05/6a/de056acd701efe6794b19fd1c1684cb8.jpg|https://www.iotjournaal.nl/infographic-wat-kan-blockchain-voor-internet-of-things-betekenen/|file8_de056acd701efe6794b19fd1c1684cb8.jpg||||||||JinlinHolic/20190109-2100|
+|https://i.pinimg.com/564x/de/05/6a/de056acd701efe6794b19fd1c1684cb8.jpg|https://www.iotjournaal.nl/infographic-wat-kan-blockchain-voor-internet-of-things-betekenen/|file8_de056acd701efe6794b19fd1c1684cb8.jpg|Generic IoT|8400000000|||2020|2018|company|JinlinHolic/20190109-2100|
+|https://i.pinimg.com/564x/de/05/6a/de056acd701efe6794b19fd1c1684cb8.jpg|https://www.iotjournaal.nl/infographic-wat-kan-blockchain-voor-internet-of-things-betekenen/|file8_de056acd701efe6794b19fd1c1684cb8.jpg|||size|6080000000|2023|2018|company|JinlinHolic/20190109-2100|
+|https://i.pinimg.com/564x/de/05/6a/de056acd701efe6794b19fd1c1684cb8.jpg|https://www.iotjournaal.nl/infographic-wat-kan-blockchain-voor-internet-of-things-betekenen/|file8_de056acd701efe6794b19fd1c1684cb8.jpg|||value|2902000000|2023|2018|company|JinlinHolic/20190109-2100|
