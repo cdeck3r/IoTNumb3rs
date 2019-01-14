@@ -1,0 +1,8 @@
+|IoTNumb3rs Datenerfassung|||||||||||
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+||||||||||||
+|URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
+|https://www.coinspeaker.com/wp-content/uploads/2016/03/how-the-internet-of-things-will-explode-by-2020-infographic-large.jpg|https://www.coinspeaker.com/how-the-internet-of-things-will-explode-by-2020-infographic/|file9_how-the-internet-of-things-will-explode-by-2020-infographic-large.jpg|generic IoT|24000000000|||2020|2016|journalist|marielledemuth/20190113-1508|
+|https://www.coinspeaker.com/wp-content/uploads/2016/03/how-the-internet-of-things-will-explode-by-2020-infographic-large.jpg|https://www.coinspeaker.com/how-the-internet-of-things-will-explode-by-2020-infographic/|file9_how-the-internet-of-things-will-explode-by-2020-infographic-large.jpg|generic IoT|5000000000|||2015|2016|journalist|marielledemuth/20190113-1508|
+|https://www.coinspeaker.com/wp-content/uploads/2016/03/how-the-internet-of-things-will-explode-by-2020-infographic-large.jpg|https://www.coinspeaker.com/how-the-internet-of-things-will-explode-by-2020-infographic/|file9_how-the-internet-of-things-will-explode-by-2020-infographic-large.jpg|||invest|6E+12|2020|2016|journalist|marielledemuth/20190113-1508|
+|https://www.coinspeaker.com/wp-content/uploads/2016/03/how-the-internet-of-things-will-explode-by-2020-infographic-large.jpg|https://www.coinspeaker.com/how-the-internet-of-things-will-explode-by-2020-infographic/|file9_how-the-internet-of-things-will-explode-by-2020-infographic-large.jpg|||revenue|1.3E+13|2025|2016|journalist|marielledemuth/20190113-1508|

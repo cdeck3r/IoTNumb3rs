@@ -1,0 +1,8 @@
+|IoTNumb3rs Datenerfassung|||||||||||
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+||||||||||||
+|URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
+|https://d6fiz9tmzg8gn.cloudfront.net/wp-content/uploads/2017/06/13071451/5.png|http://windowgolddealtheclicks.live/L7v6xhQVuX5Jk6v0Cx8tQrnjAs9YMnpBcI9NvT-qKsQ?cid=d96362029886abe05e493845fe3e60b3&sid=14394139|file17_5.png|||smart home size|14000000000|2015|2016|expert|marielledemuth/20190113-1508|
+|https://d6fiz9tmzg8gn.cloudfront.net/wp-content/uploads/2017/06/13071451/5.png|http://windowgolddealtheclicks.live/L7v6xhQVuX5Jk6v0Cx8tQrnjAs9YMnpBcI9NvT-qKsQ?cid=d96362029886abe05e493845fe3e60b3&sid=14394139|file17_5.png|||smart home size|55000000000|2020|2016|expert|marielledemuth/20190113-1508|
+|https://d6fiz9tmzg8gn.cloudfront.net/wp-content/uploads/2017/06/13071451/5.png|http://windowgolddealtheclicks.live/L7v6xhQVuX5Jk6v0Cx8tQrnjAs9YMnpBcI9NvT-qKsQ?cid=d96362029886abe05e493845fe3e60b3&sid=14394139|file17_5.png|||smart home size|2.63E+11|2025|2016|expert|marielledemuth/20190113-1508|
+|https://d6fiz9tmzg8gn.cloudfront.net/wp-content/uploads/2017/06/13071451/5.png|http://windowgolddealtheclicks.live/L7v6xhQVuX5Jk6v0Cx8tQrnjAs9YMnpBcI9NvT-qKsQ?cid=d96362029886abe05e493845fe3e60b3&sid=14394139|file17_5.png|||smart home size|4.05E+11|2030|2016|expert|marielledemuth/20190113-1508|
