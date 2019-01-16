@@ -1,0 +1,7 @@
+|IoTNumb3rs Datenerfassung|||||||||||
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+||||||||||||
+|URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
+|https://40uu5c99f3a2ja7s7miveqgqu-wpengine.netdna-ssl.com/wp-content/uploads/2018/02/Industrial-IoT-an-IIoT-timeline-source-kepware.jpg|https://www.i-scoop.eu/internet-of-things-guide/industrial-internet-things-iiot-saving-costs-innovation/|file17_Industrial-IoT-an-IIoT-timeline-source-kepware.jpg|device|16000000000|||2016|-----------|expert|Pattoho/20190115-1503|
+|https://40uu5c99f3a2ja7s7miveqgqu-wpengine.netdna-ssl.com/wp-content/uploads/2018/02/Industrial-IoT-an-IIoT-timeline-source-kepware.jpg|https://www.i-scoop.eu/internet-of-things-guide/industrial-internet-things-iiot-saving-costs-innovation/|file17_Industrial-IoT-an-IIoT-timeline-source-kepware.jpg|device|27000000000|||2020|-----------|expert|Pattoho/20190115-1503|
+|https://40uu5c99f3a2ja7s7miveqgqu-wpengine.netdna-ssl.com/wp-content/uploads/2018/02/Industrial-IoT-an-IIoT-timeline-source-kepware.jpg|https://www.i-scoop.eu/internet-of-things-guide/industrial-internet-things-iiot-saving-costs-innovation/|file17_Industrial-IoT-an-IIoT-timeline-source-kepware.jpg|||revenue|3E+12|2020|-----------|expert|Pattoho/20190115-1503|

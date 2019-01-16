@@ -1,0 +1,5 @@
+|IoTNumb3rs Datenerfassung|||||||||||
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+||||||||||||
+|URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
+|https://40uu5c99f3a2ja7s7miveqgqu-wpengine.netdna-ssl.com/wp-content/uploads/2017/01/Manufacturing-operations-the-main-IoT-manufacturing-use-case-in-2016-accounted-for-over-57-percent-of-total-IoT-spend-in-manufacturing.jpg|https://www.businesswire.com/news/home/20170104005270/en/Internet-Spending-Forecast-Grow-17.9-2016-Led|file15_Manufacturing-operations-the-main-IoT-manufacturing-use-case-in-2016-accounted-for-over-57-percent-of-total-IoT-spend-in-manufacturing.jpg|||manufactoring operations(spending)|1.78E+11|2016|2017|company|Pattoho/20190115-1503|

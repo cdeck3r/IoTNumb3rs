@@ -1,0 +1,8 @@
+|IoTNumb3rs Datenerfassung|||||||||||
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+||||||||||||
+|URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
+|https://i0.wp.com/informationmatters.net/wp-content/uploads/2017/02/Gartner-IoT-2017-statistics.png|https://www.gartner.com/en/newsroom/press-releases/2017-02-07-gartner-says-8-billion-connected-things-will-be-in-use-in-2017-up-31-percent-from-2016|file6_Gartner-IoT-2017-statistics.png|units installed|6300000|||2016|2017|expert|Pattoho/20190115-1503|
+|https://i0.wp.com/informationmatters.net/wp-content/uploads/2017/02/Gartner-IoT-2017-statistics.png|https://www.gartner.com/en/newsroom/press-releases/2017-02-07-gartner-says-8-billion-connected-things-will-be-in-use-in-2017-up-31-percent-from-2016|file6_Gartner-IoT-2017-statistics.png|units installed|8300000|||2016|2017|expert|Pattoho/20190115-1503|
+|https://i0.wp.com/informationmatters.net/wp-content/uploads/2017/02/Gartner-IoT-2017-statistics.png|https://www.gartner.com/en/newsroom/press-releases/2017-02-07-gartner-says-8-billion-connected-things-will-be-in-use-in-2017-up-31-percent-from-2016|file6_Gartner-IoT-2017-statistics.png|units installed|11100000|||2016|2017|expert|Pattoho/20190115-1503|
+|https://i0.wp.com/informationmatters.net/wp-content/uploads/2017/02/Gartner-IoT-2017-statistics.png|https://www.gartner.com/en/newsroom/press-releases/2017-02-07-gartner-says-8-billion-connected-things-will-be-in-use-in-2017-up-31-percent-from-2016|file6_Gartner-IoT-2017-statistics.png|units installed|20400000|||2016|2017|expert|Pattoho/20190115-1503|

@@ -1,0 +1,8 @@
+|IoTNumb3rs Datenerfassung|||||||||||
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+||||||||||||
+|URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
+|http://infiniteinformationtechnology.com/wp-content/uploads/2017/03/P050a.-CCS-Insight-Wearable-Statistics-644x320.png|http://www.infiniteinformationtechnology.com/iot-wearables-wearable-device-market|file25_P050a.-CCS-Insight-Wearable-Statistics-644x320.png|wearables|123000000|||2016|2016|Blog|Pattoho/20190115-1503|
+|http://infiniteinformationtechnology.com/wp-content/uploads/2017/03/P050a.-CCS-Insight-Wearable-Statistics-644x320.png|http://www.infiniteinformationtechnology.com/iot-wearables-wearable-device-market|file25_P050a.-CCS-Insight-Wearable-Statistics-644x320.png|||wearables value|14000000000|2016|2016|Blog|Pattoho/20190115-1503|
+|http://infiniteinformationtechnology.com/wp-content/uploads/2017/03/P050a.-CCS-Insight-Wearable-Statistics-644x320.png|http://www.infiniteinformationtechnology.com/iot-wearables-wearable-device-market|file25_P050a.-CCS-Insight-Wearable-Statistics-644x320.png|wearables|411000000|||2020|2016|Blog|Pattoho/20190115-1503|
+|http://infiniteinformationtechnology.com/wp-content/uploads/2017/03/P050a.-CCS-Insight-Wearable-Statistics-644x320.png|http://www.infiniteinformationtechnology.com/iot-wearables-wearable-device-market|file25_P050a.-CCS-Insight-Wearable-Statistics-644x320.png|||wearables value|34200000000|2020|2016|Blog|Pattoho/20190115-1503|
