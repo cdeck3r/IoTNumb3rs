@@ -1,7 +1,5 @@
-<html>
-<head><title>502 Bad Gateway</title></head>
-<body bgcolor="white">
-<center><h1>502 Bad Gateway</h1></center>
-<hr><center>nginx/1.13.8</center>
-</body>
-</html>
+"IoTNumb3rs Datenerfassung",,,,,,,,,,
+,,,,,,,,,,
+URL,home_url,filename,device_class,device_count,market_class,market_volume,prognosis_year,publication_year,authorship_class,"Dropbox folder"
+https://www.gabrian.com/wp-content/uploads/2016/04/iotinfographic__large.png,https://www.gabrian.com/how-will-the-internet-of-things-evolve-fascinating-infographic/,file2_iotinfographic__large.png,"generic IoT",20800000000,,,2020,2016,expert,MariaMarg/20190113-1500
+https://www.gabrian.com/wp-content/uploads/2016/04/iotinfographic__large.png,https://www.gabrian.com/how-will-the-internet-of-things-evolve-fascinating-infographic/,file2_iotinfographic__large.png,,,spending,235000000000,2015,2016,expert,MariaMarg/20190113-1500
