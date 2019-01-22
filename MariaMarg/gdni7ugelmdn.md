@@ -1,5 +1,7 @@
-|IoTNumb3rs Datenerfassung|||||||||||
-| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
-||||||||||||
-|URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
-|http://res.cloudinary.com/engineering-com/image/upload/c_limit/Internet-of-things-savings-R2_gv56vu.jpg|https://fathym.com/2016/04/the-growing-iot-market-an-infographic/|file12_Internet-of-things-savings-R2_gv56vu.jpg|||value industrial IoT|1.42E+13|2030|2016|company|MariaMarg/20190102-1800|
+<html>
+<head><title>502 Bad Gateway</title></head>
+<body bgcolor="white">
+<center><h1>502 Bad Gateway</h1></center>
+<hr><center>nginx/1.13.8</center>
+</body>
+</html>
