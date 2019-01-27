@@ -1,7 +1,7 @@
-|IoTNumb3rs Datenerfassung|||||||||||
-| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
-||||||||||||
-|URL|home_url|filename|device_class|device_count|market_class|market_volume|prognosis_year|publication_year|authorship_class|Dropbox folder|
-|https://40uu5c99f3a2ja7s7miveqgqu-wpengine.netdna-ssl.com/wp-content/uploads/2014/12/The-Industrial-Internet-of-Things-IIoT-barriers-and-opportunities-according-to-Visual-Capitalist.jpg|https://www.i-scoop.eu/internet-of-things-guide/industrial-internet-things-iiot-saving-costs-innovation/|file14_The-Industrial-Internet-of-Things-IIoT-barriers-and-opportunities-according-to-Visual-Capitalist.jpg|device|12500000000|||2010|----------|expert|Pattoho/20190115-1503|
-|https://40uu5c99f3a2ja7s7miveqgqu-wpengine.netdna-ssl.com/wp-content/uploads/2014/12/The-Industrial-Internet-of-Things-IIoT-barriers-and-opportunities-according-to-Visual-Capitalist.jpg|https://www.i-scoop.eu/internet-of-things-guide/industrial-internet-things-iiot-saving-costs-innovation/|file14_The-Industrial-Internet-of-Things-IIoT-barriers-and-opportunities-according-to-Visual-Capitalist.jpg|device|25000000000|||2015|----------|expert|Pattoho/20190115-1503|
-|https://40uu5c99f3a2ja7s7miveqgqu-wpengine.netdna-ssl.com/wp-content/uploads/2014/12/The-Industrial-Internet-of-Things-IIoT-barriers-and-opportunities-according-to-Visual-Capitalist.jpg|https://www.i-scoop.eu/internet-of-things-guide/industrial-internet-things-iiot-saving-costs-innovation/|file14_The-Industrial-Internet-of-Things-IIoT-barriers-and-opportunities-according-to-Visual-Capitalist.jpg|device|50000000000|||2020|----------|expert|Pattoho/20190115-1503|
+<html>
+<head><title>502 Bad Gateway</title></head>
+<body bgcolor="white">
+<center><h1>502 Bad Gateway</h1></center>
+<hr><center>nginx/1.13.8</center>
+</body>
+</html>
