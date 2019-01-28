@@ -89,6 +89,24 @@ Add the following line into a user's crontab via `crontab -e` to run the pipelin
 0 */3 * * * "$HOME"/cron_numb3rspipeline.sh >/dev/null 2>&1 
 ```
 
+**Switch all jobs on/off**
+
+Source: https://serverfault.com/a/94355
+```
+crontab -l > numb3rspipline.crontab
+```
+
+To empty it
+```
+crontab -r
+```
+
+To restore it 
+
+```
+crontab numb3rspipline.crontab
+crontab -l
+```
 
 ### Terms
 
