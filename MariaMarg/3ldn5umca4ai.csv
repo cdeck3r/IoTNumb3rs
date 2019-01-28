@@ -1,7 +1,4 @@
-<html>
-<head><title>502 Bad Gateway</title></head>
-<body bgcolor="white">
-<center><h1>502 Bad Gateway</h1></center>
-<hr><center>nginx/1.13.8</center>
-</body>
-</html>
+"IoTNumb3rs Datenerfassung",,,,,,,,,,
+,,,,,,,,,,
+URL,home_url,filename,device_class,device_count,market_class,market_volume,prognosis_year,publication_year,authorship_class,"Dropbox folder"
+https://blog.swim.ai/hubfs/Infographics/Swim_2017%20IIOT%20Trends_Infographic.png,https://blog.swim.ai/topic/infographic/page/2,file5_Swim_201720IIOT20Trends_Infographic.png,,,"industrial IoT market",3700000000000,2025,2017,company,MariaMarg/20181217-1200
