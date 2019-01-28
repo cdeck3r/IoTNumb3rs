@@ -19,6 +19,11 @@ IoT Infografiken enthalten Prognosen und Zahlenmaterial über das Potential und 
 
 [IoTNumb3rs Gitbook](https://cdeck3r-docs.gitbook.io/iotnumb3rs/)
 
+## Ergebnisse
+
+* [Poster](https://github.com/cdeck3r/IoTNumb3rs/blob/master/IoTNumb3rs-Poster.pdf)
+* [Abschlusspräsentation](https://github.com/cdeck3r/IoTNumb3rs/blob/master/IoTNumb3rs-Presentation.pdf)
+
 ## Teilnehmer
 
 Dies ist Projekt im [Bachelor Wirtschaftsinformatik \(WIB\)](http://www.inf.reutlingen-university.de/studium/bachelor/wirtschaftsinformatik/) an der Hochschule Reutlingen.
